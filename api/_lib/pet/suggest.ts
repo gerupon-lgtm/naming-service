@@ -11,7 +11,11 @@ import {
   type PetGender,
   type NameType,
 } from "./nameMaster";
-import { lookupStrokes, type LookupDeps } from "../characterMaster";
+import {
+  lookupStrokes,
+  strokeCountOf,
+  type LookupDeps,
+} from "../characterMaster";
 import { evaluateStroke, CATEGORY_LABEL, type FortuneCategory } from "../fortune";
 import { readingKanjiCandidates } from "./readingLookup";
 import type { KanjiApiReadingDeps } from "../kanjiapiReading";
@@ -23,7 +27,8 @@ export interface SuggestInput {
   includeChars?: string[]; // 使いたい文字（AND・すべて含む）
   charTypes?: NameType[]; // 出力文字種の許可リスト（未指定なら全許可）
   reading?: string; // 希望よみ（かな候補＋漢字逆引きに使用）
-  limit?: number; // 返す件数（既定20）
+  count?: number; // 表示したい候補数（既定 SUGGEST_DEFAULT_COUNT）
+  limit?: number; // count の別名（後方互換）
   lookup?: LookupDeps; // 画数参照の依存差し替え（テスト用）
   readingApi?: KanjiApiReadingDeps; // 読み逆引き（kanjiapi.dev）の差し替え（テスト用）
 }
@@ -53,6 +58,38 @@ export const SUGGEST_WEIGHTS = {
   stroke: 0.35,
   category: 0.25,
 } as const;
+
+/**
+ * 表示したい候補数の既定値（設定値）。
+ * ユーザー希望（よみ由来）を優先し、これに満たない分を条件に合うマスタから
+ * ランダムに選定して埋める。件数を変えたいときはこの値を変更する。
+ */
+export const SUGGEST_DEFAULT_COUNT = 8;
+
+/** 配列をシャッフル（Fisher–Yates）。 */
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+/** 選択条件（性別・カテゴリ）に沿うか（未指定の条件は常に一致扱い）。 */
+export function matchesPreferences(c: NameCandidate, input: SuggestInput): boolean {
+  if (input.sex) {
+    if (!c.genders.includes(input.sex) && !c.genders.includes("neutral")) {
+      return false;
+    }
+  }
+  if (input.categories && input.categories.length > 0) {
+    if (!input.categories.some((cat) => c.categories.includes(cat))) {
+      return false;
+    }
+  }
+  return true;
+}
 
 const HIRA_MIN = 0x3041;
 const HIRA_MAX = 0x3096;
@@ -202,7 +239,7 @@ function dynamicFromReading(input: SuggestInput): NameCandidate[] {
  */
 export async function suggest(input: SuggestInput): Promise<SuggestItem[]> {
   const includeChars = normalizeIncludeChars(input.includeChars);
-  const limit = input.limit ?? 20;
+  const count = input.count ?? input.limit ?? SUGGEST_DEFAULT_COUNT;
 
   // 矛盾チェック（T-104）: 使いたい文字がすべて漢字なのに出力文字種が「かなのみ」等
   if (
@@ -241,6 +278,11 @@ export async function suggest(input: SuggestInput): Promise<SuggestItem[]> {
     const kanjiCands = await readingKanjiCandidates(input.reading, input.readingApi);
     const kanjiItems: SuggestItem[] = [];
     for (const kc of kanjiCands) {
+      // 人名用に限定: シード（常用＋人名用漢字）に収録された字だけで構成される名前のみ採用。
+      // これで見慣れない漢字（名乗りの稀字など）を除外する。
+      if (!Array.from(kc.name).every((ch) => strokeCountOf(ch) !== undefined)) {
+        continue;
+      }
       const cand: NameCandidate = {
         name: kc.name,
         reading: kc.reading,
@@ -256,24 +298,35 @@ export async function suggest(input: SuggestInput): Promise<SuggestItem[]> {
         kanjiItems.push(it);
       }
     }
-    // 画数の良い順に上位のみ採用（一覧を漢字で埋め尽くさない）
+    // 画数の良い順。よみ由来（かな＋漢字）は無理に増やさず合計3件までに絞る
     kanjiItems.sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
-    readingItems.push(...kanjiItems.slice(0, 6));
+    readingItems.push(...kanjiItems.slice(0, Math.max(0, 3 - readingItems.length)));
   }
 
-  // 2) マスタからフィルタ＋スコア（希望よみと重複する名前は除く）
+  // 2) 一定数（count）に満たない分を、選択条件に合うマスタから「ランダム」に埋める。
+  //    ユーザー希望（よみ由来）を先頭に固定し、残り枠を埋める。
   const readingNames = new Set(readingItems.map((i) => i.name));
-  const master = allCandidates().filter((c) =>
-    passesFilters(c, input, includeChars)
-  );
-  const masterItems: SuggestItem[] = [];
-  for (const c of master) {
-    if (readingNames.has(c.name)) continue;
-    const it = await toItem(c, input, "master");
-    if (it) masterItems.push(it);
-  }
-  masterItems.sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
+  const need = count - readingItems.length;
+  const fillItems: SuggestItem[] = [];
 
-  // 希望のよみ候補を先頭に、続けてマスタをスコア順に
-  return [...readingItems, ...masterItems].slice(0, limit);
+  if (need > 0) {
+    // ハードフィルタ（対象動物・使いたい文字・出力文字種）を通ったマスタ
+    const hardPool = allCandidates().filter(
+      (c) => passesFilters(c, input, includeChars) && !readingNames.has(c.name)
+    );
+    // まずは選択条件（性別・カテゴリ）にも沿うものを優先プールに
+    const preferred = hardPool.filter((c) => matchesPreferences(c, input));
+    const rest = hardPool.filter((c) => !matchesPreferences(c, input));
+
+    // 優先プールからランダム → 足りなければ残りからランダムで補う。
+    // 画数が引けず落ちる候補があっても件数を満たすよう、必要数に達するまで進める。
+    const ordered = [...shuffle(preferred), ...shuffle(rest)];
+    for (const c of ordered) {
+      if (fillItems.length >= need) break;
+      const it = await toItem(c, input, "master");
+      if (it) fillItems.push(it);
+    }
+  }
+
+  return [...readingItems, ...fillItems];
 }

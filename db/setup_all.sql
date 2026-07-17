@@ -1,8 +1,4 @@
--- ============================================================
--- 命名サービス Neonセットアップ用SQL（コピペ1本）
--- NeonのSQL Editorにこのファイルの中身を全部貼り付けて Run するだけ。
--- 何度実行しても同じ結果になります（IF NOT EXISTS / ON CONFLICT DO UPDATE=再投入で最新化）。
--- ============================================================
+-- 命名サービス Neonセットアップ用SQL（コピペ1本・再投入で最新化）
 
 -- 001_character_master.sql
 -- Phase1（MVP）で必要な唯一のテーブル。
@@ -3119,12 +3115,83 @@ INSERT INTO character_master (character, stroke_count, character_type, source) V
 ('贈', 19, 'kanji', 'seed'),
 ('逸', 12, 'kanji', 'seed'),
 ('難', 19, 'kanji', 'seed'),
-('響', 22, 'kanji', 'seed')
+('響', 22, 'kanji', 'seed'),
+('が', 5, 'hiragana', 'seed'),
+('ぎ', 6, 'hiragana', 'seed'),
+('ぐ', 3, 'hiragana', 'seed'),
+('げ', 5, 'hiragana', 'seed'),
+('ご', 4, 'hiragana', 'seed'),
+('ざ', 5, 'hiragana', 'seed'),
+('じ', 3, 'hiragana', 'seed'),
+('ず', 4, 'hiragana', 'seed'),
+('ぜ', 5, 'hiragana', 'seed'),
+('ぞ', 4, 'hiragana', 'seed'),
+('だ', 6, 'hiragana', 'seed'),
+('ぢ', 5, 'hiragana', 'seed'),
+('づ', 3, 'hiragana', 'seed'),
+('で', 3, 'hiragana', 'seed'),
+('ど', 4, 'hiragana', 'seed'),
+('ば', 5, 'hiragana', 'seed'),
+('び', 3, 'hiragana', 'seed'),
+('ぶ', 6, 'hiragana', 'seed'),
+('べ', 3, 'hiragana', 'seed'),
+('ぼ', 6, 'hiragana', 'seed'),
+('ぱ', 4, 'hiragana', 'seed'),
+('ぴ', 2, 'hiragana', 'seed'),
+('ぷ', 5, 'hiragana', 'seed'),
+('ぺ', 2, 'hiragana', 'seed'),
+('ぽ', 5, 'hiragana', 'seed'),
+('ぁ', 3, 'hiragana', 'seed'),
+('ぃ', 2, 'hiragana', 'seed'),
+('ぅ', 2, 'hiragana', 'seed'),
+('ぇ', 2, 'hiragana', 'seed'),
+('ぉ', 3, 'hiragana', 'seed'),
+('っ', 1, 'hiragana', 'seed'),
+('ゃ', 3, 'hiragana', 'seed'),
+('ゅ', 2, 'hiragana', 'seed'),
+('ょ', 2, 'hiragana', 'seed'),
+('ゎ', 2, 'hiragana', 'seed'),
+('ガ', 4, 'katakana', 'seed'),
+('ギ', 5, 'katakana', 'seed'),
+('グ', 4, 'katakana', 'seed'),
+('ゲ', 5, 'katakana', 'seed'),
+('ゴ', 4, 'katakana', 'seed'),
+('ザ', 5, 'katakana', 'seed'),
+('ジ', 5, 'katakana', 'seed'),
+('ズ', 4, 'katakana', 'seed'),
+('ゼ', 4, 'katakana', 'seed'),
+('ゾ', 4, 'katakana', 'seed'),
+('ダ', 5, 'katakana', 'seed'),
+('ヂ', 5, 'katakana', 'seed'),
+('ヅ', 5, 'katakana', 'seed'),
+('デ', 5, 'katakana', 'seed'),
+('ド', 4, 'katakana', 'seed'),
+('バ', 4, 'katakana', 'seed'),
+('ビ', 4, 'katakana', 'seed'),
+('ブ', 3, 'katakana', 'seed'),
+('ベ', 3, 'katakana', 'seed'),
+('ボ', 6, 'katakana', 'seed'),
+('パ', 3, 'katakana', 'seed'),
+('ピ', 3, 'katakana', 'seed'),
+('プ', 2, 'katakana', 'seed'),
+('ペ', 2, 'katakana', 'seed'),
+('ポ', 5, 'katakana', 'seed'),
+('ァ', 2, 'katakana', 'seed'),
+('ィ', 2, 'katakana', 'seed'),
+('ゥ', 3, 'katakana', 'seed'),
+('ェ', 3, 'katakana', 'seed'),
+('ォ', 3, 'katakana', 'seed'),
+('ッ', 3, 'katakana', 'seed'),
+('ャ', 2, 'katakana', 'seed'),
+('ュ', 2, 'katakana', 'seed'),
+('ョ', 3, 'katakana', 'seed'),
+('ヮ', 2, 'katakana', 'seed'),
+('ヴ', 5, 'katakana', 'seed'),
+('々', 3, 'kanji', 'seed')
 ON CONFLICT (character) DO UPDATE SET
   stroke_count = EXCLUDED.stroke_count,
   character_type = EXCLUDED.character_type,
   source = EXCLUDED.source;
 
--- 確認用（任意）: 登録件数とサンプル
 SELECT count(*) AS 登録文字数 FROM character_master;
-SELECT character, stroke_count FROM character_master WHERE character IN ('山','田','太','郎','海','陽');
+SELECT character, stroke_count FROM character_master WHERE character IN ('山','郎','が','ゃ','々');

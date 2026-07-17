@@ -26,17 +26,20 @@ export function buildProviderChain(order?: string): LlmProvider[] {
 }
 
 /**
- * プロバイダ連鎖を順に試し、最初の成功応答を返す。全滅なら null。
+ * プロバイダ連鎖を順に試し、最初の「妥当な」応答を返す。全滅なら null。
  * @param providers 省略時は環境変数から構築する（テストでは明示注入できる）。
+ * @param validate  応答の妥当性チェック（false のプロバイダは失敗扱いで次へ）。
  */
 export async function generateWithFallback(
   prompt: string,
-  providers?: LlmProvider[]
+  providers?: LlmProvider[],
+  validate?: (comment: string) => boolean
 ): Promise<{ comment: string; provider: string } | null> {
   const chain = providers ?? buildProviderChain();
   for (const p of chain) {
     try {
       const comment = await p.generate(prompt);
+      if (validate && !validate(comment)) continue; // 不正な出力は次候補へ
       return { comment, provider: p.id };
     } catch (e) {
       if (e instanceof LlmUnavailableError) continue; // 次候補へ

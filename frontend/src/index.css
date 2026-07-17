@@ -24,8 +24,8 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: "BIZ UDPMincho", serif;
-  font-weight: 700;
+  font-family: "Shippori Mincho", serif;
+  font-weight: 500; /* 本文=500、見出し・強調=700 の二段階 */
   font-size: 18px;
   line-height: 1.95;
   -webkit-font-smoothing: antialiased;

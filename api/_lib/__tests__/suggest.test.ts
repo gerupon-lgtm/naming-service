@@ -2,7 +2,9 @@ import { describe, it, expect, vi } from "vitest";
 import {
   suggest,
   normalizeIncludeChars,
+  matchesPreferences,
   SuggestInvalidError,
+  SUGGEST_DEFAULT_COUNT,
 } from "../pet/suggest";
 
 function mockReadingFetch(map: Record<string, string[]>): typeof fetch {
@@ -18,15 +20,19 @@ function mockReadingFetch(map: Record<string, string[]>): typeof fetch {
 }
 
 describe("ペット命名提案（F-002〜F-005）", () => {
-  it("対象動物で候補が返り、スコア降順に並ぶ", async () => {
-    const items = await suggest({ target: "cat", limit: 10 });
-    expect(items.length).toBeGreaterThan(0);
-    for (let i = 1; i < items.length; i++) {
-      expect(items[i - 1].score).toBeGreaterThanOrEqual(items[i].score);
+  it("指定件数の候補が条件に沿って返る（不足分はマスタからランダム）", async () => {
+    const items = await suggest({ target: "cat", count: 6 });
+    expect(items.length).toBe(6); // マスタに十分あるので count 通り
+    // 地格＝総格（画数合計）と吉凶が入っている
+    for (const it of items) {
+      expect(it.strokeTotal).toBeGreaterThan(0);
+      expect(it.fortuneLabel).toBeTruthy();
     }
-    // 地格＝総格（画数合計）が入っている
-    expect(items[0].strokeTotal).toBeGreaterThan(0);
-    expect(items[0].fortuneLabel).toBeTruthy();
+  });
+
+  it("count 未指定なら既定件数（SUGGEST_DEFAULT_COUNT）", async () => {
+    const items = await suggest({ target: "dog" });
+    expect(items.length).toBe(SUGGEST_DEFAULT_COUNT);
   });
 
   it("使いたい文字（AND）で絞り込む（T-102）", async () => {
@@ -52,13 +58,16 @@ describe("ペット命名提案（F-002〜F-005）", () => {
     for (const it of items) expect(it.type).toBe("katakana");
   });
 
-  it("性別重みが強く反映される（男の子指定で male 向きが上位）", async () => {
-    const items = await suggest({ target: "dog", sex: "male", limit: 40 });
-    // 上位に male 向き候補（reasons に「男の子向き」）が含まれる
-    const top = items.slice(0, 8);
-    expect(top.some((i) => i.reasons.some((r) => r.includes("男の子")))).toBe(
-      true
-    );
+  it("性別条件に沿ってマスタから選ばれる（女の子専用は男の子指定で除外）", () => {
+    // 選定は matchesPreferences で条件フィルタ（性別・カテゴリ）される
+    const femaleOnly = { name: "花子", reading: "はなこ", type: "kanji" as const, targets: ["dog" as const], genders: ["female" as const], categories: [] };
+    const neutral = { name: "そら", reading: "そら", type: "hiragana" as const, targets: ["dog" as const], genders: ["neutral" as const], categories: [] };
+    const male = { name: "たろう", reading: "たろう", type: "hiragana" as const, targets: ["dog" as const], genders: ["male" as const], categories: [] };
+    expect(matchesPreferences(femaleOnly, { target: "dog", sex: "male" })).toBe(false);
+    expect(matchesPreferences(neutral, { target: "dog", sex: "male" })).toBe(true);
+    expect(matchesPreferences(male, { target: "dog", sex: "male" })).toBe(true);
+    // 性別未指定なら全て一致
+    expect(matchesPreferences(femaleOnly, { target: "dog" })).toBe(true);
   });
 
   it("使いたい文字と出力文字種の矛盾はエラー（T-104）", async () => {
@@ -77,13 +86,14 @@ describe("ペット命名提案（F-002〜F-005）", () => {
       sex: "female",
       categories: ["かわいい"],
       reading: "ぬぬ", // マスタには無いよみ
-      limit: 8,
+      readingApi: { fetchImpl: mockReadingFetch({}) }, // 漢字逆引きは空（ネット非依存）
+      count: 8,
     });
     // 先頭が希望のよみ候補（ぬぬ/ヌヌ）で、理由に「ご希望のよみ」
     expect(["ぬぬ", "ヌヌ"]).toContain(items[0].name);
     expect(items[0].reasons).toContain("ご希望のよみ");
     expect(items[0].source).toBe("dynamic");
-    // マスタ候補も続けて含まれる
+    // 不足分はマスタからランダムに埋まる
     expect(items.some((i) => i.source === "master")).toBe(true);
   });
 

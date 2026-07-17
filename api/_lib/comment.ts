@@ -94,16 +94,13 @@ export function buildDiagnosisPrompt(p: DiagnosisPayload): string {
   return lines.join("\n");
 }
 
-/** ペット命名候補向けコメントの入力（F-011・T-106）。 */
+/** ペット命名候補向けコメントの入力（F-011・T-106）。響き中心。画数・吉凶は使わない。 */
 export interface PetNamePayload {
-  name: string;
-  reading?: string;
-  strokeTotal?: number;
-  fortuneLabel?: string; // 大吉 等（画数の吉凶）
+  reading: string; // 名前のよみ（響き）— これがコメントの主題
+  name?: string; // 表記（任意・プロンプトでは主題にしない）
   target?: string; // dog / cat / small
   sexLabel?: string; // 男の子 / 女の子
   categories?: string[];
-  reasons?: string[];
 }
 
 const TARGET_LABEL: Record<string, string> = {
@@ -112,23 +109,41 @@ const TARGET_LABEL: Record<string, string> = {
   small: "小動物",
 };
 
-/** ペット候補名を解説させるプロンプト（数値・吉凶は再計算させない）。 */
+/**
+ * ペット候補名を解説させるプロンプト。
+ * 画数・吉凶には触れず、よみ（響き）と雰囲気だけを材料にして、
+ * 日本語のみの自然な短文を書かせる（AIっぽさ・外国語混入を避ける）。
+ */
 export function buildPetNamePrompt(p: PetNamePayload): string {
   const animal = p.target ? (TARGET_LABEL[p.target] ?? "ペット") : "ペット";
+  const vibe = p.categories && p.categories.length ? p.categories.join("・") : "";
   const lines: string[] = [
-    "あなたはペットの名付けアドバイザーです。",
-    "以下はロジックで確定した候補名の情報です。画数や吉凶は変更・再計算せず、",
-    `${animal}の名前として、響き・印象・込められる願いを、やさしく前向きに2〜3文で紹介してください。`,
-    "占いは断定せず、飼い主が思わず微笑むようなトーンで。",
-    "",
-    `候補名: ${p.name}${p.reading ? `（${p.reading}）` : ""}`,
+    `あなたは日本のペットの名付けアドバイザーです。${animal}の名前「${p.reading}」について、`,
+    "その響きから受ける印象を、飼い主が微笑むような自然な日本語で1〜2文だけ書いてください。",
+    "制約: 必ず日本語のみ。英語・韓国語・中国語・意味不明な記号や文字を混ぜない。",
+    "画数・運勢・吉凶・点数には触れない。絵文字や顔文字は使わない。前置き・見出し・箇条書きは書かない。",
+    "『AIとして』のような説明もしない。コメント本文だけを出力する。",
   ];
-  if (p.strokeTotal != null)
-    lines.push(`画数: ${p.strokeTotal}画${p.fortuneLabel ? `（${p.fortuneLabel}）` : ""}`);
-  if (p.sexLabel) lines.push(`向き: ${p.sexLabel}`);
-  if (p.categories && p.categories.length) lines.push(`雰囲気: ${p.categories.join("・")}`);
-  lines.push("", "コメント本文のみを出力してください（前置き・箇条書き・見出し不要）。");
+  if (p.sexLabel) lines.push(`（${p.sexLabel}の子です）`);
+  if (vibe) lines.push(`（希望の雰囲気: ${vibe}）`);
   return lines.join("\n");
+}
+
+// ハングル・ラテン文字が混じる／日本語がほとんど無い出力を「不正」とみなす。
+const HANGUL = /[가-힣ᄀ-ᇿ]/;
+const LATIN = /[A-Za-z]/g;
+const JP = /[぀-ヿ一-鿿]/g;
+
+/** LLM出力が「自然な日本語コメント」として妥当か。 */
+export function isJapaneseComment(text: string): boolean {
+  const t = (text ?? "").trim();
+  if (t.length < 4) return false;
+  if (HANGUL.test(t)) return false; // ハングル混入は不可
+  const latin = (t.match(LATIN) ?? []).length;
+  const jp = (t.match(JP) ?? []).length;
+  if (jp < 3) return false; // 日本語がほぼ無い
+  if (latin > 3) return false; // 英字が目立つ
+  return true;
 }
 
 /**
@@ -144,6 +159,7 @@ export async function generateComment(
     type === "petName"
       ? buildPetNamePrompt(payload as PetNamePayload)
       : buildDiagnosisPrompt(payload as DiagnosisPayload);
-  const result = await generateWithFallback(prompt, providers);
+  // 日本語として妥当な出力のみ採用（ハングル・英字混入は弾いて次候補へ）
+  const result = await generateWithFallback(prompt, providers, isJapaneseComment);
   return result?.comment ?? null;
 }

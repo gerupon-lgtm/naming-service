@@ -221,9 +221,13 @@ const TARGET_JP: Record<PetTarget, string> = {
   small: "小動物",
 };
 
-/** 候補名へのLLMコメントを取得する（F-011・T-106）。生成不可時は null。 */
+/**
+ * よみ（響き）へのLLMコメントを取得する（F-011・T-106）。
+ * コメントは画数・吉凶に触れず「よみ」で決まるため、同じよみは同一コメントになる。
+ * 生成不可時は null。
+ */
 export async function fetchPetComment(
-  item: SuggestItem,
+  reading: string,
   q: SuggestQuery
 ): Promise<string | null> {
   try {
@@ -233,14 +237,11 @@ export async function fetchPetComment(
       body: JSON.stringify({
         type: "petName",
         payload: {
-          name: item.name,
-          reading: item.reading,
-          strokeTotal: item.strokeTotal,
-          fortuneLabel: item.fortuneLabel,
+          reading,
           target: q.target,
-          sexLabel: q.sex === "male" ? "男の子" : q.sex === "female" ? "女の子" : undefined,
+          sexLabel:
+            q.sex === "male" ? "男の子" : q.sex === "female" ? "女の子" : undefined,
           categories: q.categories,
-          reasons: item.reasons,
         },
       }),
     });

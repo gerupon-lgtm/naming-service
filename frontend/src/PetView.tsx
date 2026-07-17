@@ -69,7 +69,7 @@ export default function PetView() {
       includeChars: includeChars.trim() ? [includeChars.trim()] : undefined,
       charTypes: charTypes.length ? charTypes : undefined,
       reading: reading.trim() || undefined,
-      limit: 8,
+      // 件数は API 側の設定値 SUGGEST_DEFAULT_COUNT（既定8）に従う
     }),
     [target, sex, selectedCats, includeChars, charTypes, reading]
   );
@@ -85,15 +85,18 @@ export default function PetView() {
     try {
       const res = await suggest(q);
       setItems(res);
-      // 各候補のLLMコメントを非同期取得（一覧表示はコメントを待たない・F-011）
+      // コメントは「よみ」で決まるので、同じよみは1回だけ生成して共有（統一）。
+      // サーバー負荷とAIの暴走を避けるため、順番に（段階的に）リクエストする。
+      const readings = Array.from(new Set(res.map((it) => it.reading)));
       const init: Record<string, CommentState> = {};
-      for (const it of res) init[it.name] = "loading";
+      for (const r of readings) init[r] = "loading";
       setComments(init);
-      for (const it of res) {
-        fetchPetComment(it, q).then((c) =>
-          setComments((prev) => ({ ...prev, [it.name]: c }))
-        );
-      }
+      void (async () => {
+        for (const r of readings) {
+          const c = await fetchPetComment(r, q); // 1件ずつ順次
+          setComments((prev) => ({ ...prev, [r]: c }));
+        }
+      })();
     } catch (err) {
       setError(
         err instanceof ApiError
@@ -122,7 +125,7 @@ export default function PetView() {
         `${i + 1}. ${it.name}（${it.reading}）  ${it.strokeTotal}画 = ${it.fortuneLabel}`
       );
       if (it.reasons.length) lines.push(`　　${it.reasons.join("・")}`);
-      const c = comments[it.name];
+      const c = comments[it.reading];
       if (typeof c === "string" && c) lines.push(`　　${c}`);
     });
     lines.push("", "※ 姓名判断は参考としてお楽しみください。");
@@ -265,9 +268,10 @@ export default function PetView() {
           ) : (
             <>
               {items.map((it) => {
-                const c = comments[it.name];
+                const c = comments[it.reading];
                 return (
                   <div className="petcard" key={it.name}>
+
                     <div className="petcard__head">
                       <div className="petcard__name">
                         {it.name}

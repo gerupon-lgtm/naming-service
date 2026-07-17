@@ -19259,5 +19259,437 @@
     "stroke_count": 22,
     "character_type": "kanji",
     "source": "seed"
+  },
+  {
+    "character": "が",
+    "stroke_count": 5,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ぎ",
+    "stroke_count": 6,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ぐ",
+    "stroke_count": 3,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "げ",
+    "stroke_count": 5,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ご",
+    "stroke_count": 4,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ざ",
+    "stroke_count": 5,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "じ",
+    "stroke_count": 3,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ず",
+    "stroke_count": 4,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ぜ",
+    "stroke_count": 5,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ぞ",
+    "stroke_count": 4,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "だ",
+    "stroke_count": 6,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ぢ",
+    "stroke_count": 5,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "づ",
+    "stroke_count": 3,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "で",
+    "stroke_count": 3,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ど",
+    "stroke_count": 4,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ば",
+    "stroke_count": 5,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "び",
+    "stroke_count": 3,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ぶ",
+    "stroke_count": 6,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "べ",
+    "stroke_count": 3,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ぼ",
+    "stroke_count": 6,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ぱ",
+    "stroke_count": 4,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ぴ",
+    "stroke_count": 2,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ぷ",
+    "stroke_count": 5,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ぺ",
+    "stroke_count": 2,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ぽ",
+    "stroke_count": 5,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ぁ",
+    "stroke_count": 3,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ぃ",
+    "stroke_count": 2,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ぅ",
+    "stroke_count": 2,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ぇ",
+    "stroke_count": 2,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ぉ",
+    "stroke_count": 3,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "っ",
+    "stroke_count": 1,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ゃ",
+    "stroke_count": 3,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ゅ",
+    "stroke_count": 2,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ょ",
+    "stroke_count": 2,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ゎ",
+    "stroke_count": 2,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ガ",
+    "stroke_count": 4,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ギ",
+    "stroke_count": 5,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "グ",
+    "stroke_count": 4,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ゲ",
+    "stroke_count": 5,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ゴ",
+    "stroke_count": 4,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ザ",
+    "stroke_count": 5,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ジ",
+    "stroke_count": 5,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ズ",
+    "stroke_count": 4,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ゼ",
+    "stroke_count": 4,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ゾ",
+    "stroke_count": 4,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ダ",
+    "stroke_count": 5,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ヂ",
+    "stroke_count": 5,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ヅ",
+    "stroke_count": 5,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "デ",
+    "stroke_count": 5,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ド",
+    "stroke_count": 4,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "バ",
+    "stroke_count": 4,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ビ",
+    "stroke_count": 4,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ブ",
+    "stroke_count": 3,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ベ",
+    "stroke_count": 3,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ボ",
+    "stroke_count": 6,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "パ",
+    "stroke_count": 3,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ピ",
+    "stroke_count": 3,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "プ",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ペ",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ポ",
+    "stroke_count": 5,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ァ",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ィ",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ゥ",
+    "stroke_count": 3,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ェ",
+    "stroke_count": 3,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ォ",
+    "stroke_count": 3,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ッ",
+    "stroke_count": 3,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ャ",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ュ",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ョ",
+    "stroke_count": 3,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ヮ",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ヴ",
+    "stroke_count": 5,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "々",
+    "stroke_count": 3,
+    "character_type": "kanji",
+    "source": "seed"
   }
 ]

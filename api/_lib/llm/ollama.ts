@@ -26,7 +26,13 @@ export function createOllamaProvider(config: OllamaConfig = {}): LlmProvider {
         const res = await fetchImpl(`${endpoint.replace(/\/$/, "")}/api/generate`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ model, prompt, stream: false }),
+          body: JSON.stringify({
+            model,
+            prompt,
+            stream: false,
+            // 低温で安定させ、外国語・記号の混入や暴走を抑える
+            options: { temperature: 0.6, top_p: 0.9, repeat_penalty: 1.15 },
+          }),
           signal: ctrl.signal,
         });
         // 4xx・5xx いずれも応答不可と判定してフォールバックする（未解決No.1の決定）

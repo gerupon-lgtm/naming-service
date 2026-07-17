@@ -1,5 +1,10 @@
 import { describe, it, expect, vi } from "vitest";
-import { buildDiagnosisPrompt, generateComment } from "../comment";
+import {
+  buildDiagnosisPrompt,
+  buildPetNamePrompt,
+  generateComment,
+  isJapaneseComment,
+} from "../comment";
 import type { LlmProvider } from "../llm";
 import { LlmUnavailableError } from "../llm";
 
@@ -73,16 +78,42 @@ describe("診断コメント（F-012）", () => {
     expect(c).toBeNull();
   });
 
-  it("petName（Phase2・T-106）はペット向けプロンプトで生成される", async () => {
+  it("petName（Phase2・T-106）はよみ中心のプロンプトで生成される", async () => {
     const p: LlmProvider = {
       id: "ollama",
-      generate: async () => "元気いっぱいの名前ですね。",
+      generate: async () => "やわらかく親しみやすい響きの名前ですね。",
+    };
+    const c = await generateComment("petName", { reading: "もなか", target: "cat" }, [
+      p,
+    ]);
+    expect(c).toBe("やわらかく親しみやすい響きの名前ですね。");
+  });
+
+  it("よみ中心で、画数・吉凶に触れない指示・日本語のみ指示が入る", () => {
+    const prompt = buildPetNamePrompt({ reading: "もなか", target: "cat" });
+    expect(prompt).toContain("もなか"); // よみが主題
+    expect(prompt).toContain("触れない"); // 画数・吉凶に触れない指示
+    expect(prompt).toContain("日本語のみ");
+  });
+
+  it("ハングル・英字混入の出力は弾いて次候補にフォールバックする", async () => {
+    const bad: LlmProvider = { id: "ollama", generate: async () => "귀여운 name です" };
+    const good: LlmProvider = {
+      id: "openrouter",
+      generate: async () => "ころんと可愛らしい響きの名前です。",
     };
     const c = await generateComment(
       "petName",
-      { name: "モモ", reading: "もも", strokeTotal: 6, fortuneLabel: "大吉", target: "cat" },
-      [p]
+      { reading: "もも", target: "dog" },
+      [bad, good]
     );
-    expect(c).toBe("元気いっぱいの名前ですね。");
+    expect(c).toBe("ころんと可愛らしい響きの名前です。");
+  });
+
+  it("isJapaneseComment: ハングル・英字過多・空を弾く", () => {
+    expect(isJapaneseComment("ころんと可愛らしい響きです。")).toBe(true);
+    expect(isJapaneseComment("귀여운 이름이에요")).toBe(false);
+    expect(isJapaneseComment("a cute pet name for you")).toBe(false);
+    expect(isJapaneseComment("　")).toBe(false);
   });
 });
