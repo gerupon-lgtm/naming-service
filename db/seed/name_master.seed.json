@@ -35,23 +35,6 @@
     ]
   },
   {
-    "name": "ハナ",
-    "reading": "はな",
-    "type": "katakana",
-    "targets": [
-      "dog",
-      "cat",
-      "small"
-    ],
-    "genders": [
-      "female"
-    ],
-    "categories": [
-      "かわいい",
-      "自然"
-    ]
-  },
-  {
     "name": "マロン",
     "reading": "まろん",
     "type": "katakana",
@@ -104,8 +87,8 @@
     ]
   },
   {
-    "name": "あんこ",
-    "reading": "あんこ",
+    "name": "くるみ",
+    "reading": "くるみ",
     "type": "hiragana",
     "targets": [
       "dog",
@@ -118,45 +101,7 @@
     ],
     "categories": [
       "かわいい",
-      "食べ物",
-      "和風"
-    ]
-  },
-  {
-    "name": "きなこ",
-    "reading": "きなこ",
-    "type": "hiragana",
-    "targets": [
-      "dog",
-      "cat",
-      "small"
-    ],
-    "genders": [
-      "female",
-      "neutral"
-    ],
-    "categories": [
-      "かわいい",
-      "食べ物",
-      "和風"
-    ]
-  },
-  {
-    "name": "むぎ",
-    "reading": "むぎ",
-    "type": "hiragana",
-    "targets": [
-      "dog",
-      "cat",
-      "small"
-    ],
-    "genders": [
-      "neutral"
-    ],
-    "categories": [
-      "かわいい",
-      "自然",
-      "和風"
+      "食べ物"
     ]
   },
   {
@@ -212,75 +157,6 @@
     ]
   },
   {
-    "name": "だいふく",
-    "reading": "だいふく",
-    "type": "hiragana",
-    "targets": [
-      "dog",
-      "cat",
-      "small"
-    ],
-    "genders": [
-      "neutral"
-    ],
-    "categories": [
-      "かわいい",
-      "食べ物",
-      "和風"
-    ]
-  },
-  {
-    "name": "ぷく",
-    "reading": "ぷく",
-    "type": "hiragana",
-    "targets": [
-      "dog",
-      "cat",
-      "small"
-    ],
-    "genders": [
-      "neutral"
-    ],
-    "categories": [
-      "かわいい"
-    ]
-  },
-  {
-    "name": "ぽん",
-    "reading": "ぽん",
-    "type": "hiragana",
-    "targets": [
-      "dog",
-      "cat",
-      "small"
-    ],
-    "genders": [
-      "male",
-      "neutral"
-    ],
-    "categories": [
-      "かわいい",
-      "ユニーク"
-    ]
-  },
-  {
-    "name": "ふく",
-    "reading": "ふく",
-    "type": "hiragana",
-    "targets": [
-      "dog",
-      "cat",
-      "small"
-    ],
-    "genders": [
-      "neutral"
-    ],
-    "categories": [
-      "かわいい",
-      "和風"
-    ]
-  },
-  {
     "name": "うに",
     "reading": "うに",
     "type": "hiragana",
@@ -294,8 +170,7 @@
     ],
     "categories": [
       "かわいい",
-      "食べ物",
-      "ユニーク"
+      "食べ物"
     ]
   },
   {
@@ -313,8 +188,7 @@
     ],
     "categories": [
       "かわいい",
-      "自然",
-      "和風"
+      "食べ物"
     ]
   },
   {
@@ -332,8 +206,7 @@
     ],
     "categories": [
       "かわいい",
-      "食べ物",
-      "和風"
+      "食べ物"
     ]
   },
   {
@@ -346,11 +219,630 @@
       "small"
     ],
     "genders": [
-      "female"
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "もこ",
+    "reading": "もこ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "ぷりん",
+    "reading": "ぷりん",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "ぽぽ",
+    "reading": "ぽぽ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "むく",
+    "reading": "むく",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "ゆず",
+    "reading": "ゆず",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
     ],
     "categories": [
       "かわいい",
-      "和風"
+      "食べ物"
+    ]
+  },
+  {
+    "name": "れもん",
+    "reading": "れもん",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい",
+      "食べ物"
+    ]
+  },
+  {
+    "name": "みかん",
+    "reading": "みかん",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい",
+      "食べ物"
+    ]
+  },
+  {
+    "name": "いちご",
+    "reading": "いちご",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい",
+      "食べ物"
+    ]
+  },
+  {
+    "name": "めろん",
+    "reading": "めろん",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい",
+      "食べ物"
+    ]
+  },
+  {
+    "name": "ばなな",
+    "reading": "ばなな",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい",
+      "食べ物"
+    ]
+  },
+  {
+    "name": "さくらんぼ",
+    "reading": "さくらんぼ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "あめ",
+    "reading": "あめ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい",
+      "食べ物"
+    ]
+  },
+  {
+    "name": "きゃんでぃ",
+    "reading": "きゃんでぃ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい",
+      "食べ物"
+    ]
+  },
+  {
+    "name": "くっきー",
+    "reading": "くっきー",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい",
+      "食べ物"
+    ]
+  },
+  {
+    "name": "まかろん",
+    "reading": "まかろん",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい",
+      "食べ物"
+    ]
+  },
+  {
+    "name": "わっふる",
+    "reading": "わっふる",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい",
+      "食べ物"
+    ]
+  },
+  {
+    "name": "ぷちこ",
+    "reading": "ぷちこ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "ちゃちゃ",
+    "reading": "ちゃちゃ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "ぷく",
+    "reading": "ぷく",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "ぽん",
+    "reading": "ぽん",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "なな",
+    "reading": "なな",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "ここあ",
+    "reading": "ここあ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい",
+      "食べ物"
+    ]
+  },
+  {
+    "name": "もか",
+    "reading": "もか",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "かわいい",
+      "食べ物"
+    ]
+  },
+  {
+    "name": "もなか",
+    "reading": "もなか",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "かわいい",
+      "食べ物"
+    ]
+  },
+  {
+    "name": "おはぎ",
+    "reading": "おはぎ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい",
+      "食べ物"
+    ]
+  },
+  {
+    "name": "だんご",
+    "reading": "だんご",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "かわいい",
+      "食べ物"
+    ]
+  },
+  {
+    "name": "わらび",
+    "reading": "わらび",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "かわいい",
+      "食べ物"
+    ]
+  },
+  {
+    "name": "ぷりんせす",
+    "reading": "ぷりんせす",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "ぴのこ",
+    "reading": "ぴのこ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "こつぶ",
+    "reading": "こつぶ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "ちび",
+    "reading": "ちび",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "ぺぺ",
+    "reading": "ぺぺ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "まりも",
+    "reading": "まりも",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "こまめ",
+    "reading": "こまめ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "ぽむ",
+    "reading": "ぽむ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "むぎゅ",
+    "reading": "むぎゅ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
     ]
   },
   {
@@ -379,11 +871,10 @@
       "small"
     ],
     "genders": [
-      "male"
+      "neutral"
     ],
     "categories": [
-      "かっこいい",
-      "自然"
+      "かっこいい"
     ]
   },
   {
@@ -399,8 +890,7 @@
       "neutral"
     ],
     "categories": [
-      "かっこいい",
-      "自然"
+      "かっこいい"
     ]
   },
   {
@@ -477,11 +967,10 @@
       "small"
     ],
     "genders": [
-      "male"
+      "neutral"
     ],
     "categories": [
-      "かっこいい",
-      "自然"
+      "かっこいい"
     ]
   },
   {
@@ -497,8 +986,7 @@
       "male"
     ],
     "categories": [
-      "かっこいい",
-      "和風"
+      "かっこいい"
     ]
   },
   {
@@ -514,8 +1002,7 @@
       "male"
     ],
     "categories": [
-      "かっこいい",
-      "自然"
+      "かっこいい"
     ]
   },
   {
@@ -531,8 +1018,7 @@
       "neutral"
     ],
     "categories": [
-      "かっこいい",
-      "和風"
+      "かっこいい"
     ]
   },
   {
@@ -548,8 +1034,7 @@
       "neutral"
     ],
     "categories": [
-      "かっこいい",
-      "和風"
+      "かっこいい"
     ]
   },
   {
@@ -565,8 +1050,7 @@
       "male"
     ],
     "categories": [
-      "かっこいい",
-      "和風"
+      "かっこいい"
     ]
   },
   {
@@ -614,8 +1098,7 @@
       "male"
     ],
     "categories": [
-      "かっこいい",
-      "ユニーク"
+      "かっこいい"
     ]
   },
   {
@@ -631,8 +1114,7 @@
       "male"
     ],
     "categories": [
-      "かっこいい",
-      "ユニーク"
+      "かっこいい"
     ]
   },
   {
@@ -648,8 +1130,7 @@
       "male"
     ],
     "categories": [
-      "かっこいい",
-      "和風"
+      "かっこいい"
     ]
   },
   {
@@ -665,8 +1146,7 @@
       "male"
     ],
     "categories": [
-      "かっこいい",
-      "和風"
+      "かっこいい"
     ]
   },
   {
@@ -682,7 +1162,327 @@
       "male"
     ],
     "categories": [
-      "和風"
+      "かっこいい"
+    ]
+  },
+  {
+    "name": "レックス",
+    "reading": "れっくす",
+    "type": "katakana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "male"
+    ],
+    "categories": [
+      "かっこいい"
+    ]
+  },
+  {
+    "name": "ロッキー",
+    "reading": "ろっきー",
+    "type": "katakana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "male"
+    ],
+    "categories": [
+      "かっこいい"
+    ]
+  },
+  {
+    "name": "バロン",
+    "reading": "ばろん",
+    "type": "katakana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "male"
+    ],
+    "categories": [
+      "かっこいい"
+    ]
+  },
+  {
+    "name": "アレックス",
+    "reading": "あれっくす",
+    "type": "katakana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "male"
+    ],
+    "categories": [
+      "かっこいい"
+    ]
+  },
+  {
+    "name": "チャンプ",
+    "reading": "ちゃんぷ",
+    "type": "katakana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "male"
+    ],
+    "categories": [
+      "かっこいい"
+    ]
+  },
+  {
+    "name": "ブレイブ",
+    "reading": "ぶれいぶ",
+    "type": "katakana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "かっこいい"
+    ]
+  },
+  {
+    "name": "ハンター",
+    "reading": "はんたー",
+    "type": "katakana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "male"
+    ],
+    "categories": [
+      "かっこいい"
+    ]
+  },
+  {
+    "name": "ダッシュ",
+    "reading": "だっしゅ",
+    "type": "katakana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "かっこいい"
+    ]
+  },
+  {
+    "name": "ジーク",
+    "reading": "じーく",
+    "type": "katakana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "male"
+    ],
+    "categories": [
+      "かっこいい"
+    ]
+  },
+  {
+    "name": "ヴァン",
+    "reading": "ゔぁん",
+    "type": "katakana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "male"
+    ],
+    "categories": [
+      "かっこいい"
+    ]
+  },
+  {
+    "name": "カイザー",
+    "reading": "かいざー",
+    "type": "katakana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "male"
+    ],
+    "categories": [
+      "かっこいい"
+    ]
+  },
+  {
+    "name": "レン",
+    "reading": "れん",
+    "type": "katakana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "male"
+    ],
+    "categories": [
+      "かっこいい"
+    ]
+  },
+  {
+    "name": "ジン",
+    "reading": "じん",
+    "type": "katakana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "male"
+    ],
+    "categories": [
+      "かっこいい"
+    ]
+  },
+  {
+    "name": "ハク",
+    "reading": "はく",
+    "type": "katakana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "かっこいい"
+    ]
+  },
+  {
+    "name": "ヤマト",
+    "reading": "やまと",
+    "type": "katakana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "male"
+    ],
+    "categories": [
+      "かっこいい"
+    ]
+  },
+  {
+    "name": "リュウ",
+    "reading": "りゅう",
+    "type": "katakana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "male"
+    ],
+    "categories": [
+      "かっこいい"
+    ]
+  },
+  {
+    "name": "ソウ",
+    "reading": "そう",
+    "type": "katakana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "かっこいい"
+    ]
+  },
+  {
+    "name": "ガク",
+    "reading": "がく",
+    "type": "katakana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "かっこいい"
+    ]
+  },
+  {
+    "name": "ケン",
+    "reading": "けん",
+    "type": "katakana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "male"
+    ],
+    "categories": [
+      "かっこいい"
+    ]
+  },
+  {
+    "name": "トラ",
+    "reading": "とら",
+    "type": "katakana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "male"
+    ],
+    "categories": [
+      "かっこいい"
     ]
   },
   {
@@ -699,8 +1499,7 @@
     ],
     "categories": [
       "和風",
-      "自然",
-      "かわいい"
+      "自然"
     ]
   },
   {
@@ -717,8 +1516,7 @@
     ],
     "categories": [
       "和風",
-      "自然",
-      "かわいい"
+      "自然"
     ]
   },
   {
@@ -765,7 +1563,6 @@
       "small"
     ],
     "genders": [
-      "female",
       "neutral"
     ],
     "categories": [
@@ -791,23 +1588,6 @@
     ]
   },
   {
-    "name": "こつぶ",
-    "reading": "こつぶ",
-    "type": "hiragana",
-    "targets": [
-      "dog",
-      "cat",
-      "small"
-    ],
-    "genders": [
-      "neutral"
-    ],
-    "categories": [
-      "かわいい",
-      "ユニーク"
-    ]
-  },
-  {
     "name": "げんき",
     "reading": "げんき",
     "type": "hiragana",
@@ -817,29 +1597,10 @@
       "small"
     ],
     "genders": [
-      "male",
-      "neutral"
+      "male"
     ],
     "categories": [
-      "和風",
-      "ユニーク"
-    ]
-  },
-  {
-    "name": "ちゃちゃ",
-    "reading": "ちゃちゃ",
-    "type": "hiragana",
-    "targets": [
-      "dog",
-      "cat",
-      "small"
-    ],
-    "genders": [
-      "neutral"
-    ],
-    "categories": [
-      "和風",
-      "かわいい"
+      "和風"
     ]
   },
   {
@@ -868,12 +1629,10 @@
       "small"
     ],
     "genders": [
-      "male",
-      "neutral"
+      "male"
     ],
     "categories": [
-      "和風",
-      "ユニーク"
+      "和風"
     ]
   },
   {
@@ -894,6 +1653,446 @@
     ]
   },
   {
+    "name": "こなつ",
+    "reading": "こなつ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "和風",
+      "自然"
+    ]
+  },
+  {
+    "name": "なごみ",
+    "reading": "なごみ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "和風"
+    ]
+  },
+  {
+    "name": "こまち",
+    "reading": "こまち",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female"
+    ],
+    "categories": [
+      "和風"
+    ]
+  },
+  {
+    "name": "つばき",
+    "reading": "つばき",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female"
+    ],
+    "categories": [
+      "和風",
+      "自然"
+    ]
+  },
+  {
+    "name": "あやめ",
+    "reading": "あやめ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female"
+    ],
+    "categories": [
+      "和風",
+      "自然"
+    ]
+  },
+  {
+    "name": "すみれ",
+    "reading": "すみれ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female"
+    ],
+    "categories": [
+      "和風",
+      "自然"
+    ]
+  },
+  {
+    "name": "ふうた",
+    "reading": "ふうた",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "male"
+    ],
+    "categories": [
+      "和風"
+    ]
+  },
+  {
+    "name": "そうた",
+    "reading": "そうた",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "male"
+    ],
+    "categories": [
+      "和風"
+    ]
+  },
+  {
+    "name": "はると",
+    "reading": "はると",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "male"
+    ],
+    "categories": [
+      "和風"
+    ]
+  },
+  {
+    "name": "りん",
+    "reading": "りん",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female"
+    ],
+    "categories": [
+      "和風"
+    ]
+  },
+  {
+    "name": "あおい",
+    "reading": "あおい",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female"
+    ],
+    "categories": [
+      "和風",
+      "自然"
+    ]
+  },
+  {
+    "name": "ひなた",
+    "reading": "ひなた",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "和風",
+      "自然"
+    ]
+  },
+  {
+    "name": "こはく",
+    "reading": "こはく",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female"
+    ],
+    "categories": [
+      "和風"
+    ]
+  },
+  {
+    "name": "ちとせ",
+    "reading": "ちとせ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female"
+    ],
+    "categories": [
+      "和風"
+    ]
+  },
+  {
+    "name": "やえ",
+    "reading": "やえ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female"
+    ],
+    "categories": [
+      "和風"
+    ]
+  },
+  {
+    "name": "こゆき",
+    "reading": "こゆき",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female"
+    ],
+    "categories": [
+      "和風"
+    ]
+  },
+  {
+    "name": "ぼたん",
+    "reading": "ぼたん",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female"
+    ],
+    "categories": [
+      "和風"
+    ]
+  },
+  {
+    "name": "つむぎ",
+    "reading": "つむぎ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female"
+    ],
+    "categories": [
+      "和風"
+    ]
+  },
+  {
+    "name": "ちより",
+    "reading": "ちより",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female"
+    ],
+    "categories": [
+      "和風"
+    ]
+  },
+  {
+    "name": "かえで",
+    "reading": "かえで",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female"
+    ],
+    "categories": [
+      "和風",
+      "自然"
+    ]
+  },
+  {
+    "name": "いろは",
+    "reading": "いろは",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female"
+    ],
+    "categories": [
+      "和風"
+    ]
+  },
+  {
+    "name": "なずな",
+    "reading": "なずな",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female"
+    ],
+    "categories": [
+      "和風",
+      "自然"
+    ]
+  },
+  {
+    "name": "ことね",
+    "reading": "ことね",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female"
+    ],
+    "categories": [
+      "和風"
+    ]
+  },
+  {
+    "name": "しの",
+    "reading": "しの",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female"
+    ],
+    "categories": [
+      "和風"
+    ]
+  },
+  {
+    "name": "みやび",
+    "reading": "みやび",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female"
+    ],
+    "categories": [
+      "和風"
+    ]
+  },
+  {
+    "name": "わこ",
+    "reading": "わこ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female"
+    ],
+    "categories": [
+      "和風"
+    ]
+  },
+  {
+    "name": "たまき",
+    "reading": "たまき",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female"
+    ],
+    "categories": [
+      "和風"
+    ]
+  },
+  {
     "name": "そら",
     "reading": "そら",
     "type": "hiragana",
@@ -906,45 +2105,7 @@
       "neutral"
     ],
     "categories": [
-      "和風",
-      "自然",
-      "かっこいい"
-    ]
-  },
-  {
-    "name": "なな",
-    "reading": "なな",
-    "type": "hiragana",
-    "targets": [
-      "dog",
-      "cat",
-      "small"
-    ],
-    "genders": [
-      "female",
-      "neutral"
-    ],
-    "categories": [
-      "かわいい",
-      "和風"
-    ]
-  },
-  {
-    "name": "こなつ",
-    "reading": "こなつ",
-    "type": "hiragana",
-    "targets": [
-      "dog",
-      "cat",
-      "small"
-    ],
-    "genders": [
-      "female"
-    ],
-    "categories": [
-      "和風",
-      "自然",
-      "かわいい"
+      "自然"
     ]
   },
   {
@@ -973,13 +2134,10 @@
       "small"
     ],
     "genders": [
-      "female",
       "neutral"
     ],
     "categories": [
-      "自然",
-      "和風",
-      "かわいい"
+      "自然"
     ]
   },
   {
@@ -995,8 +2153,7 @@
       "neutral"
     ],
     "categories": [
-      "自然",
-      "和風"
+      "自然"
     ]
   },
   {
@@ -1012,8 +2169,7 @@
       "neutral"
     ],
     "categories": [
-      "自然",
-      "和風"
+      "自然"
     ]
   },
   {
@@ -1029,8 +2185,7 @@
       "neutral"
     ],
     "categories": [
-      "自然",
-      "和風"
+      "自然"
     ]
   },
   {
@@ -1046,8 +2201,7 @@
       "neutral"
     ],
     "categories": [
-      "自然",
-      "かわいい"
+      "自然"
     ]
   },
   {
@@ -1060,12 +2214,10 @@
       "small"
     ],
     "genders": [
-      "female",
       "neutral"
     ],
     "categories": [
-      "自然",
-      "和風"
+      "自然"
     ]
   },
   {
@@ -1078,7 +2230,6 @@
       "small"
     ],
     "genders": [
-      "female",
       "neutral"
     ],
     "categories": [
@@ -1086,8 +2237,8 @@
     ]
   },
   {
-    "name": "ごま",
-    "reading": "ごま",
+    "name": "あお",
+    "reading": "あお",
     "type": "hiragana",
     "targets": [
       "dog",
@@ -1098,13 +2249,12 @@
       "neutral"
     ],
     "categories": [
-      "食べ物",
-      "かわいい"
+      "自然"
     ]
   },
   {
-    "name": "くるみ",
-    "reading": "くるみ",
+    "name": "みなと",
+    "reading": "みなと",
     "type": "hiragana",
     "targets": [
       "dog",
@@ -1112,18 +2262,15 @@
       "small"
     ],
     "genders": [
-      "female",
       "neutral"
     ],
     "categories": [
-      "食べ物",
-      "自然",
-      "かわいい"
+      "自然"
     ]
   },
   {
-    "name": "もち",
-    "reading": "もち",
+    "name": "かぜ",
+    "reading": "かぜ",
     "type": "hiragana",
     "targets": [
       "dog",
@@ -1134,14 +2281,12 @@
       "neutral"
     ],
     "categories": [
-      "食べ物",
-      "和風",
-      "かわいい"
+      "自然"
     ]
   },
   {
-    "name": "だんご",
-    "reading": "だんご",
+    "name": "なぎ",
+    "reading": "なぎ",
     "type": "hiragana",
     "targets": [
       "dog",
@@ -1152,14 +2297,12 @@
       "neutral"
     ],
     "categories": [
-      "食べ物",
-      "和風",
-      "かわいい"
+      "自然"
     ]
   },
   {
-    "name": "こごま",
-    "reading": "こごま",
+    "name": "すい",
+    "reading": "すい",
     "type": "hiragana",
     "targets": [
       "dog",
@@ -1170,13 +2313,12 @@
       "neutral"
     ],
     "categories": [
-      "食べ物",
-      "かわいい"
+      "自然"
     ]
   },
   {
-    "name": "ぺぺ",
-    "reading": "ぺぺ",
+    "name": "りく",
+    "reading": "りく",
     "type": "hiragana",
     "targets": [
       "dog",
@@ -1187,13 +2329,12 @@
       "neutral"
     ],
     "categories": [
-      "ユニーク",
-      "かわいい"
+      "自然"
     ]
   },
   {
-    "name": "ちび",
-    "reading": "ちび",
+    "name": "こだま",
+    "reading": "こだま",
     "type": "hiragana",
     "targets": [
       "dog",
@@ -1204,13 +2345,12 @@
       "neutral"
     ],
     "categories": [
-      "かわいい",
-      "ユニーク"
+      "自然"
     ]
   },
   {
-    "name": "まる",
-    "reading": "まる",
+    "name": "しずく",
+    "reading": "しずく",
     "type": "hiragana",
     "targets": [
       "dog",
@@ -1218,12 +2358,201 @@
       "small"
     ],
     "genders": [
-      "male",
       "neutral"
     ],
     "categories": [
-      "かわいい",
-      "和風",
+      "自然"
+    ]
+  },
+  {
+    "name": "ひかり",
+    "reading": "ひかり",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "自然"
+    ]
+  },
+  {
+    "name": "あさひ",
+    "reading": "あさひ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "自然"
+    ]
+  },
+  {
+    "name": "ゆうひ",
+    "reading": "ゆうひ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "自然"
+    ]
+  },
+  {
+    "name": "こもれび",
+    "reading": "こもれび",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "自然"
+    ]
+  },
+  {
+    "name": "にじ",
+    "reading": "にじ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "自然"
+    ]
+  },
+  {
+    "name": "くも",
+    "reading": "くも",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "自然"
+    ]
+  },
+  {
+    "name": "ゆら",
+    "reading": "ゆら",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "自然"
+    ]
+  },
+  {
+    "name": "なみ",
+    "reading": "なみ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "自然"
+    ]
+  },
+  {
+    "name": "もり",
+    "reading": "もり",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "自然"
+    ]
+  },
+  {
+    "name": "いずみ",
+    "reading": "いずみ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "自然"
+    ]
+  },
+  {
+    "name": "たき",
+    "reading": "たき",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "自然"
+    ]
+  },
+  {
+    "name": "ぽち",
+    "reading": "ぽち",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
       "ユニーク"
     ]
   },
@@ -1240,8 +2569,7 @@
       "neutral"
     ],
     "categories": [
-      "和風",
-      "かわいい"
+      "ユニーク"
     ]
   },
   {
@@ -1257,7 +2585,587 @@
       "neutral"
     ],
     "categories": [
-      "和風",
+      "ユニーク"
+    ]
+  },
+  {
+    "name": "くろすけ",
+    "reading": "くろすけ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "ユニーク"
+    ]
+  },
+  {
+    "name": "しろた",
+    "reading": "しろた",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "ユニーク"
+    ]
+  },
+  {
+    "name": "むぎまる",
+    "reading": "むぎまる",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "ユニーク"
+    ]
+  },
+  {
+    "name": "ぽんず",
+    "reading": "ぽんず",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "食べ物",
+      "ユニーク"
+    ]
+  },
+  {
+    "name": "でこ",
+    "reading": "でこ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "ユニーク"
+    ]
+  },
+  {
+    "name": "ちくわ",
+    "reading": "ちくわ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "食べ物",
+      "ユニーク"
+    ]
+  },
+  {
+    "name": "はんぺん",
+    "reading": "はんぺん",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "食べ物",
+      "ユニーク"
+    ]
+  },
+  {
+    "name": "こんぶ",
+    "reading": "こんぶ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "食べ物",
+      "ユニーク"
+    ]
+  },
+  {
+    "name": "おもち",
+    "reading": "おもち",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "食べ物",
+      "ユニーク"
+    ]
+  },
+  {
+    "name": "まめすけ",
+    "reading": "まめすけ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "食べ物",
+      "ユニーク"
+    ]
+  },
+  {
+    "name": "ごまお",
+    "reading": "ごまお",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "食べ物",
+      "ユニーク"
+    ]
+  },
+  {
+    "name": "うどん",
+    "reading": "うどん",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "食べ物",
+      "ユニーク"
+    ]
+  },
+  {
+    "name": "そうめん",
+    "reading": "そうめん",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "食べ物",
+      "ユニーク"
+    ]
+  },
+  {
+    "name": "なめこ",
+    "reading": "なめこ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "ユニーク"
+    ]
+  },
+  {
+    "name": "ぷりんちゃん",
+    "reading": "ぷりんちゃん",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "ユニーク"
+    ]
+  },
+  {
+    "name": "べる",
+    "reading": "べる",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "ちゃこ",
+    "reading": "ちゃこ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "ぴーす",
+    "reading": "ぴーす",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "ユニーク"
+    ]
+  },
+  {
+    "name": "らっきー",
+    "reading": "らっきー",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "はっぴー",
+    "reading": "はっぴー",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "くう",
+    "reading": "くう",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "ユニーク"
+    ]
+  },
+  {
+    "name": "ぷう",
+    "reading": "ぷう",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "ユニーク"
+    ]
+  },
+  {
+    "name": "ふぁん",
+    "reading": "ふぁん",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "ユニーク"
+    ]
+  },
+  {
+    "name": "めい",
+    "reading": "めい",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "るる",
+    "reading": "るる",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "のえる",
+    "reading": "のえる",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "みや",
+    "reading": "みや",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "びび",
+    "reading": "びび",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "ここみ",
+    "reading": "ここみ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "らむ",
+    "reading": "らむ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "くれあ",
+    "reading": "くれあ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "えま",
+    "reading": "えま",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "そふぃあ",
+    "reading": "そふぃあ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい"
+    ]
+  },
+  {
+    "name": "おりお",
+    "reading": "おりお",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "ユニーク"
+    ]
+  },
+  {
+    "name": "もかろん",
+    "reading": "もかろん",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "食べ物",
       "ユニーク"
     ]
   },
@@ -1329,8 +3237,7 @@
     ],
     "categories": [
       "自然",
-      "かっこいい",
-      "和風"
+      "かっこいい"
     ]
   },
   {
@@ -1400,8 +3307,7 @@
     ],
     "categories": [
       "自然",
-      "かわいい",
-      "和風"
+      "かわいい"
     ]
   },
   {
@@ -1474,23 +3380,6 @@
     ]
   },
   {
-    "name": "茶々",
-    "reading": "ちゃちゃ",
-    "type": "kanji",
-    "targets": [
-      "dog",
-      "cat",
-      "small"
-    ],
-    "genders": [
-      "neutral"
-    ],
-    "categories": [
-      "和風",
-      "かわいい"
-    ]
-  },
-  {
     "name": "小太郎",
     "reading": "こたろう",
     "type": "kanji",
@@ -1543,9 +3432,9 @@
     ]
   },
   {
-    "name": "もなか",
-    "reading": "もなか",
-    "type": "hiragana",
+    "name": "小豆",
+    "reading": "あずき",
+    "type": "kanji",
     "targets": [
       "dog",
       "cat",
@@ -1553,89 +3442,18 @@
     ],
     "genders": [
       "female",
-      "neutral"
-    ],
-    "categories": [
-      "かわいい",
-      "食べ物",
-      "和風"
-    ]
-  },
-  {
-    "name": "もか",
-    "reading": "もか",
-    "type": "hiragana",
-    "targets": [
-      "dog",
-      "cat",
-      "small"
-    ],
-    "genders": [
-      "female",
-      "neutral"
-    ],
-    "categories": [
-      "かわいい",
-      "食べ物"
-    ]
-  },
-  {
-    "name": "らむね",
-    "reading": "らむね",
-    "type": "hiragana",
-    "targets": [
-      "dog",
-      "cat",
-      "small"
-    ],
-    "genders": [
-      "neutral"
-    ],
-    "categories": [
-      "かわいい",
-      "食べ物",
-      "ユニーク"
-    ]
-  },
-  {
-    "name": "わらび",
-    "reading": "わらび",
-    "type": "hiragana",
-    "targets": [
-      "dog",
-      "cat",
-      "small"
-    ],
-    "genders": [
       "neutral"
     ],
     "categories": [
       "和風",
-      "自然",
-      "食べ物"
+      "食べ物",
+      "かわいい"
     ]
   },
   {
-    "name": "こもち",
-    "reading": "こもち",
-    "type": "hiragana",
-    "targets": [
-      "dog",
-      "cat",
-      "small"
-    ],
-    "genders": [
-      "neutral"
-    ],
-    "categories": [
-      "かわいい",
-      "ユニーク"
-    ]
-  },
-  {
-    "name": "おはぎ",
-    "reading": "おはぎ",
-    "type": "hiragana",
+    "name": "月",
+    "reading": "つき",
+    "type": "kanji",
     "targets": [
       "dog",
       "cat",
@@ -1646,9 +3464,130 @@
       "neutral"
     ],
     "categories": [
-      "かわいい",
-      "食べ物",
+      "自然",
       "和風"
+    ]
+  },
+  {
+    "name": "雪",
+    "reading": "ゆき",
+    "type": "kanji",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "自然",
+      "和風",
+      "かわいい"
+    ]
+  },
+  {
+    "name": "楓",
+    "reading": "かえで",
+    "type": "kanji",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "自然",
+      "和風"
+    ]
+  },
+  {
+    "name": "柚",
+    "reading": "ゆず",
+    "type": "kanji",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "自然",
+      "和風",
+      "かわいい"
+    ]
+  },
+  {
+    "name": "蘭",
+    "reading": "らん",
+    "type": "kanji",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female"
+    ],
+    "categories": [
+      "和風",
+      "かわいい"
+    ]
+  },
+  {
+    "name": "凛",
+    "reading": "りん",
+    "type": "kanji",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female"
+    ],
+    "categories": [
+      "和風",
+      "かっこいい"
+    ]
+  },
+  {
+    "name": "駆",
+    "reading": "かける",
+    "type": "kanji",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "male"
+    ],
+    "categories": [
+      "かっこいい"
+    ]
+  },
+  {
+    "name": "嵐",
+    "reading": "あらし",
+    "type": "kanji",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "male"
+    ],
+    "categories": [
+      "自然",
+      "かっこいい"
     ]
   }
 ]

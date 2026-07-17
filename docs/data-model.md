@@ -23,9 +23,23 @@
   - **限界**: 月(肉づき)は「月(つき)」と字形が同一で自動判別できないため補正しない（手動確認対象）。分解データが稀に 廿 を 艹 と誤ラベルする等の誤検出は残る。kanjiapi.devからの自動キャッシュ（source=kanjiapi）は補正なし現代画数のため、シード外の稀字でのみ熊崎式と差が出る限界を許容。
   - 当初検討した Kanji alive API／MuzukanjiAPI（RapidAPIキーが必要）は不要になった。
 
-## Phase1では使用しないテーブル（Phase2以降）
+## Phase2テーブル: name_master（ペット名候補・実装済 v1.19）
 
-`name_master`, `name_character`, `name_target`, `name_gender`, `category_master`, `name_category`, `fortune_result`, `fortune_detail` はPhase2（ペット命名提案）着手時に構築する。`fortune_method` は複数流派対応が必要になるまで作らない（Phase1・Phase2とも熊崎式ハードコード）。詳細はデータ構造設計ドキュメント（v11）参照。
+正規化（name_character/name_target/name_gender/category_master/name_category）は将来必要になったら行う方針で、まずは**配列カラムを持つ単一テーブル**で実装。
+
+| 列 | 型 | 説明 |
+|----|----|------|
+| name_id | serial | PK |
+| name | text | 候補名（UNIQUE） |
+| reading | text | よみ（ひらがな） |
+| char_type | text | hiragana / katakana / kanji |
+| targets | text[] | dog / cat / small |
+| genders | text[] | male / female / neutral |
+| categories | text[] | かわいい 等 |
+
+- 定義: `db/migrations/003_name_master.sql`、シード: `db/migrations/004_seed_name_master.sql`（`db/seed/name_master.seed.json`・約216件から `db/build-name-seed-sql.py` で生成、UPSERT）。`db/setup_all.sql` に含む。
+- 参照: `api/_lib/pet/nameMaster.ts` の `getCandidates()` が **DATABASE_URL があれば name_master をSELECT、無ければ seed JSON にフォールバック**（コールドスタートごとに1回キャッシュ）。
+- `fortune_result`/`fortune_detail`/`fortune_method` はPhase2でも作らない（診断・提案とも熊崎式ハードコード、画数は都度計算）。
 
 ## 姓名診断（F-001）の永続化方針
 

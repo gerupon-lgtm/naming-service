@@ -5,7 +5,7 @@
 // マスタ候補が少ない場合は、希望よみから動的にかな候補を補完する（マスタ→動的）。
 
 import {
-  allCandidates,
+  getCandidates,
   type NameCandidate,
   type PetTarget,
   type PetGender,
@@ -314,8 +314,9 @@ export async function suggest(input: SuggestInput): Promise<SuggestItem[]> {
   const fillItems: SuggestItem[] = [];
 
   if (need > 0) {
-    // ハードフィルタ（対象動物・使いたい文字・出力文字種）を通ったマスタ
-    const hardPool = allCandidates().filter(
+    // ハードフィルタ（対象動物・使いたい文字・出力文字種）を通ったマスタ（DB優先・seedフォールバック）
+    const master = await getCandidates();
+    const hardPool = master.filter(
       (c) => passesFilters(c, input, includeChars) && !readingNames.has(c.name)
     );
     // まずは選択条件（性別・カテゴリ）にも沿うものを優先プールに

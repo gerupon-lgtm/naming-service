@@ -63,8 +63,8 @@ LLM_TIMEOUT_MS=10000
 - 姓名診断（F-001）は `character_master` を都度参照して画数計算する。DBに存在しない文字は kanjiapi.dev から取得しキャッシュする（書き込みは1回のみ、以後はDB参照）
 - 流派は熊崎式を採用する。将来複数流派に対応できるよう、計算ロジックは流派を差し替え可能な構造にしておくが、Phase1では熊崎式のみをハードコードし `fortune_method` テーブルは作らない
 - 熊崎式は一部の部首で伝統的な画数補正（氵→水4、⻖→阜8、⻏→邑7 等）を行うが、kanjiapi.devの画数はこれを反映しない。シードは補正済み画数で持つ（source=seed）。自動キャッシュされた未知文字（source=kanjiapi）はこの補正が反映されない限界がある。
-- **【v1.16実装済】部首補正は自動化**: `db/build-seed.cjs`（ビルド時のみ）でオフラインパッケージ `kanji-data`（現代画数）＋`kanji`（`kanjiTree`部品分解）を使い、部首グリフ（氵扌艹忄⺨⻖⻏王礻衤⻌）を検出して `radical_corrections.json` の補正値を加算する。**RapidAPIキー不要**（当初のKanji alive／MuzukanjiAPI案は非採用）。シードは常用＋人名用 約3,096字。再生成: `npm i kanji-data kanji && node db/build-seed.cjs` → `python3 db/build-seed-sql.py`。補正適用文字は `db/seed/correction_review.json` に監査用出力。月(肉づき)のみ字形が月(つき)と同じで自動判別できず未補正（手動確認対象）。
-- 命名候補提案（F-002以降）はPhase2で着手する。Phase1（MVP）は姓名診断＋そのLLMコメント生成（F-012）までを対象とする
+- **【v1.16実装済】部首補正は自動化**: `db/build-seed.cjs`（ビルド時のみ）でオフラインパッケージ `kanji-data`（現代画数）＋`kanji`（`kanjiTree`部品分解）を使い、部首グリフ（氵扌艹忄⺨⻖⻏王礻衤⻌）を検出して `radical_corrections.json` の補正値を加算する。**RapidAPIキー不要**（当初のKanji alive／MuzukanjiAPI案は非採用）。シードは常用＋人名用＋かな（濁音・半濁音・拗音・促音・々含む）約3,168字。再生成: `npm i kanji-data kanji && node db/build-seed.cjs` → `python3 db/build-seed-sql.py`。補正適用文字は `db/seed/correction_review.json` に監査用出力。月(肉づき)のみ字形が月(つき)と同じで自動判別できず未補正（手動確認対象）。**シード更新後は Neon に `db/setup_all.sql` を再投入（UPSERT）すること。**
+- 命名候補提案（F-002〜F-005・F-011）は**Phase2として実装済み**（`api/_lib/pet/`、`/api/suggest`、フロントは「ペットの名づけ」タブ）。提案はユーザー希望（よみ由来）優先＋不足分は条件一致マスタからランダム（件数は `SUGGEST_DEFAULT_COUNT`）。**希望よみの漢字表記は機械的逆引きではなくLLM生成**（`kanjiNameLLM.ts`。自然な表記を生成→先頭2＋画数上位を採用）。候補コメントはよみ中心・日本語のみ・1件ずつ順次・同一よみ統一
 - kanjiapi.devの障害時はエラー表示のみとし、フォールバックAPIは実装しない（`docs/tasks.md` 参照）
 - LLMコメント生成（F-011, F-012）はOllama優先、応答不可時のみOpenRouterにフォールバックする。フォールバック順・モデルは環境変数で変更可能にする
 - LLMコメントは「ロジックで確定した結果への肉付け」役に徹する。診断結果の数値・ランクはロジック側で確定させ、LLMに再計算させない

@@ -7,12 +7,12 @@ import {
   SuggestInvalidError,
   type SuggestInput,
 } from "./_lib/pet/suggest";
-import { allCategories } from "./_lib/pet/nameMaster";
+import { getAllCategories } from "./_lib/pet/nameMaster";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method === "GET") {
     // 画面のカテゴリ選択肢を返す補助用途
-    return res.status(200).json({ categories: allCategories() });
+    return res.status(200).json({ categories: await getAllCategories() });
   }
   if (req.method !== "POST") {
     res.setHeader("Allow", "GET, POST");

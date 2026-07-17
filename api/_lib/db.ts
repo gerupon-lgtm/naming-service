@@ -82,6 +82,40 @@ export async function dbInsertStroke(
   }
 }
 
+/** name_master の1行（DBから読む。targets/genders/categories は text[]）。 */
+export interface DbNameRow {
+  name: string;
+  reading: string;
+  type: string;
+  targets: string[];
+  genders: string[];
+  categories: string[];
+}
+
+/**
+ * name_master 全件を取得する（Phase2・ペット名候補）。
+ * DB無効・テーブル未作成・エラー時は空配列（呼び出し側は seed JSON にフォールバック）。
+ */
+export async function dbGetNameMaster(): Promise<DbNameRow[]> {
+  try {
+    const sql = await getSql();
+    if (!sql) return [];
+    const rows = await sql`
+      SELECT name, reading, char_type, targets, genders, categories FROM name_master
+    `;
+    return rows.map((r) => ({
+      name: String(r.name),
+      reading: String(r.reading),
+      type: String(r.char_type),
+      targets: (r.targets as string[]) ?? [],
+      genders: (r.genders as string[]) ?? [],
+      categories: (r.categories as string[]) ?? [],
+    }));
+  } catch {
+    return []; // テーブル未作成・障害時は seed にフォールバック
+  }
+}
+
 /**
  * 接続確認用（ヘルスチェック等）。
  * - DATABASE_URL 未設定: { enabled:false }
