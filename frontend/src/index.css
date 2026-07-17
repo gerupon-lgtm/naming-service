@@ -24,9 +24,17 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN",
-    "Noto Sans JP", Meiryo, sans-serif;
+  font-family: "Noto Serif JP", serif;
+  font-weight: 400;
   line-height: 1.6;
+}
+
+/* フォーム要素はデフォルトでフォントを継承しないため明示的に統一 */
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
 }
 
 .app {
