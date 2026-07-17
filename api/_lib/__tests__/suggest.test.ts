@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect } from "vitest";
 import {
   suggest,
   normalizeIncludeChars,
@@ -6,18 +6,14 @@ import {
   SuggestInvalidError,
   SUGGEST_DEFAULT_COUNT,
 } from "../pet/suggest";
+import type { LlmProvider } from "../llm";
 
-function mockReadingFetch(map: Record<string, string[]>): typeof fetch {
-  return vi.fn(async (url: string) => {
-    const seg = decodeURIComponent(String(url).split("/").pop() ?? "");
-    const kanji = map[seg] ?? [];
-    return {
-      ok: kanji.length > 0,
-      status: kanji.length > 0 ? 200 : 404,
-      json: async () => ({ main_kanji: kanji, name_kanji: [] }),
-    } as Response;
-  }) as unknown as typeof fetch;
+/** 漢字生成LLMのモック（改行区切りで漢字名を返す）。 */
+function llmMock(text: string): LlmProvider[] {
+  return [{ id: "mock", generate: async () => text }];
 }
+/** 漢字生成をさせない（空プロバイダ）。 */
+const NO_LLM: LlmProvider[] = [];
 
 describe("ペット命名提案（F-002〜F-005）", () => {
   it("指定件数の候補が条件に沿って返る（不足分はマスタからランダム）", async () => {
@@ -86,7 +82,7 @@ describe("ペット命名提案（F-002〜F-005）", () => {
       sex: "female",
       categories: ["かわいい"],
       reading: "ぬぬ", // マスタには無いよみ
-      readingApi: { fetchImpl: mockReadingFetch({}) }, // 漢字逆引きは空（ネット非依存）
+      llmProviders: NO_LLM, // 漢字生成はしない（ネット非依存）
       count: 8,
     });
     // 先頭が希望のよみ候補（ぬぬ/ヌヌ）で、理由に「ご希望のよみ」
@@ -97,21 +93,24 @@ describe("ペット命名提案（F-002〜F-005）", () => {
     expect(items.some((i) => i.source === "master")).toBe(true);
   });
 
-  it("希望のよみを漢字に逆引きして候補に含める（F-004）", async () => {
-    const readingApi = { fetchImpl: mockReadingFetch({ も: ["百"], な: ["奈"] }) };
+  it("希望のよみの漢字表記をLLM生成で候補に含める（F-004）", async () => {
+    // LLMが自然な漢字表記を返す想定。読み仮名や番号が混じっても抽出できる。
     const items = await suggest({
-      target: "cat",
-      reading: "もな",
+      target: "dog",
+      reading: "たけじろう",
       charTypes: ["kanji"],
-      readingApi,
-      limit: 10,
+      llmProviders: llmMock("1. 竹次郎（たけじろう）\n2. 武次郎\n健次郎\n嶽次郎"),
+      lookup: { disableRemote: true }, // 画数はシードのみ（ネット非依存）
+      count: 10,
     });
-    // 漢字合成候補（百奈）が入り、理由に「ご希望のよみ（漢字）」
-    const kanji = items.find((i) => i.name === "百奈");
-    expect(kanji).toBeTruthy();
-    expect(kanji!.type).toBe("kanji");
-    expect(kanji!.reasons.some((r) => r.includes("漢字"))).toBe(true);
-    expect(kanji!.strokeTotal).toBeGreaterThan(0);
+    // LLMの先頭「竹次郎」が採用され、理由に「ご希望のよみ（漢字）」
+    const takejiro = items.find((i) => i.name === "竹次郎");
+    expect(takejiro).toBeTruthy();
+    expect(takejiro!.type).toBe("kanji");
+    expect(takejiro!.reasons.some((r) => r.includes("漢字"))).toBe(true);
+    expect(takejiro!.strokeTotal).toBeGreaterThan(0);
+    // 「武次郎」も含まれる（先頭2つは自然さ優先で採用）
+    expect(items.some((i) => i.name === "武次郎")).toBe(true);
   });
 
   it("normalizeIncludeChars: 区切りを正規化して1文字配列に", () => {

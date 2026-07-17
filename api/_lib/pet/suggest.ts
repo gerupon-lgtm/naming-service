@@ -11,18 +11,10 @@ import {
   type PetGender,
   type NameType,
 } from "./nameMaster";
-import {
-  lookupStrokes,
-  strokeCountOf,
-  type LookupDeps,
-} from "../characterMaster";
+import { lookupStrokes, type LookupDeps } from "../characterMaster";
 import { evaluateStroke, CATEGORY_LABEL, type FortuneCategory } from "../fortune";
-import { readingKanjiCandidates } from "./readingLookup";
-import type { KanjiApiReadingDeps } from "../kanjiapiReading";
-import nameKanjiAllow from "../../../db/seed/name_kanji_allow.json";
-
-// 名前向きの常用漢字（新聞頻度＋教育漢字）。逆引き漢字はこの集合に限定して稀字を排除。
-const NAME_KANJI_ALLOW = new Set<string>(nameKanjiAllow as string[]);
+import { generateKanjiNames } from "./kanjiNameLLM";
+import type { LlmProvider } from "../llm";
 
 export interface SuggestInput {
   target: PetTarget;
@@ -30,11 +22,11 @@ export interface SuggestInput {
   categories?: string[]; // 希望カテゴリ（OR一致でスコア加点）
   includeChars?: string[]; // 使いたい文字（AND・すべて含む）
   charTypes?: NameType[]; // 出力文字種の許可リスト（未指定なら全許可）
-  reading?: string; // 希望よみ（かな候補＋漢字逆引きに使用）
+  reading?: string; // 希望よみ（かな候補＋漢字はLLM生成）
   count?: number; // 表示したい候補数（既定 SUGGEST_DEFAULT_COUNT）
   limit?: number; // count の別名（後方互換）
   lookup?: LookupDeps; // 画数参照の依存差し替え（テスト用）
-  readingApi?: KanjiApiReadingDeps; // 読み逆引き（kanjiapi.dev）の差し替え（テスト用）
+  llmProviders?: LlmProvider[]; // 漢字生成LLMの差し替え（テスト用）
 }
 
 export interface SuggestItem {
@@ -279,33 +271,40 @@ export async function suggest(input: SuggestInput): Promise<SuggestItem[]> {
     input.charTypes.length === 0 ||
     input.charTypes.includes("kanji");
   if (input.reading && kanjiAllowed) {
-    const kanjiCands = await readingKanjiCandidates(input.reading, input.readingApi);
+    // LLM に「そのよみで自然な漢字表記」を生成させる（機械的逆引きの不自然さを回避）。
+    const names = await generateKanjiNames(
+      input.reading,
+      input.target,
+      input.llmProviders
+    );
     const kanjiItems: SuggestItem[] = [];
-    for (const kc of kanjiCands) {
-      // 名前向きの常用漢字だけで構成される名前のみ採用（稀字・見慣れない字を排除）。
-      // かつ画数が引ける（シード収録）こと。
-      const chars = Array.from(kc.name);
-      if (!chars.every((ch) => NAME_KANJI_ALLOW.has(ch) && strokeCountOf(ch) !== undefined)) {
-        continue;
-      }
+    const seen = new Set(readingItems.map((i) => i.name));
+    for (const name of names) {
+      if (seen.has(name)) continue;
+      seen.add(name);
       const cand: NameCandidate = {
-        name: kc.name,
-        reading: kc.reading,
+        name,
+        reading: input.reading,
         type: "kanji",
         targets: [input.target],
         genders: ["neutral"],
         categories: [],
       };
       if (!passesFilters(cand, input, includeChars)) continue;
-      const it = await toItem(cand, input, "dynamic");
+      const it = await toItem(cand, input, "dynamic"); // 画数が引けないものは null で除外
       if (it) {
         it.reasons.unshift("ご希望のよみ（漢字）");
         kanjiItems.push(it);
       }
     }
-    // 画数の良い順。よみ由来（かな＋漢字）は最大6件まで（努力目標3件以上、全体は最大8件）
-    kanjiItems.sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
-    readingItems.push(...kanjiItems.slice(0, Math.max(0, 6 - readingItems.length)));
+    // LLM の先頭2つ（自然さ優先）＋残りは画数スコア上位、で採用。
+    const firstTwo = kanjiItems.slice(0, 2);
+    const restByScore = kanjiItems
+      .slice(2)
+      .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
+    const chosen = [...firstTwo, ...restByScore];
+    // よみ由来（かな＋漢字）は最大6件まで（不足分は後段でマスタからランダム）
+    readingItems.push(...chosen.slice(0, Math.max(0, 6 - readingItems.length)));
   }
 
   // 2) 一定数（count）に満たない分を、選択条件に合うマスタから「ランダム」に埋める。
