@@ -5,10 +5,12 @@ import {
   getMethod,
   DiagnosisResult,
   KakuDetail,
+  NameChar,
   evaluateStroke,
   calcSansai,
   KAKU_INFO,
   KAKU_ORDER,
+  type KakuKey,
   type Gokaku,
   type Sex,
 } from "./fortune";
@@ -80,7 +82,40 @@ export async function diagnose(input: DiagnoseInput): Promise<DiagnosisResult> {
   const score = method.calcScore(gokaku, sex);
   const rank = scoreToRank(score);
 
-  // 各格の詳細（役割・吉凶・意味）を性別込みで組み立てる
+  // 名前を構成する文字（姓→名の順）
+  const seiChars = Array.from(sei);
+  const meiChars = Array.from(mei);
+  const chars: NameChar[] = [
+    ...seiChars.map((char, i) => ({ char, strokes: seiStrokes[i], part: "sei" as const })),
+    ...meiChars.map((char, i) => ({ char, strokes: meiStrokes[i], part: "mei" as const })),
+  ];
+  const seiLen = seiChars.length;
+  const total = chars.length;
+
+  // 各格を構成する文字のインデックス（成り立ち表示用）
+  const membersFor = (key: KakuKey): number[] => {
+    switch (key) {
+      case "tenkaku":
+        return range(0, seiLen); // 姓すべて
+      case "chikaku":
+        return range(seiLen, total); // 名すべて
+      case "jinkaku":
+        return [seiLen - 1, seiLen]; // 姓の末字＋名の頭字
+      case "gaikaku":
+        return Array.from(new Set([0, total - 1])); // 外側の文字
+      case "soukaku":
+        return range(0, total); // 全文字
+    }
+  };
+  const reisuFor = (key: KakuKey): boolean => {
+    const meiLen = total - seiLen;
+    if (key === "tenkaku") return seiLen === 1;
+    if (key === "chikaku") return meiLen === 1;
+    if (key === "gaikaku") return seiLen === 1 || meiLen === 1;
+    return false;
+  };
+
+  // 各格の詳細（役割・吉凶・意味・成り立ち）を性別込みで組み立てる
   const details: KakuDetail[] = KAKU_ORDER.map((key) => {
     const strokes = gokaku[key as keyof Gokaku];
     const ev = evaluateStroke(strokes, sex);
@@ -88,12 +123,16 @@ export async function diagnose(input: DiagnoseInput): Promise<DiagnosisResult> {
     return {
       key,
       label: info.label,
+      nickname: info.nickname,
       strokes,
       category: ev.category,
       categoryLabel: ev.categoryLabel,
       role: info.role,
+      plain: info.plain,
       keyword: ev.keyword,
       summary: ev.summary,
+      members: membersFor(key),
+      ...(reisuFor(key) ? { reisu: true } : {}),
       ...(ev.caution ? { caution: ev.caution } : {}),
     };
   });
@@ -111,8 +150,16 @@ export async function diagnose(input: DiagnoseInput): Promise<DiagnosisResult> {
     score,
     rank,
     sex,
+    chars,
     details,
     sansai,
     wuxing,
   };
+}
+
+/** [start, end) の整数配列。 */
+function range(start: number, end: number): number[] {
+  const out: number[] = [];
+  for (let i = start; i < end; i++) out.push(i);
+  return out;
 }

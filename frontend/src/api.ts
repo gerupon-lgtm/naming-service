@@ -4,15 +4,27 @@
 
 export type Sex = "male" | "female" | "unspecified";
 
+export type Rank = "大吉" | "吉" | "中吉" | "小吉" | "末吉" | "凶";
+
+export interface NameChar {
+  char: string;
+  strokes: number;
+  part: "sei" | "mei";
+}
+
 export interface KakuDetail {
   key: "tenkaku" | "jinkaku" | "chikaku" | "gaikaku" | "soukaku";
   label: string;
+  nickname: string;
   strokes: number;
   category: string;
   categoryLabel: string;
   role: string;
+  plain: string;
   keyword: string;
   summary: string;
+  members: number[];
+  reisu?: boolean;
   caution?: string;
 }
 
@@ -22,6 +34,7 @@ export interface Sansai {
   chiLabel: string;
   relationTenJin: string;
   relationJinChi: string;
+  category: string;
   categoryLabel: string;
   summary: string;
 }
@@ -44,8 +57,9 @@ export interface DiagnosisResult {
   soukaku: number;
   strokeTotal: number;
   score: number;
-  rank: "SS" | "S" | "A" | "B" | "C";
+  rank: Rank;
   sex: Sex;
+  chars: NameChar[];
   details: KakuDetail[];
   sansai: Sansai;
   wuxing: WuxingSummary;

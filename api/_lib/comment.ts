@@ -10,9 +10,11 @@ export type CommentType = "diagnosis" | "petName";
 /** 各格の詳細（diagnose の KakuDetail と同形）。 */
 export interface KakuDetailPayload {
   label: string;
+  nickname?: string;
   strokes: number;
   categoryLabel: string;
   role: string;
+  plain?: string;
   keyword: string;
   summary: string;
   caution?: string;
@@ -58,14 +60,15 @@ export function buildDiagnosisPrompt(p: DiagnosisPayload): string {
     "女性の注意数などの注記がある場合は、断定を避け『伝統的にはこう言われる』程度にやわらかく触れてください。",
     "",
     `【${name}の診断結果】`,
-    `総合点: ${p.score}点（ランク${p.rank}）／性別: ${p.sexLabel ?? "未指定"}`,
+    `総合運勢: ${p.rank}（参考スコア ${p.score}点）／性別: ${p.sexLabel ?? "未指定"}`,
     "",
     "■ 五格の内訳",
   ];
 
   if (p.details && p.details.length > 0) {
     for (const d of p.details) {
-      let line = `・${d.label}（${d.strokes}画・${d.categoryLabel}）: ${d.role} 象意=「${d.keyword}」 ${d.summary}`;
+      const nick = d.nickname ? `${d.nickname}（${d.label}）` : d.label;
+      let line = `・${nick} ${d.strokes}画・${d.categoryLabel}: ${d.plain ?? d.role} 象意=「${d.keyword}」 ${d.summary}`;
       if (d.caution) line += `【注記】${d.caution}`;
       lines.push(line);
     }

@@ -21,19 +21,32 @@ export interface Gokaku {
   soukaku: number;
 }
 
-/** ランク（SS〜C）。 */
-export type Rank = "SS" | "S" | "A" | "B" | "C";
+/** 総合ランク（6段階）。大吉 ＞ 吉 ＞ 中吉 ＞ 小吉 ＞ 末吉 ＞ 凶。 */
+export type Rank = "大吉" | "吉" | "中吉" | "小吉" | "末吉" | "凶";
 
-/** 各格の詳細（役割・画数・吉凶・意味）。 */
+/** 名前を構成する1文字。 */
+export interface NameChar {
+  char: string;
+  strokes: number;
+  part: "sei" | "mei"; // 姓 / 名
+}
+
+/** 各格の詳細（役割・画数・吉凶・意味・成り立ち）。 */
 export interface KakuDetail {
   key: KakuKey;
   label: string; // 天格 等
+  nickname: string; // やさしい呼び名（例: ルーツ運）
   strokes: number;
   category: FortuneCategory; // 性別適用後
   categoryLabel: string; // 大吉 等
   role: string; // 格の役割
+  plain: string; // 一言のやさしい説明
   keyword: string; // 画数の象意
   summary: string; // 画数の短評
+  /** この格を構成する文字の、chars 配列におけるインデックス。 */
+  members: number[];
+  /** 姓または名が1文字で霊数1を補っている場合 true。 */
+  reisu?: boolean;
   caution?: string; // 女性注意数などの注記
 }
 
@@ -47,6 +60,8 @@ export interface DiagnosisResult extends Gokaku {
   rank: Rank;
   /** 診断に用いた性別。 */
   sex: Sex;
+  /** 名前を構成する文字（姓→名の順）。格の成り立ち表示に使う。 */
+  chars: NameChar[];
   /** 各格の詳細（天→人→地→外→総の順）。 */
   details: KakuDetail[];
   /** 三才配置（五行の相生・相剋）。 */

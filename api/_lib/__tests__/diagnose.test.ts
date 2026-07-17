@@ -15,7 +15,7 @@ describe("diagnose（姓名診断オーケストレーション）", () => {
     expect(r.soukaku).toBe(21);
     expect(r.strokeTotal).toBe(21);
     expect(r.score).toBe(65);
-    expect(r.rank).toBe("A");
+    expect(r.rank).toBe("中吉"); // 65点 → 中吉（62〜75）
     expect(r.sex).toBe("unspecified");
   });
 
@@ -24,15 +24,29 @@ describe("diagnose（姓名診断オーケストレーション）", () => {
     expect(r.details).toHaveLength(5);
     const jin = r.details.find((d) => d.key === "jinkaku")!;
     expect(jin.label).toBe("人格");
+    expect(jin.nickname).toBe("本質（中心）");
     expect(jin.strokes).toBe(9);
     expect(jin.categoryLabel).toBeTruthy();
     expect(jin.keyword).toBeTruthy();
-    expect(jin.role).toContain("性格");
+    expect(jin.plain).toBeTruthy();
     expect(r.sansai.categoryLabel).toBeTruthy();
     expect(r.sansai.tenLabel).toBeTruthy();
     expect(["wood", "fire", "earth", "metal", "water"]).toContain(
       r.wuxing.dominant
     );
+  });
+
+  it("成り立ち（chars と各格の構成文字members）を返す", async () => {
+    const r = await diagnose({ sei: "山田", mei: "太郎" });
+    expect(r.chars.map((c) => c.char)).toEqual(["山", "田", "太", "郎"]);
+    expect(r.chars[0].part).toBe("sei");
+    expect(r.chars[3].part).toBe("mei");
+    const byKey = Object.fromEntries(r.details.map((d) => [d.key, d.members]));
+    expect(byKey.tenkaku).toEqual([0, 1]); // 山田
+    expect(byKey.jinkaku).toEqual([1, 2]); // 田太
+    expect(byKey.chikaku).toEqual([2, 3]); // 太郎
+    expect(byKey.gaikaku).toEqual([0, 3]); // 山郎
+    expect(byKey.soukaku).toEqual([0, 1, 2, 3]);
   });
 
   it("性別を指定でき、女性の注意数はスコアに反映される", async () => {
@@ -80,6 +94,6 @@ describe("diagnose（姓名診断オーケストレーション）", () => {
     expect(r.tenkaku).toBe(9);
     expect(r.chikaku).toBe(2);
     expect(r.soukaku).toBe(9);
-    expect(["SS", "S", "A", "B", "C"]).toContain(r.rank);
+    expect(["大吉", "吉", "中吉", "小吉", "末吉", "凶"]).toContain(r.rank);
   });
 });

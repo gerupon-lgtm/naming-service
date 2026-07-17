@@ -4,34 +4,68 @@
 
 | メソッド | パス | 概要 | 対応機能ID |
 |---------|------|------|-----------|
-| POST | /api/diagnose | 姓・名を受け取り、都度計算で診断結果を返す（LLMコメントは含まない、即時応答） | F-001 |
-| GET | /api/diagnose?sei=...&mei=... | URLパラメータから診断結果を再計算して返す（共有用） | F-006 |
+| POST | /api/diagnose | 姓・名・性別を受け取り、都度計算で診断結果を返す（LLMコメントは含まない、即時応答） | F-001, F-013 |
+| GET | /api/diagnose?sei=...&mei=...&sex=... | URLパラメータから診断結果を再計算して返す（共有用） | F-006 |
+| GET | /api/health | ヘルスチェック。DB接続状態（`db.enabled`/`db.ok`）を返す | - |
 | POST | /api/comment | 構造化された結果（診断結果 or 命名候補）を受け取り、LLMで解説コメントを生成する（共通基盤。Phase1では姓名診断結果に、Phase2では命名候補にも利用） | F-011, F-012 |
 
 ### POST /api/diagnose
 
-リクエスト:
+リクエスト（`sex` は任意。`male` / `female` / `unspecified`。省略時は `unspecified`）:
 ```json
-{ "sei": "山田", "mei": "太郎" }
+{ "sei": "山田", "mei": "太郎", "sex": "male" }
 ```
 
-レスポンス（正常系）:
+レスポンス（正常系。v1.2で `sex` / `details` / `sansai` / `wuxing` を追加）:
 ```json
 {
-  "strokeTotal": 27,
-  "tenkaku": 8,
-  "jinkaku": 10,
-  "chikaku": 17,
-  "gaikaku": 6,
-  "soukaku": 23,
-  "score": 82,
-  "rank": "A"
+  "strokeTotal": 21,
+  "tenkaku": 8, "jinkaku": 9, "chikaku": 13, "gaikaku": 12, "soukaku": 21,
+  "score": 65,
+  "rank": "中吉",
+  "sex": "male",
+  "chars": [
+    { "char": "山", "strokes": 3, "part": "sei" },
+    { "char": "田", "strokes": 5, "part": "sei" },
+    { "char": "太", "strokes": 4, "part": "mei" },
+    { "char": "郎", "strokes": 9, "part": "mei" }
+  ],
+  "details": [
+    {
+      "key": "jinkaku", "label": "人格", "nickname": "本質（中心）", "strokes": 9,
+      "category": "kyo", "categoryLabel": "凶",
+      "role": "性格・才能・中年期の運。姓名判断の中心…",
+      "plain": "あなたらしさ・才能・仕事運。最も重要",
+      "keyword": "窮迫・浮沈", "summary": "才あれど浮き沈み多く…",
+      "members": [1, 2],
+      "reisu": false,
+      "caution": "（女性の注意数に該当する場合のみ付与）"
+    }
+  ],
+  "sansai": {
+    "ten": "metal", "jin": "water", "chi": "fire",
+    "tenLabel": "金", "jinLabel": "水", "chiLabel": "火",
+    "relationTenJin": "相生", "relationJinChi": "相剋",
+    "category": "hankichi", "categoryLabel": "半吉",
+    "summary": "五行に生かし合いと抑え合いが混在し…"
+  },
+  "wuxing": {
+    "wood": 0, "fire": 1, "earth": 0, "metal": 1, "water": 1,
+    "dominant": "fire", "lacking": ["wood", "earth"]
+  }
 }
 ```
 
+- **`rank`（総合ランク・6段階）**: 大吉 ＞ 吉 ＞ 中吉 ＞ 小吉 ＞ 末吉 ＞ 凶。各下限を上から順に設定値化（大吉90／吉76／中吉62／小吉48／末吉34／凶）。生々しい点数ではなくこの言葉を主表示にする（`score` は参考値）。
+- **`chars`**: 名前を構成する文字（姓→名の順）と画数。格の「成り立ち」表示に使う。
+- **`details`**: 各格（天→人→地→外→総）の役割・**やさしい呼び名（nickname）**・画数・吉凶（性別適用後）・象意キーワードと短評。`members` はその格を構成する文字の `chars` 配列インデックス（例: 人格＝姓の末字＋名の頭字）。姓/名が1文字で霊数を補う場合は `reisu:true`。女性の注意数に該当する格には `caution` が付く。
+- **`sansai`**: 三才配置。天・人・地の画数を五行（木火土金水）に変換し、相生・相剋で吉凶判定。
+- **`wuxing`**: 三才の五行内訳・不足五行。**四柱推命など他占術との連携用**の構造化データ（DBには保存しない）。
+- **性別（F-013）**: 五格の"計算"は性別に影響しない。女性の注意数（21・23・29・32・33・39画）に該当する格のみ、吉凶を1段階（大吉/吉→半吉）引き下げ、スコアと解説に反映する（設定値化）。
+
 レスポンス（未知文字がkanjiapi.devにも存在しない場合、エラー）:
 ```json
-{ "error": "DIAGNOSIS_UNAVAILABLE", "message": "一部の文字の画数情報が見つかりませんでした" }
+{ "error": "DIAGNOSIS_UNAVAILABLE", "message": "一部の文字の画数情報を取得できませんでした。表記を変えて試すか、しばらくしてから再度お試しください。" }
 ```
 
 ### 内部処理フロー
@@ -43,20 +77,27 @@
 
 ### POST /api/comment（Phase1: F-012 姓名診断結果向け／Phase2: F-011 命名候補向けに拡張）
 
-リクエスト（診断結果向け・Phase1）:
+リクエスト（診断結果向け・Phase1。`payload` は /api/diagnose のレスポンス＋`sei`/`mei`/`sexLabel` を渡す。`details`・`sansai` を含めるとコメントが厚くなる）:
 ```json
 {
   "type": "diagnosis",
-  "payload": { "strokeTotal": 27, "tenkaku": 8, "jinkaku": 10, "chikaku": 17, "gaikaku": 6, "soukaku": 23, "score": 82, "rank": "A" }
+  "payload": {
+    "strokeTotal": 21, "tenkaku": 8, "jinkaku": 9, "chikaku": 13, "gaikaku": 12, "soukaku": 21,
+    "score": 65, "rank": "A",
+    "sei": "山田", "mei": "太郎", "sexLabel": "男性",
+    "details": [ /* 各格の役割・吉凶・象意 */ ],
+    "sansai": { /* 三才（五行）の関係と要約 */ }
+  }
 }
 ```
 
 レスポンス:
 ```json
-{ "comment": "総格23画は…（LLM生成の解説文）" }
+{ "comment": "総格21画は…（LLM生成の解説文）" }
 ```
 
-- Ollama（環境変数 `LLM_OLLAMA_ENDPOINT`）に問い合わせ、タイムアウト5秒または5xx／接続エラーで応答不可と判定
+- プロンプトには五格の吉凶・象意・三才（五行）・性別注記まで渡し、LLMは「総合印象→重要な格→三才の流れ→心がけ」の順で肉付けする（数値・吉凶・五行は再計算させない）
+- Ollama（環境変数 `LLM_OLLAMA_ENDPOINT`）に問い合わせ、**タイムアウト10秒、またはHTTP 4xx／5xx・接続エラー**で応答不可と判定（未解決No.1の決定）
 - 応答不可の場合、`LLM_FALLBACK_ORDER` の次の候補（デフォルトはOpenRouter）に切り替える
 - 全プロバイダが応答不可の場合は `comment: null` を返し、フロントエンドはコメント領域を非表示にする（診断結果本体はエラーにしない）
 - ロジック側で確定した数値・ランクをLLMが書き換えないよう、プロンプトには「この結果を解説してください」という指示のみを与え、診断結果自体の再計算はさせない

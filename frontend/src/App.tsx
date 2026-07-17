@@ -4,6 +4,7 @@ import {
   fetchComment,
   ApiError,
   type DiagnosisResult,
+  type Rank,
   type Sex,
 } from "./api";
 import { validateNameField } from "./validation";
@@ -11,12 +12,14 @@ import { validateNameField } from "./validation";
 // S-001（入力）と S-002（結果）を1コンポーネントで表現する。
 // F-006 URL共有: 診断条件を ?sei=..&mei=..&sex=.. に埋め込み、直接アクセス時に再計算する。
 
-const RANK_LABEL: Record<DiagnosisResult["rank"], string> = {
-  SS: "SS ・最高",
-  S: "S ・優",
-  A: "A ・良",
-  B: "B ・可",
-  C: "C ・要注意",
+// 総合ランク（言葉）→ 表示トーン。生々しい点数の代わりに言葉を主役にする。
+const RANK_TONE: Record<Rank, string> = {
+  大吉: "daikichi",
+  吉: "kichi",
+  中吉: "chukichi",
+  小吉: "shokichi",
+  末吉: "suekichi",
+  凶: "kyo",
 };
 
 const SEX_OPTIONS: { value: Sex; label: string }[] = [
@@ -24,6 +27,11 @@ const SEX_OPTIONS: { value: Sex; label: string }[] = [
   { value: "male", label: "男性" },
   { value: "female", label: "女性" },
 ];
+const SEX_LABEL: Record<Sex, string> = {
+  male: "男性",
+  female: "女性",
+  unspecified: "未指定",
+};
 
 interface ErrState {
   message: string;
@@ -72,7 +80,6 @@ export default function App() {
     }
   }, []);
 
-  // 共有URLで開かれた場合、パラメータから再計算する
   useEffect(() => {
     const p = new URLSearchParams(window.location.search);
     const s = p.get("sei") ?? "";
@@ -120,20 +127,33 @@ export default function App() {
   };
 
   const asText = (r: DiagnosisResult) => {
-    const lines = [
-      "姓名診断結果（熊崎式）",
-      `姓名: ${sei} ${mei}`,
-      `総合点: ${r.score} / ランク: ${r.rank}`,
+    const lines: string[] = [
+      "◆ 姓名診断結果（熊崎式）",
+      `お名前: ${sei} ${mei}　／　性別: ${SEX_LABEL[r.sex]}`,
+      `総合運勢: 【${r.rank}】（参考スコア ${r.score}点）`,
       "",
-      "【五格】",
-      ...r.details.map(
-        (d) =>
-          `${d.label}: ${d.strokes}画（${d.categoryLabel}） ${d.keyword}／${d.summary}`
-      ),
-      "",
-      `【三才】天=${r.sansai.tenLabel}・人=${r.sansai.jinLabel}・地=${r.sansai.chiLabel}（${r.sansai.categoryLabel}）`,
-      r.sansai.summary,
+      "■ 五格 — 画数の成り立ちと運勢",
     ];
+    for (const d of r.details) {
+      const star = d.key === "jinkaku" ? "★" : "　";
+      const parts = d.members.map((i) => r.chars[i]?.char ?? "").join("＋");
+      const reisu = d.reisu ? "＋霊数" : "";
+      lines.push(
+        `${star}${d.nickname}（${d.label}）  ${d.strokes}画 = ${d.categoryLabel}`,
+        `　　${d.plain}`,
+        `　　成り立ち: ${parts}${reisu}　象意: ${d.keyword} — ${d.summary}`
+      );
+      if (d.caution) lines.push(`　　※ ${d.caution}`);
+    }
+    lines.push(
+      "",
+      "■ 三才 — 五行の巡り",
+      `天=${r.sansai.tenLabel}・人=${r.sansai.jinLabel}・地=${r.sansai.chiLabel}  （${r.sansai.categoryLabel}）`,
+      `　天と人=${r.sansai.relationTenJin}、人と地=${r.sansai.relationJinChi}`,
+      `　${r.sansai.summary}`,
+      "",
+      "※ 姓名判断は参考としてお楽しみください。"
+    );
     return lines.join("\n");
   };
 
@@ -141,12 +161,10 @@ export default function App() {
     await navigator.clipboard.writeText(asText(r));
     flash("結果をコピーしました");
   };
-
   const copyShareUrl = async () => {
     await navigator.clipboard.writeText(window.location.href);
     flash("共有URLをコピーしました");
   };
-
   const download = (r: DiagnosisResult) => {
     const blob = new Blob([asText(r)], { type: "text/plain;charset=utf-8" });
     const url = URL.createObjectURL(blob);
@@ -245,29 +263,71 @@ export default function App() {
       {result && !loading && (
         <section className="result">
           <div className="card">
-            <div className="score">
-              <div className="score__num">{result.score}</div>
-              <div className="score__rank">{RANK_LABEL[result.rank]}</div>
+            {/* 総合運勢は言葉を主役に。点数は控えめ */}
+            <div className="verdict">
+              <div className={"verdict__rank rank--" + RANK_TONE[result.rank]}>
+                {result.rank}
+              </div>
+              <div className="verdict__sub">
+                総合運勢
+                <span className="verdict__score">参考 {result.score}点</span>
+              </div>
             </div>
 
-            {/* 各格の詳細 */}
-            <div className="kaku-list">
-              {result.details.map((d) => (
-                <div className="kaku" key={d.key}>
-                  <div className="kaku__head">
-                    <span className="kaku__label">{d.label}</span>
-                    <span className="kaku__strokes">{d.strokes}画</span>
-                    <span
-                      className={
-                        "kaku__badge kaku__badge--" + d.category
-                      }
-                    >
-                      {d.categoryLabel}
-                    </span>
+            {/* 名前の文字 */}
+            <div className="namebar">
+              {result.chars.map((c, i) => (
+                <div className="namebar__tile" key={i}>
+                  <div className="namebar__char">{c.char}</div>
+                  <div className="namebar__meta">
+                    {c.part === "sei" ? "姓" : "名"}・{c.strokes}画
                   </div>
-                  <div className="kaku__role">{d.role}</div>
-                  <div className="kaku__meaning">
-                    <b>{d.keyword}</b> — {d.summary}
+                </div>
+              ))}
+            </div>
+
+            {/* 格の成り立ち（どの文字がこの格を作るか） */}
+            <div className="lanes">
+              {result.details.map((d) => (
+                <div
+                  className={"lane" + (d.key === "jinkaku" ? " lane--star" : "")}
+                  key={d.key}
+                >
+                  <div className="lane__head">
+                    <div className="lane__names">
+                      <span className="lane__nick">
+                        {d.nickname}
+                        {d.key === "jinkaku" && (
+                          <span className="lane__badge">中心</span>
+                        )}
+                      </span>
+                      <span className="lane__tech">{d.label}</span>
+                    </div>
+                    <div className="lane__chips">
+                      {result.chars.map((c, i) => (
+                        <span
+                          key={i}
+                          className={
+                            "chip" + (d.members.includes(i) ? " chip--on" : "")
+                          }
+                        >
+                          {c.char}
+                        </span>
+                      ))}
+                      {d.reisu && <span className="chip chip--reisu">霊</span>}
+                    </div>
+                    <div className="lane__right">
+                      <span className="lane__strokes">
+                        {d.strokes}
+                        <small>画</small>
+                      </span>
+                      <span className={"cat cat--" + d.category}>
+                        {d.categoryLabel}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="lane__plain">
+                    {d.plain}｜{d.keyword} — {d.summary}
                   </div>
                   {d.caution && <div className="kaku__caution">{d.caution}</div>}
                 </div>
@@ -276,7 +336,7 @@ export default function App() {
 
             {/* 三才配置（五行） */}
             <div className="sansai">
-              <div className="sansai__title">三才配置（五行）</div>
+              <div className="sansai__title">三才（五行の巡り）</div>
               <div className="sansai__row">
                 <span className="sansai__cell">
                   天<b>{result.sansai.tenLabel}</b>
@@ -293,14 +353,14 @@ export default function App() {
                 <span className="sansai__cell">
                   地<b>{result.sansai.chiLabel}</b>
                 </span>
-                <span className="kaku__badge kaku__badge--info">
+                <span className={"cat cat--" + result.sansai.category}>
                   {result.sansai.categoryLabel}
                 </span>
               </div>
               <p className="sansai__summary">{result.sansai.summary}</p>
             </div>
 
-            {/* F-012 LLM解説コメント（非同期・失敗時は非表示） */}
+            {/* F-012 LLM解説コメント */}
             {comment === "loading" && (
               <div className="comment comment--pending">
                 <span className="comment__dot" />

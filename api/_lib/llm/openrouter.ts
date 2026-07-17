@@ -15,7 +15,7 @@ export function createOpenRouterProvider(
   const apiKey = config.apiKey ?? process.env.LLM_OPENROUTER_API_KEY ?? "";
   const model = config.model ?? process.env.LLM_OPENROUTER_MODEL ?? "";
   const baseUrl = config.baseUrl ?? "https://openrouter.ai/api/v1";
-  const timeoutMs = config.timeoutMs ?? Number(process.env.LLM_TIMEOUT_MS ?? 5000);
+  const timeoutMs = config.timeoutMs ?? Number(process.env.LLM_TIMEOUT_MS ?? 10000);
   const fetchImpl = config.fetchImpl ?? globalThis.fetch;
 
   return {
@@ -39,7 +39,8 @@ export function createOpenRouterProvider(
           }),
           signal: ctrl.signal,
         });
-        if (res.status >= 500 || !res.ok) {
+        // 4xx・5xx いずれも応答不可と判定してフォールバックする（未解決No.1の決定）
+        if (!res.ok) {
           throw new LlmUnavailableError("openrouter", `HTTP ${res.status}`);
         }
         const data = (await res.json()) as {

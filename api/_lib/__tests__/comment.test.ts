@@ -20,7 +20,7 @@ describe("診断コメント（F-012）", () => {
   it("プロンプトに確定済みの数値・ランクが含まれる", () => {
     const prompt = buildDiagnosisPrompt(payload);
     expect(prompt).toContain("65");
-    expect(prompt).toContain("ランクA");
+    expect(prompt).toContain("総合運勢");
     expect(prompt).toContain("人格");
     // 再計算をさせない指示が含まれる
     expect(prompt).toContain("再計算");

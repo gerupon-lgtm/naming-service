@@ -11,7 +11,7 @@ export interface OllamaConfig extends Partial<LlmCommonConfig> {
 export function createOllamaProvider(config: OllamaConfig = {}): LlmProvider {
   const endpoint = config.endpoint ?? process.env.LLM_OLLAMA_ENDPOINT ?? "";
   const model = config.model ?? process.env.LLM_OLLAMA_MODEL ?? "";
-  const timeoutMs = config.timeoutMs ?? Number(process.env.LLM_TIMEOUT_MS ?? 5000);
+  const timeoutMs = config.timeoutMs ?? Number(process.env.LLM_TIMEOUT_MS ?? 10000);
   const fetchImpl = config.fetchImpl ?? globalThis.fetch;
 
   return {
@@ -29,7 +29,8 @@ export function createOllamaProvider(config: OllamaConfig = {}): LlmProvider {
           body: JSON.stringify({ model, prompt, stream: false }),
           signal: ctrl.signal,
         });
-        if (res.status >= 500 || !res.ok) {
+        // 4xx・5xx いずれも応答不可と判定してフォールバックする（未解決No.1の決定）
+        if (!res.ok) {
           throw new LlmUnavailableError("ollama", `HTTP ${res.status}`);
         }
         const data = (await res.json()) as { response?: string };

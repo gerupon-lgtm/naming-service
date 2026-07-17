@@ -15,7 +15,9 @@
 | F-009 | 結果ファイル出力 | S-002, S-004 | クライアント側生成 | - | T-009, T-108 | 確定 |
 | F-010 | 結果クリップボードコピー | S-002, S-004 | Clipboard API | - | T-010, T-108 | 確定 |
 | F-011 | 候補名へのLLMコメント生成 | S-004 | POST /api/comment（type: petName） | - | T-106 | 確定 |
-| F-012 | 姓名診断結果へのLLMコメント生成 | S-002 | POST /api/comment（type: diagnosis） | - | T-013 | 確定 |
+| F-012 | 姓名診断結果へのLLMコメント生成 | S-002 | POST /api/comment（type: diagnosis） | - | T-013 | 実装済 |
+| F-013 | 性別による吉凶差の反映 | S-001, S-002 | POST /api/diagnose（sex） | - | T-201 | 実装済 |
+| F-014 | 診断結果の詳細情報（各格の役割・画数の象意・三才/五行） | S-002 | POST /api/diagnose（details/sansai/wuxing） | - | T-202 | 実装済 |
 | NF-性能 | 診断中プログレス表示（10秒許容） | S-001, S-002 | - | - | T-007 | 確定 |
 | NF-移植性 | レスポンシブ・Chromium/WebKit対応 | 全画面 | - | - | T-011 | 確定 |
 | NF-運用 | 本人単独運用（監視・保守簡略） | - | - | - | ドキュメントのみ（タスク化不要） | 確定 |
@@ -102,6 +104,22 @@
   - 正常系: 候補名それぞれについてコメントが表示される
   - 異常系: T-013で構築済みのフォールバック・失敗時挙動（コメントなし表示）がそのまま機能する
   - 境界: 候補名の件数が多い場合でも、一覧の表示自体はコメント生成完了を待たずに行われる（診断結果と同様、非同期表示）
+
+## 追加実装（Phase1完了後・v1.1〜v1.2）
+
+| ID | タスク | 対応機能ID | 状態・完了条件 |
+|----|--------|-----------|----------------|
+| T-201 | 性別対応（吉凶・スコア反映） | F-013 | ✅ 実装。女性の注意数（21・23・29・32・33・39画）に該当する格の吉凶を1段階引き下げ、スコア・解説に反映。五格計算は不変。表現は伝統的見方と現代的見直しを併記。設定値化（`gender.ts`） |
+| T-202 | 診断結果の情報量アップ | F-014 | ✅ 実装。各格の役割説明＋1〜81画の象意キーワード・短評（`strokeMeaning.ts`/`gokakuMeaning.ts`）、三才配置＝五行の相生・相剋判定（`sansai.ts`）、四柱推命連携用の五行サマリ（wuxing）を診断結果に追加 |
+| T-203 | LLMプロンプト強化 | F-012 | ✅ 実装。五格の吉凶・象意・三才・性別注記まで渡し、コメントの厚みを増した |
+| T-210 | 本番公開（全部Vercel） | - | ✅ 完了。フロント＋APIを1つのVercelプロジェクトで公開（同一ドメイン・CORS不要）。GitHub連携で自動デプロイ。本番URL: naming-service-red.vercel.app |
+
+### デプロイ・構成メモ（実装で確定した事項）
+- ホスティングは当初想定（フロント=GitHub Pages／API=Vercel）を変更し、**全部Vercelにまとめる**構成に。`vercel.json`（framework:null, outputDirectory:frontend/dist）＋ルート `package.json` の build で対応。
+- `/api` 配下の共有ロジックは `api/_lib`（先頭 `_` でVercelの関数化対象外）に配置。
+- `/api` のTS関数は**CommonJSで統一**（`api/package.json` に `type:module` を置かない＋`api/tsconfig.json` は `module:CommonJS`/`moduleResolution:node`）。拡張子なしのimportを使うため。
+- 環境変数（DATABASE_URL, LLM_OLLAMA_*, LLM_FALLBACK_ORDER 等）はVercelダッシュボードで設定。
+- DBは Neon(Postgres)。未設定時は同梱seed辞書にフォールバックして動作。
 
 ## 未対応の機能ID
 - F-008（アカウント機能）は要件定義書で対象外（将来検討）としているため、本タスク分解には含めない
