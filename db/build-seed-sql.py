@@ -31,7 +31,14 @@ def main() -> None:
         f"'{r['character_type']}', '{r['source']}')"
         for r in rows
     ]
-    lines.append(",\n".join(vals) + "\nON CONFLICT (character) DO NOTHING;")
+    # 再投入で既存値も最新（熊崎式補正済み）に更新されるよう UPSERT にする
+    upsert = (
+        "\nON CONFLICT (character) DO UPDATE SET\n"
+        "  stroke_count = EXCLUDED.stroke_count,\n"
+        "  character_type = EXCLUDED.character_type,\n"
+        "  source = EXCLUDED.source;"
+    )
+    lines.append(",\n".join(vals) + upsert)
     open(OUT, "w", encoding="utf-8").write("\n".join(lines) + "\n")
     print(f"generated {OUT} ({len(vals)} rows)")
 
