@@ -19,6 +19,10 @@ import {
 import { evaluateStroke, CATEGORY_LABEL, type FortuneCategory } from "../fortune";
 import { readingKanjiCandidates } from "./readingLookup";
 import type { KanjiApiReadingDeps } from "../kanjiapiReading";
+import nameKanjiAllow from "../../../db/seed/name_kanji_allow.json";
+
+// 名前向きの常用漢字（新聞頻度＋教育漢字）。逆引き漢字はこの集合に限定して稀字を排除。
+const NAME_KANJI_ALLOW = new Set<string>(nameKanjiAllow as string[]);
 
 export interface SuggestInput {
   target: PetTarget;
@@ -278,9 +282,10 @@ export async function suggest(input: SuggestInput): Promise<SuggestItem[]> {
     const kanjiCands = await readingKanjiCandidates(input.reading, input.readingApi);
     const kanjiItems: SuggestItem[] = [];
     for (const kc of kanjiCands) {
-      // 人名用に限定: シード（常用＋人名用漢字）に収録された字だけで構成される名前のみ採用。
-      // これで見慣れない漢字（名乗りの稀字など）を除外する。
-      if (!Array.from(kc.name).every((ch) => strokeCountOf(ch) !== undefined)) {
+      // 名前向きの常用漢字だけで構成される名前のみ採用（稀字・見慣れない字を排除）。
+      // かつ画数が引ける（シード収録）こと。
+      const chars = Array.from(kc.name);
+      if (!chars.every((ch) => NAME_KANJI_ALLOW.has(ch) && strokeCountOf(ch) !== undefined)) {
         continue;
       }
       const cand: NameCandidate = {
@@ -298,9 +303,9 @@ export async function suggest(input: SuggestInput): Promise<SuggestItem[]> {
         kanjiItems.push(it);
       }
     }
-    // 画数の良い順。よみ由来（かな＋漢字）は無理に増やさず合計3件までに絞る
+    // 画数の良い順。よみ由来（かな＋漢字）は最大6件まで（努力目標3件以上、全体は最大8件）
     kanjiItems.sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
-    readingItems.push(...kanjiItems.slice(0, Math.max(0, 3 - readingItems.length)));
+    readingItems.push(...kanjiItems.slice(0, Math.max(0, 6 - readingItems.length)));
   }
 
   // 2) 一定数（count）に満たない分を、選択条件に合うマスタから「ランダム」に埋める。

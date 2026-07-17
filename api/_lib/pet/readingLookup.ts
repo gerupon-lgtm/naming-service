@@ -13,9 +13,9 @@ export interface ReadingKanjiCandidate {
   reading: string; // 元の希望よみ（全体）
 }
 
-const MAX_MORA = 5; // これ以上長いよみは漢字合成しない
+const MAX_MORA = 6; // これ以上長いよみは漢字合成しない
 const MAX_PART_MORA = 3; // 1漢字が受け持つモーラ数の上限
-const MAX_PARTS = 5; // 名前の漢字数上限
+const MAX_PARTS = 3; // 名前の漢字数上限（小次郎・小太郎など3字の定番に対応）
 const PER_SEGMENT = 3; // 1セグメントあたり採用する漢字数
 const MAX_CANDIDATES = 24; // 合成候補の総数上限
 
