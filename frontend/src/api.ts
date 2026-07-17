@@ -2,6 +2,40 @@
 // 開発時は VITE_API_BASE で API のベース URL を切り替える。
 // 本番はフロント（GitHub Pages）と API（Vercel）が別オリジンになる想定。
 
+export type Sex = "male" | "female" | "unspecified";
+
+export interface KakuDetail {
+  key: "tenkaku" | "jinkaku" | "chikaku" | "gaikaku" | "soukaku";
+  label: string;
+  strokes: number;
+  category: string;
+  categoryLabel: string;
+  role: string;
+  keyword: string;
+  summary: string;
+  caution?: string;
+}
+
+export interface Sansai {
+  tenLabel: string;
+  jinLabel: string;
+  chiLabel: string;
+  relationTenJin: string;
+  relationJinChi: string;
+  categoryLabel: string;
+  summary: string;
+}
+
+export interface WuxingSummary {
+  wood: number;
+  fire: number;
+  earth: number;
+  metal: number;
+  water: number;
+  dominant: string;
+  lacking: string[];
+}
+
 export interface DiagnosisResult {
   tenkaku: number;
   jinkaku: number;
@@ -11,6 +45,10 @@ export interface DiagnosisResult {
   strokeTotal: number;
   score: number;
   rank: "SS" | "S" | "A" | "B" | "C";
+  sex: Sex;
+  details: KakuDetail[];
+  sansai: Sansai;
+  wuxing: WuxingSummary;
 }
 
 export type ApiErrorCode =
@@ -39,14 +77,15 @@ const API_BASE = import.meta.env.VITE_API_BASE ?? "";
 
 export async function diagnose(
   sei: string,
-  mei: string
+  mei: string,
+  sex: Sex = "unspecified"
 ): Promise<DiagnosisResult> {
   let res: Response;
   try {
     res = await fetch(`${API_BASE}/api/diagnose`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ sei, mei }),
+      body: JSON.stringify({ sei, mei, sex }),
     });
   } catch {
     throw new ApiError(
@@ -67,6 +106,12 @@ export async function diagnose(
  * 診断結果へのLLM解説コメントを取得する（F-012）。
  * 診断結果本体とは別リクエスト。生成不可時は comment: null が返る。
  */
+const SEX_LABEL: Record<Sex, string> = {
+  male: "男性",
+  female: "女性",
+  unspecified: "未指定",
+};
+
 export async function fetchComment(
   result: DiagnosisResult,
   sei: string,
@@ -78,7 +123,13 @@ export async function fetchComment(
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         type: "diagnosis",
-        payload: { ...result, sei, mei },
+        payload: {
+          ...result,
+          sei,
+          mei,
+          sexLabel: SEX_LABEL[result.sex],
+          // details・sansai は result に含まれるのでそのまま渡る
+        },
       }),
     });
     if (!res.ok) return null;

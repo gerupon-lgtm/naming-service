@@ -16,6 +16,35 @@ describe("diagnose（姓名診断オーケストレーション）", () => {
     expect(r.strokeTotal).toBe(21);
     expect(r.score).toBe(65);
     expect(r.rank).toBe("A");
+    expect(r.sex).toBe("unspecified");
+  });
+
+  it("拡張情報（各格詳細・三才・五行）を返す", async () => {
+    const r = await diagnose({ sei: "山田", mei: "太郎" });
+    expect(r.details).toHaveLength(5);
+    const jin = r.details.find((d) => d.key === "jinkaku")!;
+    expect(jin.label).toBe("人格");
+    expect(jin.strokes).toBe(9);
+    expect(jin.categoryLabel).toBeTruthy();
+    expect(jin.keyword).toBeTruthy();
+    expect(jin.role).toContain("性格");
+    expect(r.sansai.categoryLabel).toBeTruthy();
+    expect(r.sansai.tenLabel).toBeTruthy();
+    expect(["wood", "fire", "earth", "metal", "water"]).toContain(
+      r.wuxing.dominant
+    );
+  });
+
+  it("性別を指定でき、女性の注意数はスコアに反映される", async () => {
+    const male = await diagnose({ sei: "山田", mei: "太郎", sex: "male" });
+    const female = await diagnose({ sei: "山田", mei: "太郎", sex: "female" });
+    expect(male.sex).toBe("male");
+    expect(female.sex).toBe("female");
+    // 山田太郎は総格21（女性の注意数）なので、女性はスコアが下がる
+    expect(female.score).toBeLessThan(male.score);
+    // 該当格に注記が付く
+    const sou = female.details.find((d) => d.key === "soukaku")!;
+    expect(sou.caution).toBeTruthy();
   });
 
   it("前後の空白を正規化する", async () => {

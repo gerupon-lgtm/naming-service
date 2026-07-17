@@ -2,6 +2,11 @@
 // Phase1 は熊崎式のみをハードコードするが、将来の複数流派対応に備え
 // FortuneMethod インターフェース経由で計算ロジックを差し替え可能にする。
 
+import type { Sex } from "./gender";
+import type { KakuKey } from "./gokakuMeaning";
+import type { FortuneCategory } from "./fortuneTable81";
+import type { SansaiResult, WuxingSummary } from "./sansai";
+
 /** 五格（天格・人格・地格・外格・総格）。 */
 export interface Gokaku {
   /** 天格：姓の合計画数（家系運）。 */
@@ -19,14 +24,35 @@ export interface Gokaku {
 /** ランク（SS〜C）。 */
 export type Rank = "SS" | "S" | "A" | "B" | "C";
 
+/** 各格の詳細（役割・画数・吉凶・意味）。 */
+export interface KakuDetail {
+  key: KakuKey;
+  label: string; // 天格 等
+  strokes: number;
+  category: FortuneCategory; // 性別適用後
+  categoryLabel: string; // 大吉 等
+  role: string; // 格の役割
+  keyword: string; // 画数の象意
+  summary: string; // 画数の短評
+  caution?: string; // 女性注意数などの注記
+}
+
 /** 診断結果（API レスポンス本体）。DB には保存しない。 */
 export interface DiagnosisResult extends Gokaku {
-  /** 姓名すべての合計画数（＝ soukaku と同値。表示用の別名）。 */
+  /** 姓すべての合計画数（＝ soukaku と同値。表示用の別名）。 */
   strokeTotal: number;
   /** 0〜100 の総合スコア。 */
   score: number;
   /** スコアから導出したランク。 */
   rank: Rank;
+  /** 診断に用いた性別。 */
+  sex: Sex;
+  /** 各格の詳細（天→人→地→外→総の順）。 */
+  details: KakuDetail[];
+  /** 三才配置（五行の相生・相剋）。 */
+  sansai: SansaiResult;
+  /** 五行サマリ（四柱推命など他占術との連携用）。 */
+  wuxing: WuxingSummary;
 }
 
 /** 各文字の画数（姓・名それぞれの配列）。 */
@@ -46,6 +72,6 @@ export interface FortuneMethod {
   readonly id: string;
   /** 各文字の画数配列から五格を計算する。 */
   calcGokaku(input: StrokeInput): Gokaku;
-  /** 五格から 0〜100 のスコアを算出する。 */
-  calcScore(gokaku: Gokaku): number;
+  /** 五格から 0〜100 のスコアを算出する（性別を加味）。 */
+  calcScore(gokaku: Gokaku, sex?: Sex): number;
 }

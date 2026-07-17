@@ -16,6 +16,14 @@ export const CATEGORY_QUALITY: Record<FortuneCategory, number> = {
   kyo: 25, // 凶
 };
 
+/** カテゴリ→日本語ラベル。 */
+export const CATEGORY_LABEL: Record<FortuneCategory, string> = {
+  daikichi: "大吉",
+  kichi: "吉",
+  hankichi: "半吉",
+  kyo: "凶",
+};
+
 /** 1〜81 の吉凶分類（初期ルールセット）。 */
 export const FORTUNE_TABLE_81: Record<number, FortuneCategory> = {
   1: "daikichi", 2: "kyo", 3: "daikichi", 4: "kyo", 5: "daikichi",

@@ -289,6 +289,159 @@ body {
   color: var(--danger);
 }
 
+/* 性別セグメント */
+.field-hint {
+  font-size: 11px;
+  color: var(--muted);
+  margin: 6px 2px 0;
+}
+
+.segmented {
+  display: flex;
+  gap: 6px;
+}
+
+.segmented__btn {
+  flex: 1;
+  padding: 10px 8px;
+  font-size: 14px;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.segmented__btn.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* 各格の詳細リスト */
+.kaku-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.kaku {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.kaku__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kaku__label {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.kaku__strokes {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.kaku__badge {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+
+.kaku__badge--daikichi {
+  background: #e7f3ea;
+  color: #2f7a4a;
+}
+.kaku__badge--kichi {
+  background: #eef5e9;
+  color: #4a7a2f;
+}
+.kaku__badge--hankichi {
+  background: #fdf3e2;
+  color: #9a6b1e;
+}
+.kaku__badge--kyo {
+  background: #fbeeec;
+  color: #b3402f;
+}
+.kaku__badge--info {
+  background: var(--accent-weak);
+  color: var(--accent);
+  margin-left: 8px;
+}
+
+.kaku__role {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+.kaku__meaning {
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.kaku__caution {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.6;
+  background: #fdf3e2;
+  border-radius: 8px;
+  padding: 8px 10px;
+  color: #7a5a1e;
+}
+
+/* 三才 */
+.sansai {
+  margin-top: 16px;
+  padding: 12px;
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+}
+
+.sansai__title {
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.sansai__row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.sansai__cell {
+  background: var(--accent-weak);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 13px;
+}
+
+.sansai__cell b {
+  font-size: 16px;
+  margin-left: 4px;
+}
+
+.sansai__rel {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.sansai__summary {
+  font-size: 13px;
+  margin: 10px 0 0;
+  line-height: 1.7;
+}
+
 /* 狭い画面では姓・名を縦積み */
 @media (max-width: 380px) {
   .field-row {

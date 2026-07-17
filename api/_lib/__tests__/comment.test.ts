@@ -20,10 +20,40 @@ describe("診断コメント（F-012）", () => {
   it("プロンプトに確定済みの数値・ランクが含まれる", () => {
     const prompt = buildDiagnosisPrompt(payload);
     expect(prompt).toContain("65");
-    expect(prompt).toContain("ランク A");
-    expect(prompt).toContain("人格: 9");
+    expect(prompt).toContain("ランクA");
+    expect(prompt).toContain("人格");
     // 再計算をさせない指示が含まれる
     expect(prompt).toContain("再計算");
+  });
+
+  it("details・sansai を渡すとプロンプトに反映される", () => {
+    const prompt = buildDiagnosisPrompt({
+      ...payload,
+      sexLabel: "男性",
+      details: [
+        {
+          label: "人格",
+          strokes: 9,
+          categoryLabel: "凶",
+          role: "性格・中年運",
+          keyword: "窮迫・浮沈",
+          summary: "浮き沈みが多い",
+        },
+      ],
+      sansai: {
+        tenLabel: "金",
+        jinLabel: "水",
+        chiLabel: "火",
+        relationTenJin: "相生",
+        relationJinChi: "相剋",
+        categoryLabel: "半吉",
+        summary: "環境しだいで振れやすい",
+      },
+    });
+    expect(prompt).toContain("象意=「窮迫・浮沈」");
+    expect(prompt).toContain("三才配置");
+    expect(prompt).toContain("天=金・人=水・地=火");
+    expect(prompt).toContain("男性");
   });
 
   it("プロバイダ成功時はコメント文字列を返す", async () => {

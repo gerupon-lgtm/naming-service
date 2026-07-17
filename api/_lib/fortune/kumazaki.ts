@@ -11,7 +11,8 @@
 // 仮想の1画を補う伝統的な補正。総格には加えない。
 
 import { FortuneMethod, Gokaku, StrokeInput } from "./types";
-import { qualityOf } from "./fortuneTable81";
+import { evaluateStroke } from "./evaluate";
+import type { Sex } from "./gender";
 
 /** 五格の重み（人格・総格を重視）。合計 1.0。調整可能な設定値。 */
 export const GOKAKU_WEIGHTS = {
@@ -42,14 +43,15 @@ export function calcGokaku(input: StrokeInput): Gokaku {
   return { tenkaku, jinkaku, chikaku, gaikaku, soukaku };
 }
 
-export function calcScore(g: Gokaku): number {
+export function calcScore(g: Gokaku, sex: Sex = "unspecified"): number {
   const w = GOKAKU_WEIGHTS;
+  const q = (n: number) => evaluateStroke(n, sex).quality; // 性別を加味した品質値
   const raw =
-    qualityOf(g.jinkaku) * w.jinkaku +
-    qualityOf(g.soukaku) * w.soukaku +
-    qualityOf(g.chikaku) * w.chikaku +
-    qualityOf(g.gaikaku) * w.gaikaku +
-    qualityOf(g.tenkaku) * w.tenkaku;
+    q(g.jinkaku) * w.jinkaku +
+    q(g.soukaku) * w.soukaku +
+    q(g.chikaku) * w.chikaku +
+    q(g.gaikaku) * w.gaikaku +
+    q(g.tenkaku) * w.tenkaku;
   return Math.round(raw);
 }
 

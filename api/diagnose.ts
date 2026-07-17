@@ -8,29 +8,37 @@ import {
   InvalidInputError,
   DiagnosisUnavailableError,
 } from "./_lib/diagnose";
+import type { Sex } from "./_lib/fortune";
 
 function getParam(v: string | string[] | undefined): string {
   return Array.isArray(v) ? (v[0] ?? "") : (v ?? "");
 }
 
+function normalizeSex(v: string): Sex {
+  return v === "male" || v === "female" ? v : "unspecified";
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   let sei = "";
   let mei = "";
+  let sex: Sex = "unspecified";
 
   if (req.method === "POST") {
-    const body = (req.body ?? {}) as { sei?: string; mei?: string };
+    const body = (req.body ?? {}) as { sei?: string; mei?: string; sex?: string };
     sei = body.sei ?? "";
     mei = body.mei ?? "";
+    sex = normalizeSex(body.sex ?? "");
   } else if (req.method === "GET") {
     sei = getParam(req.query.sei);
     mei = getParam(req.query.mei);
+    sex = normalizeSex(getParam(req.query.sex));
   } else {
     res.setHeader("Allow", "GET, POST");
     return res.status(405).json({ error: "METHOD_NOT_ALLOWED" });
   }
 
   try {
-    const result = await diagnose({ sei, mei });
+    const result = await diagnose({ sei, mei, sex });
     return res.status(200).json(result);
   } catch (e) {
     if (e instanceof InvalidInputError) {
