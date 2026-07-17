@@ -1,6 +1,8 @@
 import { describe, it, expect, vi } from "vitest";
 import {
   generateWithFallback,
+  probeLlm,
+  _clearProbeCache,
   LlmProvider,
   LlmUnavailableError,
 } from "../index";
@@ -53,5 +55,33 @@ describe("LLMフォールバック連鎖（T-013）", () => {
     });
     await generateWithFallback("p", [track("openrouter"), track("ollama")]);
     expect(calls).toEqual(["openrouter", "ollama"]);
+  });
+});
+
+describe("probeLlm（最初に接続できたLLMの表示情報）", () => {
+  it("最初に成功したプロバイダのサービス名・モデル名を返す", async () => {
+    _clearProbeCache();
+    const fail: LlmProvider = {
+      id: "ollama",
+      model: "gemma",
+      generate: async () => {
+        throw new LlmUnavailableError("ollama", "down");
+      },
+    };
+    const ok: LlmProvider = {
+      id: "openrouter",
+      model: "google/gemma:free",
+      generate: async () => "こんにちは",
+    };
+    const info = await probeLlm([fail, ok]);
+    expect(info).toEqual({ provider: "openrouter", model: "google/gemma:free" });
+  });
+
+  it("全滅なら null", async () => {
+    _clearProbeCache();
+    const info = await probeLlm([
+      { id: "ollama", generate: async () => { throw new LlmUnavailableError("ollama", "x"); } },
+    ]);
+    expect(info).toBeNull();
   });
 });

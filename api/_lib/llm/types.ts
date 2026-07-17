@@ -4,6 +4,8 @@
 export interface LlmProvider {
   /** プロバイダ識別子（"ollama" / "openrouter"）。 */
   readonly id: string;
+  /** 使用モデル名（表示用）。 */
+  readonly model?: string;
   /** プロンプトからコメント文を生成する。応答不可時は LlmUnavailableError を投げる。 */
   generate(prompt: string): Promise<string>;
 }

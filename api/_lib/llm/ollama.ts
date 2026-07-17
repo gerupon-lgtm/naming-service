@@ -16,6 +16,7 @@ export function createOllamaProvider(config: OllamaConfig = {}): LlmProvider {
 
   return {
     id: "ollama",
+    model,
     async generate(prompt: string): Promise<string> {
       if (!endpoint) {
         throw new LlmUnavailableError("ollama", "LLM_OLLAMA_ENDPOINT 未設定");

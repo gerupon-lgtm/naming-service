@@ -25,6 +25,40 @@ export function buildProviderChain(order?: string): LlmProvider[] {
     .filter((p): p is LlmProvider => Boolean(p));
 }
 
+export interface LlmInfo {
+  provider: string; // ollama / openrouter
+  model: string;
+}
+
+let _probeCache: LlmInfo | null = null;
+
+/**
+ * 「最初に正常に接続できたLLM」のサービス名・モデル名を返す（表示用）。
+ * 一度成功したら結果をキャッシュする。全滅なら null。
+ * @param providers テスト用の明示注入。
+ */
+export async function probeLlm(providers?: LlmProvider[]): Promise<LlmInfo | null> {
+  if (_probeCache) return _probeCache;
+  const chain = providers ?? buildProviderChain();
+  for (const p of chain) {
+    try {
+      const out = await p.generate("こんにちは");
+      if (out && out.trim().length > 0) {
+        _probeCache = { provider: p.id, model: p.model ?? "" };
+        return _probeCache;
+      }
+    } catch {
+      continue; // 次候補へ
+    }
+  }
+  return null;
+}
+
+/** テスト用: プローブのキャッシュをクリア。 */
+export function _clearProbeCache(): void {
+  _probeCache = null;
+}
+
 /**
  * プロバイダ連鎖を順に試し、最初の「妥当な」応答を返す。全滅なら null。
  * @param providers 省略時は環境変数から構築する（テストでは明示注入できる）。

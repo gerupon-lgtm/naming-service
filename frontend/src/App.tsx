@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DiagnoseView from "./DiagnoseView";
 import PetView from "./PetView";
+import { APP_VERSION, fetchVersion, type VersionInfo } from "./api";
 
 type Mode = "meimei" | "pet";
 
 export default function App() {
+  const [ver, setVer] = useState<VersionInfo | null>(null);
+  useEffect(() => {
+    fetchVersion().then(setVer);
+  }, []);
   // URL の ?mode=pet で初期タブを切替可能（共有URL対応）
   const initial: Mode =
     new URLSearchParams(window.location.search).get("mode") === "pet"
@@ -50,6 +55,11 @@ export default function App() {
       </nav>
 
       {mode === "meimei" ? <DiagnoseView /> : <PetView />}
+
+      <footer className="appfoot">
+        {ver?.version ?? APP_VERSION}
+        {ver?.llm ? `　${ver.llm.provider}:${ver.llm.model}` : ""}
+      </footer>
     </main>
   );
 }

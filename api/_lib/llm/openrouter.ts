@@ -20,6 +20,7 @@ export function createOpenRouterProvider(
 
   return {
     id: "openrouter",
+    model,
     async generate(prompt: string): Promise<string> {
       if (!apiKey) {
         throw new LlmUnavailableError("openrouter", "LLM_OPENROUTER_API_KEY 未設定");

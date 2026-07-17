@@ -89,6 +89,24 @@ export class ApiError extends Error {
 
 const API_BASE = import.meta.env.VITE_API_BASE ?? "";
 
+export const APP_VERSION = "mvp-1.0.0";
+
+export interface VersionInfo {
+  version: string;
+  llm: { provider: string; model: string } | null;
+}
+
+/** バージョンと、最初に接続できたLLM（サービス:モデル）を取得。失敗時は null。 */
+export async function fetchVersion(): Promise<VersionInfo | null> {
+  try {
+    const res = await fetch(`${API_BASE}/api/version`);
+    if (!res.ok) return null;
+    return (await res.json()) as VersionInfo;
+  } catch {
+    return null;
+  }
+}
+
 export async function diagnose(
   sei: string,
   mei: string,

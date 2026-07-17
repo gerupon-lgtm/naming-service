@@ -267,9 +267,14 @@ export default function PetView() {
             </div>
           ) : (
             <>
-              {items.map((it) => {
-                const c = comments[it.reading];
-                return (
+              {(() => {
+                // 同じよみのコメントは統一。表示は各よみの「先頭カード」だけにする。
+                const shown = new Set<string>();
+                return items.map((it) => {
+                  const firstOfReading = !shown.has(it.reading);
+                  if (firstOfReading) shown.add(it.reading);
+                  const c = firstOfReading ? comments[it.reading] : null;
+                  return (
                   <div className="petcard" key={it.name}>
 
                     <div className="petcard__head">
@@ -310,7 +315,8 @@ export default function PetView() {
                     )}
                   </div>
                 );
-              })}
+                });
+              })()}
 
               <div className="actions">
                 <button className="btn" onClick={() => downloadList(items)}>
