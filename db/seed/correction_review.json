@@ -1,0 +1,5511 @@
+[
+  {
+    "character": "玉",
+    "modern": 5,
+    "corrected": 6,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "花",
+    "modern": 7,
+    "corrected": 10,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "草",
+    "modern": 9,
+    "corrected": 12,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "国",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "才",
+    "modern": 3,
+    "corrected": 4,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "池",
+    "modern": 6,
+    "corrected": 7,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "汽",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "活",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "海",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "理",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "社",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "礻"
+    ]
+  },
+  {
+    "character": "茶",
+    "modern": 9,
+    "corrected": 12,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "近",
+    "modern": 7,
+    "corrected": 11,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "通",
+    "modern": 10,
+    "corrected": 14,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "週",
+    "modern": 11,
+    "corrected": 15,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "道",
+    "modern": 12,
+    "corrected": 16,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "遠",
+    "modern": 13,
+    "corrected": 17,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "主",
+    "modern": 5,
+    "corrected": 6,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "住",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "全",
+    "modern": 6,
+    "corrected": 7,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "打",
+    "modern": 5,
+    "corrected": 6,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "投",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "拾",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "持",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "指",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "柱",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "決",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "油",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "波",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "注",
+    "modern": 8,
+    "corrected": 10,
+    "radicals": [
+      "氵",
+      "王"
+    ]
+  },
+  {
+    "character": "泳",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "洋",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "流",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "消",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "深",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "温",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "港",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "湖",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "湯",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "漢",
+    "modern": 13,
+    "corrected": 17,
+    "radicals": [
+      "氵",
+      "艹"
+    ]
+  },
+  {
+    "character": "球",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "礼",
+    "modern": 5,
+    "corrected": 6,
+    "radicals": [
+      "礻"
+    ]
+  },
+  {
+    "character": "神",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "礻"
+    ]
+  },
+  {
+    "character": "福",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "礻"
+    ]
+  },
+  {
+    "character": "苦",
+    "modern": 8,
+    "corrected": 11,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "荷",
+    "modern": 10,
+    "corrected": 13,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "落",
+    "modern": 12,
+    "corrected": 16,
+    "radicals": [
+      "艹",
+      "氵"
+    ]
+  },
+  {
+    "character": "葉",
+    "modern": 12,
+    "corrected": 15,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "薬",
+    "modern": 16,
+    "corrected": 19,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "返",
+    "modern": 7,
+    "corrected": 11,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "追",
+    "modern": 9,
+    "corrected": 13,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "送",
+    "modern": 9,
+    "corrected": 13,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "速",
+    "modern": 10,
+    "corrected": 14,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "進",
+    "modern": 11,
+    "corrected": 15,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "遊",
+    "modern": 12,
+    "corrected": 16,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "運",
+    "modern": 12,
+    "corrected": 16,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "部",
+    "modern": 11,
+    "corrected": 15,
+    "radicals": [
+      "⻏"
+    ]
+  },
+  {
+    "character": "都",
+    "modern": 11,
+    "corrected": 15,
+    "radicals": [
+      "⻏"
+    ]
+  },
+  {
+    "character": "酒",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "院",
+    "modern": 10,
+    "corrected": 15,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "陽",
+    "modern": 12,
+    "corrected": 17,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "階",
+    "modern": 12,
+    "corrected": 17,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "初",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "衤"
+    ]
+  },
+  {
+    "character": "折",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "望",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "材",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "治",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "法",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "泣",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "浅",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "浴",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "清",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "満",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "漁",
+    "modern": 14,
+    "corrected": 15,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "祝",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "礻"
+    ]
+  },
+  {
+    "character": "芸",
+    "modern": 7,
+    "corrected": 10,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "芽",
+    "modern": 8,
+    "corrected": 11,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "英",
+    "modern": 8,
+    "corrected": 11,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "菜",
+    "modern": 11,
+    "corrected": 14,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "辺",
+    "modern": 5,
+    "corrected": 9,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "連",
+    "modern": 10,
+    "corrected": 14,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "達",
+    "modern": 12,
+    "corrected": 16,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "選",
+    "modern": 15,
+    "corrected": 19,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "郡",
+    "modern": 10,
+    "corrected": 14,
+    "radicals": [
+      "⻏"
+    ]
+  },
+  {
+    "character": "陸",
+    "modern": 11,
+    "corrected": 16,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "隊",
+    "modern": 12,
+    "corrected": 17,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "備",
+    "modern": 12,
+    "corrected": 15,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "墓",
+    "modern": 13,
+    "corrected": 16,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "夢",
+    "modern": 13,
+    "corrected": 16,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "導",
+    "modern": 15,
+    "corrected": 19,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "往",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "快",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "性",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "情",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "慣",
+    "modern": 14,
+    "corrected": 15,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "技",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "招",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "授",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "採",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "接",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "提",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "損",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "河",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "液",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "混",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "減",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "測",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "準",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "演",
+    "modern": 14,
+    "corrected": 15,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "潔",
+    "modern": 15,
+    "corrected": 16,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "犯",
+    "modern": 5,
+    "corrected": 6,
+    "radicals": [
+      "⺨"
+    ]
+  },
+  {
+    "character": "独",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "⺨"
+    ]
+  },
+  {
+    "character": "現",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "祖",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "礻"
+    ]
+  },
+  {
+    "character": "程",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "複",
+    "modern": 14,
+    "corrected": 15,
+    "radicals": [
+      "衤"
+    ]
+  },
+  {
+    "character": "護",
+    "modern": 20,
+    "corrected": 23,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "財",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "述",
+    "modern": 8,
+    "corrected": 12,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "迷",
+    "modern": 9,
+    "corrected": 13,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "退",
+    "modern": 9,
+    "corrected": 13,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "逆",
+    "modern": 9,
+    "corrected": 13,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "造",
+    "modern": 10,
+    "corrected": 14,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "過",
+    "modern": 12,
+    "corrected": 16,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "適",
+    "modern": 14,
+    "corrected": 18,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "防",
+    "modern": 7,
+    "corrected": 12,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "限",
+    "modern": 9,
+    "corrected": 14,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "険",
+    "modern": 11,
+    "corrected": 16,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "際",
+    "modern": 14,
+    "corrected": 19,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "勤",
+    "modern": 12,
+    "corrected": 15,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "宝",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "幕",
+    "modern": 13,
+    "corrected": 16,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "批",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "担",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "拝",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "拡",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "捨",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "探",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "推",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "揮",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "操",
+    "modern": 16,
+    "corrected": 17,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "敬",
+    "modern": 12,
+    "corrected": 15,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "暮",
+    "modern": 14,
+    "corrected": 17,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "染",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "模",
+    "modern": 14,
+    "corrected": 17,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "沿",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "洗",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "派",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "済",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "源",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "潮",
+    "modern": 15,
+    "corrected": 16,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "激",
+    "modern": 16,
+    "corrected": 17,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "班",
+    "modern": 10,
+    "corrected": 12,
+    "radicals": [
+      "王",
+      "王"
+    ]
+  },
+  {
+    "character": "皇",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "磁",
+    "modern": 14,
+    "corrected": 17,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "聖",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "臓",
+    "modern": 19,
+    "corrected": 22,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "若",
+    "modern": 8,
+    "corrected": 11,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "著",
+    "modern": 11,
+    "corrected": 14,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "蒸",
+    "modern": 13,
+    "corrected": 16,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "蔵",
+    "modern": 15,
+    "corrected": 18,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "補",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "衤"
+    ]
+  },
+  {
+    "character": "視",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "礻"
+    ]
+  },
+  {
+    "character": "警",
+    "modern": 19,
+    "corrected": 22,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "遺",
+    "modern": 15,
+    "corrected": 19,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "郵",
+    "modern": 11,
+    "corrected": 15,
+    "radicals": [
+      "⻏"
+    ]
+  },
+  {
+    "character": "郷",
+    "modern": 11,
+    "corrected": 15,
+    "radicals": [
+      "⻏"
+    ]
+  },
+  {
+    "character": "閉",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "降",
+    "modern": 10,
+    "corrected": 15,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "陛",
+    "modern": 10,
+    "corrected": 15,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "除",
+    "modern": 10,
+    "corrected": 15,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "障",
+    "modern": 14,
+    "corrected": 19,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "難",
+    "modern": 18,
+    "corrected": 21,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "僅",
+    "modern": 12,
+    "corrected": 15,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "募",
+    "modern": 12,
+    "corrected": 15,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "匿",
+    "modern": 10,
+    "corrected": 13,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "呈",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "哲",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "嘆",
+    "modern": 13,
+    "corrected": 16,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "堕",
+    "modern": 12,
+    "corrected": 17,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "塔",
+    "modern": 12,
+    "corrected": 15,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "塗",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "墜",
+    "modern": 15,
+    "corrected": 20,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "婆",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "寛",
+    "modern": 13,
+    "corrected": 16,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "巡",
+    "modern": 6,
+    "corrected": 10,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "廊",
+    "modern": 12,
+    "corrected": 16,
+    "radicals": [
+      "⻏"
+    ]
+  },
+  {
+    "character": "弄",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "徴",
+    "modern": 14,
+    "corrected": 15,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "忙",
+    "modern": 6,
+    "corrected": 7,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "怖",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "怪",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "恒",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "恨",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "悔",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "悟",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "悦",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "悩",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "悼",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "惜",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "惧",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "惨",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "惰",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "愉",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "慄",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "慈",
+    "modern": 13,
+    "corrected": 16,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "慌",
+    "modern": 12,
+    "corrected": 16,
+    "radicals": [
+      "忄",
+      "艹"
+    ]
+  },
+  {
+    "character": "慎",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "慕",
+    "modern": 14,
+    "corrected": 17,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "慢",
+    "modern": 14,
+    "corrected": 15,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "慨",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "憎",
+    "modern": 14,
+    "corrected": 15,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "憤",
+    "modern": 15,
+    "corrected": 16,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "憧",
+    "modern": 15,
+    "corrected": 16,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "憬",
+    "modern": 15,
+    "corrected": 16,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "憶",
+    "modern": 16,
+    "corrected": 17,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "憾",
+    "modern": 16,
+    "corrected": 17,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "懐",
+    "modern": 16,
+    "corrected": 17,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "懲",
+    "modern": 18,
+    "corrected": 19,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "払",
+    "modern": 5,
+    "corrected": 6,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "扱",
+    "modern": 6,
+    "corrected": 7,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "扶",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "抄",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "把",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "抑",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "抗",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "抜",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "択",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "披",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "抱",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "抵",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "抹",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "押",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "抽",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "拉",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "拍",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "拐",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "拒",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "拓",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "拘",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "拙",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "拠",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "括",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "拭",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "拶",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "拷",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "挑",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "挟",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "挨",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "挫",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "振",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "挿",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "捉",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "捕",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "捗",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "捜",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "据",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "捻",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "掃",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "排",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "掘",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "掛",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "控",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "措",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "掲",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "描",
+    "modern": 11,
+    "corrected": 15,
+    "radicals": [
+      "扌",
+      "艹"
+    ]
+  },
+  {
+    "character": "揚",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "換",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "握",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "援",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "揺",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "搬",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "搭",
+    "modern": 12,
+    "corrected": 16,
+    "radicals": [
+      "扌",
+      "艹"
+    ]
+  },
+  {
+    "character": "携",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "搾",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "摂",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "摘",
+    "modern": 14,
+    "corrected": 15,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "撤",
+    "modern": 15,
+    "corrected": 16,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "撮",
+    "modern": 15,
+    "corrected": 16,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "撲",
+    "modern": 15,
+    "corrected": 16,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "擁",
+    "modern": 16,
+    "corrected": 17,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "擦",
+    "modern": 17,
+    "corrected": 18,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "擬",
+    "modern": 17,
+    "corrected": 18,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "斑",
+    "modern": 12,
+    "corrected": 14,
+    "radicals": [
+      "王",
+      "王"
+    ]
+  },
+  {
+    "character": "旺",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "栓",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "氾",
+    "modern": 5,
+    "corrected": 6,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "汁",
+    "modern": 5,
+    "corrected": 6,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "汎",
+    "modern": 6,
+    "corrected": 7,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "汗",
+    "modern": 6,
+    "corrected": 7,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "汚",
+    "modern": 6,
+    "corrected": 7,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "江",
+    "modern": 6,
+    "corrected": 7,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "汰",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "沃",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "沈",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "沖",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "沙",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "没",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "沢",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "沸",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "沼",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "況",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "泊",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "泌",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "泡",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "泥",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "洞",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "津",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "洪",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "浄",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "浜",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "浦",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "浪",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "浮",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "浸",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "涙",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "涯",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "涼",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "淑",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "淡",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "淫",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "添",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "渇",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "渉",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "渋",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "渓",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "渡",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "渦",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "湧",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "湾",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "湿",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "溝",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "溶",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "溺",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "滅",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "滋",
+    "modern": 12,
+    "corrected": 16,
+    "radicals": [
+      "氵",
+      "艹"
+    ]
+  },
+  {
+    "character": "滑",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "滝",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "滞",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "滴",
+    "modern": 14,
+    "corrected": 15,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "漂",
+    "modern": 14,
+    "corrected": 15,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "漆",
+    "modern": 14,
+    "corrected": 15,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "漏",
+    "modern": 14,
+    "corrected": 15,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "漠",
+    "modern": 13,
+    "corrected": 17,
+    "radicals": [
+      "氵",
+      "艹"
+    ]
+  },
+  {
+    "character": "漫",
+    "modern": 14,
+    "corrected": 15,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "漬",
+    "modern": 14,
+    "corrected": 15,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "漸",
+    "modern": 14,
+    "corrected": 15,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "潜",
+    "modern": 15,
+    "corrected": 16,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "潟",
+    "modern": 15,
+    "corrected": 16,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "潤",
+    "modern": 15,
+    "corrected": 17,
+    "radicals": [
+      "氵",
+      "王"
+    ]
+  },
+  {
+    "character": "潰",
+    "modern": 15,
+    "corrected": 16,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "澄",
+    "modern": 15,
+    "corrected": 16,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "濁",
+    "modern": 16,
+    "corrected": 17,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "濃",
+    "modern": 16,
+    "corrected": 17,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "濫",
+    "modern": 18,
+    "corrected": 19,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "濯",
+    "modern": 17,
+    "corrected": 18,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "瀬",
+    "modern": 19,
+    "corrected": 20,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "狂",
+    "modern": 7,
+    "corrected": 9,
+    "radicals": [
+      "⺨",
+      "王"
+    ]
+  },
+  {
+    "character": "狙",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "⺨"
+    ]
+  },
+  {
+    "character": "狩",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "⺨"
+    ]
+  },
+  {
+    "character": "狭",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "⺨"
+    ]
+  },
+  {
+    "character": "猛",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "⺨"
+    ]
+  },
+  {
+    "character": "猟",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "⺨"
+    ]
+  },
+  {
+    "character": "猫",
+    "modern": 11,
+    "corrected": 15,
+    "radicals": [
+      "⺨",
+      "艹"
+    ]
+  },
+  {
+    "character": "猶",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "⺨"
+    ]
+  },
+  {
+    "character": "猿",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "⺨"
+    ]
+  },
+  {
+    "character": "獄",
+    "modern": 14,
+    "corrected": 15,
+    "radicals": [
+      "⺨"
+    ]
+  },
+  {
+    "character": "獲",
+    "modern": 16,
+    "corrected": 20,
+    "radicals": [
+      "⺨",
+      "艹"
+    ]
+  },
+  {
+    "character": "玩",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "珍",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "珠",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "琴",
+    "modern": 12,
+    "corrected": 14,
+    "radicals": [
+      "王",
+      "王"
+    ]
+  },
+  {
+    "character": "瑠",
+    "modern": 14,
+    "corrected": 15,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "璃",
+    "modern": 15,
+    "corrected": 16,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "璧",
+    "modern": 18,
+    "corrected": 19,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "環",
+    "modern": 17,
+    "corrected": 18,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "璽",
+    "modern": 19,
+    "corrected": 20,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "祈",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "礻"
+    ]
+  },
+  {
+    "character": "祉",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "礻"
+    ]
+  },
+  {
+    "character": "祥",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "礻"
+    ]
+  },
+  {
+    "character": "禅",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "礻"
+    ]
+  },
+  {
+    "character": "禍",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "礻"
+    ]
+  },
+  {
+    "character": "穫",
+    "modern": 18,
+    "corrected": 21,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "簿",
+    "modern": 19,
+    "corrected": 20,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "縫",
+    "modern": 16,
+    "corrected": 20,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "繭",
+    "modern": 18,
+    "corrected": 21,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "羨",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "膜",
+    "modern": 14,
+    "corrected": 17,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "芋",
+    "modern": 6,
+    "corrected": 9,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "芝",
+    "modern": 6,
+    "corrected": 9,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "芯",
+    "modern": 7,
+    "corrected": 10,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "芳",
+    "modern": 7,
+    "corrected": 10,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "苗",
+    "modern": 8,
+    "corrected": 11,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "苛",
+    "modern": 8,
+    "corrected": 11,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "茂",
+    "modern": 8,
+    "corrected": 11,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "茎",
+    "modern": 8,
+    "corrected": 11,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "茨",
+    "modern": 9,
+    "corrected": 12,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "荒",
+    "modern": 9,
+    "corrected": 12,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "荘",
+    "modern": 9,
+    "corrected": 12,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "菊",
+    "modern": 11,
+    "corrected": 14,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "菌",
+    "modern": 11,
+    "corrected": 14,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "菓",
+    "modern": 11,
+    "corrected": 14,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "華",
+    "modern": 10,
+    "corrected": 13,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "萎",
+    "modern": 11,
+    "corrected": 14,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "葛",
+    "modern": 11,
+    "corrected": 14,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "葬",
+    "modern": 12,
+    "corrected": 15,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "蓄",
+    "modern": 13,
+    "corrected": 16,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "蓋",
+    "modern": 13,
+    "corrected": 16,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "蔑",
+    "modern": 14,
+    "corrected": 17,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "蔽",
+    "modern": 15,
+    "corrected": 18,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "薄",
+    "modern": 16,
+    "corrected": 20,
+    "radicals": [
+      "艹",
+      "氵"
+    ]
+  },
+  {
+    "character": "薦",
+    "modern": 16,
+    "corrected": 19,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "薪",
+    "modern": 16,
+    "corrected": 19,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "薫",
+    "modern": 16,
+    "corrected": 19,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "藍",
+    "modern": 18,
+    "corrected": 21,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "藤",
+    "modern": 18,
+    "corrected": 21,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "藩",
+    "modern": 18,
+    "corrected": 22,
+    "radicals": [
+      "艹",
+      "氵"
+    ]
+  },
+  {
+    "character": "藻",
+    "modern": 19,
+    "corrected": 23,
+    "radicals": [
+      "艹",
+      "氵"
+    ]
+  },
+  {
+    "character": "袖",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "衤"
+    ]
+  },
+  {
+    "character": "被",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "衤"
+    ]
+  },
+  {
+    "character": "裕",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "衤"
+    ]
+  },
+  {
+    "character": "裸",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "衤"
+    ]
+  },
+  {
+    "character": "裾",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "衤"
+    ]
+  },
+  {
+    "character": "褐",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "衤"
+    ]
+  },
+  {
+    "character": "襟",
+    "modern": 18,
+    "corrected": 19,
+    "radicals": [
+      "衤"
+    ]
+  },
+  {
+    "character": "詮",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "誓",
+    "modern": 14,
+    "corrected": 15,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "諾",
+    "modern": 15,
+    "corrected": 18,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "謹",
+    "modern": 17,
+    "corrected": 20,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "込",
+    "modern": 5,
+    "corrected": 9,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "迅",
+    "modern": 6,
+    "corrected": 10,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "迎",
+    "modern": 7,
+    "corrected": 11,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "迫",
+    "modern": 8,
+    "corrected": 12,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "迭",
+    "modern": 8,
+    "corrected": 12,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "逃",
+    "modern": 9,
+    "corrected": 13,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "透",
+    "modern": 10,
+    "corrected": 14,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "逐",
+    "modern": 10,
+    "corrected": 14,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "逓",
+    "modern": 10,
+    "corrected": 14,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "途",
+    "modern": 10,
+    "corrected": 14,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "逝",
+    "modern": 10,
+    "corrected": 15,
+    "radicals": [
+      "扌",
+      "⻌"
+    ]
+  },
+  {
+    "character": "逮",
+    "modern": 11,
+    "corrected": 15,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "逸",
+    "modern": 11,
+    "corrected": 15,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "遂",
+    "modern": 12,
+    "corrected": 16,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "遅",
+    "modern": 12,
+    "corrected": 16,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "遇",
+    "modern": 12,
+    "corrected": 16,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "遍",
+    "modern": 12,
+    "corrected": 16,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "違",
+    "modern": 13,
+    "corrected": 17,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "遣",
+    "modern": 13,
+    "corrected": 17,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "遭",
+    "modern": 14,
+    "corrected": 18,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "遮",
+    "modern": 14,
+    "corrected": 18,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "遵",
+    "modern": 15,
+    "corrected": 19,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "遷",
+    "modern": 15,
+    "corrected": 19,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "避",
+    "modern": 16,
+    "corrected": 20,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "還",
+    "modern": 16,
+    "corrected": 20,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "那",
+    "modern": 7,
+    "corrected": 11,
+    "radicals": [
+      "⻏"
+    ]
+  },
+  {
+    "character": "邦",
+    "modern": 7,
+    "corrected": 11,
+    "radicals": [
+      "⻏"
+    ]
+  },
+  {
+    "character": "邪",
+    "modern": 8,
+    "corrected": 12,
+    "radicals": [
+      "⻏"
+    ]
+  },
+  {
+    "character": "邸",
+    "modern": 8,
+    "corrected": 12,
+    "radicals": [
+      "⻏"
+    ]
+  },
+  {
+    "character": "郊",
+    "modern": 9,
+    "corrected": 13,
+    "radicals": [
+      "⻏"
+    ]
+  },
+  {
+    "character": "郎",
+    "modern": 9,
+    "corrected": 13,
+    "radicals": [
+      "⻏"
+    ]
+  },
+  {
+    "character": "郭",
+    "modern": 11,
+    "corrected": 15,
+    "radicals": [
+      "⻏"
+    ]
+  },
+  {
+    "character": "阪",
+    "modern": 7,
+    "corrected": 12,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "阻",
+    "modern": 8,
+    "corrected": 13,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "附",
+    "modern": 8,
+    "corrected": 13,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "陣",
+    "modern": 10,
+    "corrected": 15,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "陥",
+    "modern": 10,
+    "corrected": 15,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "陪",
+    "modern": 11,
+    "corrected": 16,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "陰",
+    "modern": 11,
+    "corrected": 16,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "陳",
+    "modern": 11,
+    "corrected": 16,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "陵",
+    "modern": 11,
+    "corrected": 16,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "陶",
+    "modern": 11,
+    "corrected": 16,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "隅",
+    "modern": 12,
+    "corrected": 17,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "隆",
+    "modern": 11,
+    "corrected": 16,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "随",
+    "modern": 12,
+    "corrected": 21,
+    "radicals": [
+      "⻖",
+      "⻌"
+    ]
+  },
+  {
+    "character": "隔",
+    "modern": 13,
+    "corrected": 18,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "隙",
+    "modern": 13,
+    "corrected": 18,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "隠",
+    "modern": 14,
+    "corrected": 19,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "隣",
+    "modern": 16,
+    "corrected": 21,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "響",
+    "modern": 20,
+    "corrected": 24,
+    "radicals": [
+      "⻏"
+    ]
+  },
+  {
+    "character": "駐",
+    "modern": 15,
+    "corrected": 16,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "驚",
+    "modern": 22,
+    "corrected": 25,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "髄",
+    "modern": 19,
+    "corrected": 23,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "凰",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "匡",
+    "modern": 6,
+    "corrected": 7,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "嘩",
+    "modern": 13,
+    "corrected": 16,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "廳",
+    "modern": 25,
+    "corrected": 26,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "怜",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "恆",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "恢",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "恰",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "悌",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "惇",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "惚",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "惟",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "惹",
+    "modern": 12,
+    "corrected": 15,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "惺",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "愼",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "憐",
+    "modern": 16,
+    "corrected": 17,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "懷",
+    "modern": 19,
+    "corrected": 20,
+    "radicals": [
+      "忄"
+    ]
+  },
+  {
+    "character": "托",
+    "modern": 6,
+    "corrected": 7,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "拂",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "拔",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "按",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "挺",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "挽",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "捧",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "捲",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "捷",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "捺",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "掠",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "掬",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "揃",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "搖",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "搜",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "摑",
+    "modern": 14,
+    "corrected": 15,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "摺",
+    "modern": 14,
+    "corrected": 15,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "撒",
+    "modern": 15,
+    "corrected": 16,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "撞",
+    "modern": 15,
+    "corrected": 16,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "撫",
+    "modern": 15,
+    "corrected": 16,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "播",
+    "modern": 15,
+    "corrected": 16,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "撰",
+    "modern": 15,
+    "corrected": 16,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "擢",
+    "modern": 17,
+    "corrected": 18,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "攝",
+    "modern": 21,
+    "corrected": 22,
+    "radicals": [
+      "扌"
+    ]
+  },
+  {
+    "character": "梁",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "梛",
+    "modern": 11,
+    "corrected": 15,
+    "radicals": [
+      "⻏"
+    ]
+  },
+  {
+    "character": "椛",
+    "modern": 11,
+    "corrected": 14,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "椰",
+    "modern": 13,
+    "corrected": 17,
+    "radicals": [
+      "⻏"
+    ]
+  },
+  {
+    "character": "樺",
+    "modern": 14,
+    "corrected": 17,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "歎",
+    "modern": 14,
+    "corrected": 17,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "汀",
+    "modern": 5,
+    "corrected": 6,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "汐",
+    "modern": 6,
+    "corrected": 7,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "汝",
+    "modern": 6,
+    "corrected": 7,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "汲",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "沌",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "沫",
+    "modern": 8,
+    "corrected": 9,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "洛",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "洲",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "洵",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "洸",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "浩",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "浬",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "淀",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "淋",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "淨",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "淳",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "淵",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "渚",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "渥",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "渾",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "湊",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "湘",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "湛",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "溜",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "溢",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "滉",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "滯",
+    "modern": 14,
+    "corrected": 15,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "漕",
+    "modern": 14,
+    "corrected": 15,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "漣",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "漱",
+    "modern": 14,
+    "corrected": 15,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "澁",
+    "modern": 15,
+    "corrected": 16,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "澪",
+    "modern": 16,
+    "corrected": 17,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "濕",
+    "modern": 17,
+    "corrected": 18,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "濡",
+    "modern": 17,
+    "corrected": 18,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "瀕",
+    "modern": 20,
+    "corrected": 21,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "瀧",
+    "modern": 19,
+    "corrected": 20,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "灘",
+    "modern": 21,
+    "corrected": 25,
+    "radicals": [
+      "氵",
+      "艹"
+    ]
+  },
+  {
+    "character": "煌",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "燕",
+    "modern": 16,
+    "corrected": 19,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "狹",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "⺨"
+    ]
+  },
+  {
+    "character": "狼",
+    "modern": 10,
+    "corrected": 11,
+    "radicals": [
+      "⺨"
+    ]
+  },
+  {
+    "character": "猪",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "⺨"
+    ]
+  },
+  {
+    "character": "獅",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "⺨"
+    ]
+  },
+  {
+    "character": "玖",
+    "modern": 7,
+    "corrected": 8,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "玲",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "珀",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "珂",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "珈",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "珊",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "琉",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "琢",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "琥",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "琳",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "琵",
+    "modern": 12,
+    "corrected": 14,
+    "radicals": [
+      "王",
+      "王"
+    ]
+  },
+  {
+    "character": "琶",
+    "modern": 12,
+    "corrected": 14,
+    "radicals": [
+      "王",
+      "王"
+    ]
+  },
+  {
+    "character": "瑚",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "瑛",
+    "modern": 12,
+    "corrected": 16,
+    "radicals": [
+      "王",
+      "艹"
+    ]
+  },
+  {
+    "character": "瑞",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "瑳",
+    "modern": 14,
+    "corrected": 15,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "瑶",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "盜",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "碧",
+    "modern": 14,
+    "corrected": 15,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "祁",
+    "modern": 7,
+    "corrected": 11,
+    "radicals": [
+      "⻏"
+    ]
+  },
+  {
+    "character": "祐",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "礻"
+    ]
+  },
+  {
+    "character": "祢",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "礻"
+    ]
+  },
+  {
+    "character": "祷",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "礻"
+    ]
+  },
+  {
+    "character": "禄",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "礻"
+    ]
+  },
+  {
+    "character": "禎",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "礻"
+    ]
+  },
+  {
+    "character": "窪",
+    "modern": 14,
+    "corrected": 15,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "箔",
+    "modern": 14,
+    "corrected": 15,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "耶",
+    "modern": 9,
+    "corrected": 13,
+    "radicals": [
+      "⻏"
+    ]
+  },
+  {
+    "character": "聽",
+    "modern": 22,
+    "corrected": 23,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "臟",
+    "modern": 22,
+    "corrected": 25,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "芙",
+    "modern": 7,
+    "corrected": 10,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "芥",
+    "modern": 7,
+    "corrected": 10,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "芦",
+    "modern": 7,
+    "corrected": 10,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "芭",
+    "modern": 7,
+    "corrected": 10,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "芹",
+    "modern": 7,
+    "corrected": 10,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "苑",
+    "modern": 8,
+    "corrected": 11,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "苔",
+    "modern": 8,
+    "corrected": 11,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "苺",
+    "modern": 8,
+    "corrected": 11,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "茄",
+    "modern": 8,
+    "corrected": 11,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "茅",
+    "modern": 8,
+    "corrected": 11,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "茉",
+    "modern": 8,
+    "corrected": 11,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "茜",
+    "modern": 9,
+    "corrected": 12,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "茸",
+    "modern": 9,
+    "corrected": 12,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "荻",
+    "modern": 10,
+    "corrected": 14,
+    "radicals": [
+      "艹",
+      "⺨"
+    ]
+  },
+  {
+    "character": "莉",
+    "modern": 10,
+    "corrected": 13,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "莊",
+    "modern": 10,
+    "corrected": 13,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "莞",
+    "modern": 10,
+    "corrected": 13,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "莫",
+    "modern": 10,
+    "corrected": 13,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "菅",
+    "modern": 11,
+    "corrected": 14,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "菖",
+    "modern": 11,
+    "corrected": 14,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "菩",
+    "modern": 11,
+    "corrected": 14,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "菫",
+    "modern": 11,
+    "corrected": 14,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "菱",
+    "modern": 11,
+    "corrected": 14,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "萄",
+    "modern": 11,
+    "corrected": 14,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "萌",
+    "modern": 11,
+    "corrected": 14,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "萠",
+    "modern": 11,
+    "corrected": 14,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "萩",
+    "modern": 12,
+    "corrected": 15,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "萬",
+    "modern": 12,
+    "corrected": 15,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "萱",
+    "modern": 12,
+    "corrected": 15,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "葡",
+    "modern": 12,
+    "corrected": 15,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "董",
+    "modern": 12,
+    "corrected": 15,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "葦",
+    "modern": 13,
+    "corrected": 16,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "葵",
+    "modern": 12,
+    "corrected": 15,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "葺",
+    "modern": 12,
+    "corrected": 15,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "蒐",
+    "modern": 13,
+    "corrected": 16,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "蒔",
+    "modern": 13,
+    "corrected": 16,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "蒙",
+    "modern": 13,
+    "corrected": 16,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "蒲",
+    "modern": 13,
+    "corrected": 17,
+    "radicals": [
+      "艹",
+      "氵"
+    ]
+  },
+  {
+    "character": "蒼",
+    "modern": 13,
+    "corrected": 16,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "蓉",
+    "modern": 13,
+    "corrected": 16,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "蓑",
+    "modern": 13,
+    "corrected": 16,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "蓬",
+    "modern": 13,
+    "corrected": 16,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "蓮",
+    "modern": 13,
+    "corrected": 20,
+    "radicals": [
+      "艹",
+      "⻌"
+    ]
+  },
+  {
+    "character": "蔓",
+    "modern": 14,
+    "corrected": 17,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "蔣",
+    "modern": 14,
+    "corrected": 17,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "蔦",
+    "modern": 14,
+    "corrected": 17,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "蔭",
+    "modern": 14,
+    "corrected": 22,
+    "radicals": [
+      "艹",
+      "⻖"
+    ]
+  },
+  {
+    "character": "蕃",
+    "modern": 15,
+    "corrected": 18,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "蕉",
+    "modern": 15,
+    "corrected": 18,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "蕎",
+    "modern": 15,
+    "corrected": 18,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "蕗",
+    "modern": 16,
+    "corrected": 19,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "蕨",
+    "modern": 15,
+    "corrected": 18,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "蕪",
+    "modern": 15,
+    "corrected": 18,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "蕾",
+    "modern": 16,
+    "corrected": 19,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "薗",
+    "modern": 16,
+    "corrected": 19,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "薙",
+    "modern": 16,
+    "corrected": 19,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "薩",
+    "modern": 17,
+    "corrected": 25,
+    "radicals": [
+      "艹",
+      "⻖"
+    ]
+  },
+  {
+    "character": "藁",
+    "modern": 17,
+    "corrected": 20,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "藏",
+    "modern": 18,
+    "corrected": 21,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "藝",
+    "modern": 18,
+    "corrected": 21,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "藥",
+    "modern": 18,
+    "corrected": 21,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "蘇",
+    "modern": 19,
+    "corrected": 22,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "蘭",
+    "modern": 19,
+    "corrected": 22,
+    "radicals": [
+      "艹"
+    ]
+  },
+  {
+    "character": "衿",
+    "modern": 9,
+    "corrected": 10,
+    "radicals": [
+      "衤"
+    ]
+  },
+  {
+    "character": "袴",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "衤"
+    ]
+  },
+  {
+    "character": "裟",
+    "modern": 13,
+    "corrected": 14,
+    "radicals": [
+      "氵"
+    ]
+  },
+  {
+    "character": "裡",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "衤"
+    ]
+  },
+  {
+    "character": "襖",
+    "modern": 17,
+    "corrected": 18,
+    "radicals": [
+      "衤"
+    ]
+  },
+  {
+    "character": "註",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "迪",
+    "modern": 8,
+    "corrected": 12,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "逞",
+    "modern": 11,
+    "corrected": 12,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "遥",
+    "modern": 12,
+    "corrected": 16,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "遼",
+    "modern": 15,
+    "corrected": 19,
+    "radicals": [
+      "⻌"
+    ]
+  },
+  {
+    "character": "郁",
+    "modern": 9,
+    "corrected": 13,
+    "radicals": [
+      "⻏"
+    ]
+  },
+  {
+    "character": "鄭",
+    "modern": 15,
+    "corrected": 19,
+    "radicals": [
+      "⻏"
+    ]
+  },
+  {
+    "character": "閏",
+    "modern": 12,
+    "corrected": 13,
+    "radicals": [
+      "王"
+    ]
+  },
+  {
+    "character": "阿",
+    "modern": 8,
+    "corrected": 13,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "陀",
+    "modern": 8,
+    "corrected": 13,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "陷",
+    "modern": 11,
+    "corrected": 16,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "隈",
+    "modern": 12,
+    "corrected": 17,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "險",
+    "modern": 16,
+    "corrected": 21,
+    "radicals": [
+      "⻖"
+    ]
+  },
+  {
+    "character": "饗",
+    "modern": 22,
+    "corrected": 26,
+    "radicals": [
+      "⻏"
+    ]
+  },
+  {
+    "character": "鴻",
+    "modern": 17,
+    "corrected": 18,
+    "radicals": [
+      "氵"
+    ]
+  }
+]
