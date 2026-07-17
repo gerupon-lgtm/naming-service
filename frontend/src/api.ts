@@ -153,3 +153,103 @@ export async function fetchComment(
     return null; // コメント失敗は診断結果本体に影響させない
   }
 }
+
+// ===== Phase2: ペット命名提案 =====
+
+export type PetTarget = "dog" | "cat" | "small";
+export type NameType = "hiragana" | "katakana" | "kanji";
+
+export interface SuggestQuery {
+  target: PetTarget;
+  sex?: "male" | "female";
+  categories?: string[];
+  includeChars?: string[];
+  charTypes?: NameType[];
+  reading?: string;
+  limit?: number;
+}
+
+export interface SuggestItem {
+  name: string;
+  reading: string;
+  type: NameType;
+  strokeTotal: number;
+  fortune: string;
+  fortuneLabel: string;
+  score: number;
+  source: "master" | "dynamic";
+  reasons: string[];
+}
+
+export async function fetchCategories(): Promise<string[]> {
+  try {
+    const res = await fetch(`${API_BASE}/api/suggest`, { method: "GET" });
+    if (!res.ok) return [];
+    const data = (await res.json()) as { categories: string[] };
+    return data.categories ?? [];
+  } catch {
+    return [];
+  }
+}
+
+export async function suggest(q: SuggestQuery): Promise<SuggestItem[]> {
+  let res: Response;
+  try {
+    res = await fetch(`${API_BASE}/api/suggest`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(q),
+    });
+  } catch {
+    throw new ApiError(
+      "NETWORK",
+      "サーバーに接続できませんでした。通信環境を確認して、もう一度お試しください。"
+    );
+  }
+  const data = await res.json().catch(() => ({}) as ApiErrorBody);
+  if (!res.ok) {
+    const body = data as ApiErrorBody;
+    const code = (body.error as ApiErrorCode) ?? "SERVICE_UNAVAILABLE";
+    throw new ApiError(code, body.message ?? "候補の生成に失敗しました");
+  }
+  return (data as { candidates: SuggestItem[] }).candidates ?? [];
+}
+
+const TARGET_JP: Record<PetTarget, string> = {
+  dog: "犬",
+  cat: "猫",
+  small: "小動物",
+};
+
+/** 候補名へのLLMコメントを取得する（F-011・T-106）。生成不可時は null。 */
+export async function fetchPetComment(
+  item: SuggestItem,
+  q: SuggestQuery
+): Promise<string | null> {
+  try {
+    const res = await fetch(`${API_BASE}/api/comment`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        type: "petName",
+        payload: {
+          name: item.name,
+          reading: item.reading,
+          strokeTotal: item.strokeTotal,
+          fortuneLabel: item.fortuneLabel,
+          target: q.target,
+          sexLabel: q.sex === "male" ? "男の子" : q.sex === "female" ? "女の子" : undefined,
+          categories: q.categories,
+          reasons: item.reasons,
+        },
+      }),
+    });
+    if (!res.ok) return null;
+    const data = (await res.json()) as { comment: string | null };
+    return data.comment;
+  } catch {
+    return null;
+  }
+}
+
+export const PET_TARGET_LABEL = TARGET_JP;
