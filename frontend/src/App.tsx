@@ -150,10 +150,15 @@ export default function App() {
       "■ 三才 — 五行の巡り",
       `天=${r.sansai.tenLabel}・人=${r.sansai.jinLabel}・地=${r.sansai.chiLabel}  （${r.sansai.categoryLabel}）`,
       `　天と人=${r.sansai.relationTenJin}、人と地=${r.sansai.relationJinChi}`,
-      `　${r.sansai.summary}`,
-      "",
-      "※ 姓名判断は参考としてお楽しみください。"
+      `　${r.sansai.summary}`
     );
+    // LLM解説コメント（生成済みのときのみ含める）
+    if (typeof comment === "string" && comment) {
+      lines.push("", "■ 解説コメント", comment);
+    } else if (comment === "loading") {
+      lines.push("", "■ 解説コメント", "（生成中のため未収録。少し待って再度保存/コピーすると含まれます）");
+    }
+    lines.push("", "※ 姓名判断は参考としてお楽しみください。");
     return lines.join("\n");
   };
 
