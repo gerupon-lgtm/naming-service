@@ -24,8 +24,8 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: "Noto Serif JP", serif;
-  font-weight: 500;
+  font-family: "BIZ UDPMincho", serif;
+  font-weight: 400;
   line-height: 1.7;
 }
 
