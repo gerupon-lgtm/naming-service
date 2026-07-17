@@ -59,17 +59,20 @@ describe("ペット命名提案（F-002〜F-005）", () => {
     ).rejects.toBeInstanceOf(SuggestInvalidError);
   });
 
-  it("マスタ不足時は希望よみから動的補完する", async () => {
-    // マスタに該当しない使いたい文字（ぬ）＋よみ指定 → 動的候補が入る
+  it("希望のよみは必ず候補に含まれ、先頭に来る（マスタが十分でも）", async () => {
     const items = await suggest({
-      target: "small",
-      includeChars: ["ぬ"],
-      reading: "ぬぬ",
-      limit: 10,
+      target: "cat",
+      sex: "female",
+      categories: ["かわいい"],
+      reading: "ぬぬ", // マスタには無いよみ
+      limit: 8,
     });
-    expect(items.some((i) => i.source === "dynamic")).toBe(true);
-    const dyn = items.find((i) => i.source === "dynamic")!;
-    expect(["ぬぬ", "ヌヌ"]).toContain(dyn.name);
+    // 先頭が希望のよみ候補（ぬぬ/ヌヌ）で、理由に「ご希望のよみ」
+    expect(["ぬぬ", "ヌヌ"]).toContain(items[0].name);
+    expect(items[0].reasons).toContain("ご希望のよみ");
+    expect(items[0].source).toBe("dynamic");
+    // マスタ候補も続けて含まれる
+    expect(items.some((i) => i.source === "master")).toBe(true);
   });
 
   it("normalizeIncludeChars: 区切りを正規化して1文字配列に", () => {

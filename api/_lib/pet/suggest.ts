@@ -216,31 +216,32 @@ export async function suggest(input: SuggestInput): Promise<SuggestItem[]> {
     }
   }
 
-  // 1) マスタからフィルタ＋スコア
-  const master = allCandidates().filter((c) =>
+  // 1) 希望のよみがあれば、その名前を必ず候補に含める（先頭・ご希望のよみ）
+  const readingItems: SuggestItem[] = [];
+  const readingCands = dynamicFromReading(input).filter((c) =>
     passesFilters(c, input, includeChars)
   );
-  const items: SuggestItem[] = [];
-  for (const c of master) {
-    const it = await toItem(c, input, "master");
-    if (it) items.push(it);
-  }
-
-  // 2) 不足時は希望よみから動的補完（マスタ→動的）
-  const MIN = 8;
-  if (items.length < MIN) {
-    const dyn = dynamicFromReading(input).filter((c) =>
-      passesFilters(c, input, includeChars)
-    );
-    const existing = new Set(items.map((i) => i.name));
-    for (const c of dyn) {
-      if (existing.has(c.name)) continue;
-      const it = await toItem(c, input, "dynamic");
-      if (it) items.push(it);
+  for (const c of readingCands) {
+    const it = await toItem(c, input, "dynamic");
+    if (it) {
+      it.reasons.unshift("ご希望のよみ");
+      readingItems.push(it);
     }
   }
 
-  // スコア降順（同点は画数吉凶→名前で安定化）
-  items.sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
-  return items.slice(0, limit);
+  // 2) マスタからフィルタ＋スコア（希望よみと重複する名前は除く）
+  const readingNames = new Set(readingItems.map((i) => i.name));
+  const master = allCandidates().filter((c) =>
+    passesFilters(c, input, includeChars)
+  );
+  const masterItems: SuggestItem[] = [];
+  for (const c of master) {
+    if (readingNames.has(c.name)) continue;
+    const it = await toItem(c, input, "master");
+    if (it) masterItems.push(it);
+  }
+  masterItems.sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
+
+  // 希望のよみ候補を先頭に、続けてマスタをスコア順に
+  return [...readingItems, ...masterItems].slice(0, limit);
 }
