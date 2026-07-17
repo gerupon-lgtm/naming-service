@@ -94,20 +94,56 @@ export function buildDiagnosisPrompt(p: DiagnosisPayload): string {
   return lines.join("\n");
 }
 
+/** ペット命名候補向けコメントの入力（F-011・T-106）。 */
+export interface PetNamePayload {
+  name: string;
+  reading?: string;
+  strokeTotal?: number;
+  fortuneLabel?: string; // 大吉 等（画数の吉凶）
+  target?: string; // dog / cat / small
+  sexLabel?: string; // 男の子 / 女の子
+  categories?: string[];
+  reasons?: string[];
+}
+
+const TARGET_LABEL: Record<string, string> = {
+  dog: "犬",
+  cat: "猫",
+  small: "小動物",
+};
+
+/** ペット候補名を解説させるプロンプト（数値・吉凶は再計算させない）。 */
+export function buildPetNamePrompt(p: PetNamePayload): string {
+  const animal = p.target ? (TARGET_LABEL[p.target] ?? "ペット") : "ペット";
+  const lines: string[] = [
+    "あなたはペットの名付けアドバイザーです。",
+    "以下はロジックで確定した候補名の情報です。画数や吉凶は変更・再計算せず、",
+    `${animal}の名前として、響き・印象・込められる願いを、やさしく前向きに2〜3文で紹介してください。`,
+    "占いは断定せず、飼い主が思わず微笑むようなトーンで。",
+    "",
+    `候補名: ${p.name}${p.reading ? `（${p.reading}）` : ""}`,
+  ];
+  if (p.strokeTotal != null)
+    lines.push(`画数: ${p.strokeTotal}画${p.fortuneLabel ? `（${p.fortuneLabel}）` : ""}`);
+  if (p.sexLabel) lines.push(`向き: ${p.sexLabel}`);
+  if (p.categories && p.categories.length) lines.push(`雰囲気: ${p.categories.join("・")}`);
+  lines.push("", "コメント本文のみを出力してください（前置き・箇条書き・見出し不要）。");
+  return lines.join("\n");
+}
+
 /**
  * コメントを生成する。全プロバイダ応答不可なら null（呼び出し側で領域非表示）。
  * @param providers テスト用の明示注入。省略時は環境変数から連鎖を構築。
  */
 export async function generateComment(
   type: CommentType,
-  payload: DiagnosisPayload,
+  payload: DiagnosisPayload | PetNamePayload,
   providers?: LlmProvider[]
 ): Promise<string | null> {
-  if (type !== "diagnosis") {
-    // Phase2（petName）は T-106 で対応。Phase1では diagnosis のみ。
-    return null;
-  }
-  const prompt = buildDiagnosisPrompt(payload);
+  const prompt =
+    type === "petName"
+      ? buildPetNamePrompt(payload as PetNamePayload)
+      : buildDiagnosisPrompt(payload as DiagnosisPayload);
   const result = await generateWithFallback(prompt, providers);
   return result?.comment ?? null;
 }

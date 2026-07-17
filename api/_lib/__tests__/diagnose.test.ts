@@ -6,16 +6,17 @@ import {
 } from "../diagnose";
 
 describe("diagnose（姓名診断オーケストレーション）", () => {
-  it("山田太郎を診断できる（五格・スコア・ランク）", async () => {
+  it("山田太郎を診断できる（熊崎式・郎は⻏補正で13画）", async () => {
     const r = await diagnose({ sei: "山田", mei: "太郎" });
-    expect(r.tenkaku).toBe(8);
-    expect(r.jinkaku).toBe(9);
-    expect(r.chikaku).toBe(13);
-    expect(r.gaikaku).toBe(12);
-    expect(r.soukaku).toBe(21);
-    expect(r.strokeTotal).toBe(21);
-    expect(r.score).toBe(65);
-    expect(r.rank).toBe("中吉"); // 65点 → 中吉（62〜75）
+    // 山3 田5 太4 郎13（郎は右阝=邑を7画に補正）
+    expect(r.tenkaku).toBe(8); // 山3+田5
+    expect(r.jinkaku).toBe(9); // 田5+太4
+    expect(r.chikaku).toBe(17); // 太4+郎13
+    expect(r.gaikaku).toBe(16); // 総25−人9
+    expect(r.soukaku).toBe(25); // 3+5+4+13
+    expect(r.strokeTotal).toBe(25);
+    expect(r.score).toBe(69);
+    expect(r.rank).toBe("中吉"); // 69点 → 中吉（62〜75）
     expect(r.sex).toBe("unspecified");
   });
 
@@ -49,21 +50,19 @@ describe("diagnose（姓名診断オーケストレーション）", () => {
     expect(byKey.soukaku).toEqual([0, 1, 2, 3]);
   });
 
-  it("性別を指定でき、女性の注意数はスコアに反映される", async () => {
+  it("性別を指定でき、結果に反映される", async () => {
+    // 性別による吉凶差の詳細は gender.test.ts（calcScore）で検証。
+    // ここでは sex がそのまま返り、両方とも正常に診断できることを確認。
     const male = await diagnose({ sei: "山田", mei: "太郎", sex: "male" });
     const female = await diagnose({ sei: "山田", mei: "太郎", sex: "female" });
     expect(male.sex).toBe("male");
     expect(female.sex).toBe("female");
-    // 山田太郎は総格21（女性の注意数）なので、女性はスコアが下がる
-    expect(female.score).toBeLessThan(male.score);
-    // 該当格に注記が付く
-    const sou = female.details.find((d) => d.key === "soukaku")!;
-    expect(sou.caution).toBeTruthy();
+    expect(["大吉", "吉", "中吉", "小吉", "末吉", "凶"]).toContain(female.rank);
   });
 
   it("前後の空白を正規化する", async () => {
     const r = await diagnose({ sei: "  山田 ", mei: " 太郎  " });
-    expect(r.soukaku).toBe(21);
+    expect(r.soukaku).toBe(25);
   });
 
   it("姓が空なら InvalidInputError", async () => {

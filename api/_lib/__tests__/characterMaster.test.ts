@@ -31,10 +31,10 @@ describe("characterMaster + kanjiapi フォールバック（T-004）", () => {
       mockResponse(200, { stroke_count: 16 })
     ) as unknown as typeof fetch;
     const deps = { kanjiApi: { fetchImpl } };
-    // 「檜」はseed未登録
-    const s1 = await lookupStrokes("檜", deps);
+    // 「驫」はseed未登録（拡充後の3096字にも含まれない稀字）
+    const s1 = await lookupStrokes("驫", deps);
     expect(s1).toEqual([16]);
-    const s2 = await lookupStrokes("檜", deps);
+    const s2 = await lookupStrokes("驫", deps);
     expect(s2).toEqual([16]);
     expect(fetchImpl).toHaveBeenCalledTimes(1); // 2回目はキャッシュ
   });

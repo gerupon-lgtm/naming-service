@@ -73,9 +73,16 @@ describe("診断コメント（F-012）", () => {
     expect(c).toBeNull();
   });
 
-  it("petName（Phase2）は Phase1 では null", async () => {
-    const p: LlmProvider = { id: "ollama", generate: async () => "x" };
-    const c = await generateComment("petName", payload, [p]);
-    expect(c).toBeNull();
+  it("petName（Phase2・T-106）はペット向けプロンプトで生成される", async () => {
+    const p: LlmProvider = {
+      id: "ollama",
+      generate: async () => "元気いっぱいの名前ですね。",
+    };
+    const c = await generateComment(
+      "petName",
+      { name: "モモ", reading: "もも", strokeTotal: 6, fortuneLabel: "大吉", target: "cat" },
+      [p]
+    );
+    expect(c).toBe("元気いっぱいの名前ですね。");
   });
 });
