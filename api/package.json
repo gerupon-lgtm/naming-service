@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "description": "命名サービス API（Vercel Functions・TypeScript）。Phase1: 姓名診断＋LLMコメント。",
-  "type": "module",
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
