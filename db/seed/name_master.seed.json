@@ -1541,5 +1541,114 @@
       "自然",
       "かわいい"
     ]
+  },
+  {
+    "name": "もなか",
+    "reading": "もなか",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい",
+      "食べ物",
+      "和風"
+    ]
+  },
+  {
+    "name": "もか",
+    "reading": "もか",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい",
+      "食べ物"
+    ]
+  },
+  {
+    "name": "らむね",
+    "reading": "らむね",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "かわいい",
+      "食べ物",
+      "ユニーク"
+    ]
+  },
+  {
+    "name": "わらび",
+    "reading": "わらび",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "和風",
+      "自然",
+      "食べ物"
+    ]
+  },
+  {
+    "name": "こもち",
+    "reading": "こもち",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "neutral"
+    ],
+    "categories": [
+      "かわいい",
+      "ユニーク"
+    ]
+  },
+  {
+    "name": "おはぎ",
+    "reading": "おはぎ",
+    "type": "hiragana",
+    "targets": [
+      "dog",
+      "cat",
+      "small"
+    ],
+    "genders": [
+      "female",
+      "neutral"
+    ],
+    "categories": [
+      "かわいい",
+      "食べ物",
+      "和風"
+    ]
   }
 ]

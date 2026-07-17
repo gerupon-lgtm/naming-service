@@ -1,9 +1,21 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import {
   suggest,
   normalizeIncludeChars,
   SuggestInvalidError,
 } from "../pet/suggest";
+
+function mockReadingFetch(map: Record<string, string[]>): typeof fetch {
+  return vi.fn(async (url: string) => {
+    const seg = decodeURIComponent(String(url).split("/").pop() ?? "");
+    const kanji = map[seg] ?? [];
+    return {
+      ok: kanji.length > 0,
+      status: kanji.length > 0 ? 200 : 404,
+      json: async () => ({ main_kanji: kanji, name_kanji: [] }),
+    } as Response;
+  }) as unknown as typeof fetch;
+}
 
 describe("ペット命名提案（F-002〜F-005）", () => {
   it("対象動物で候補が返り、スコア降順に並ぶ", async () => {
@@ -73,6 +85,23 @@ describe("ペット命名提案（F-002〜F-005）", () => {
     expect(items[0].source).toBe("dynamic");
     // マスタ候補も続けて含まれる
     expect(items.some((i) => i.source === "master")).toBe(true);
+  });
+
+  it("希望のよみを漢字に逆引きして候補に含める（F-004）", async () => {
+    const readingApi = { fetchImpl: mockReadingFetch({ も: ["百"], な: ["奈"] }) };
+    const items = await suggest({
+      target: "cat",
+      reading: "もな",
+      charTypes: ["kanji"],
+      readingApi,
+      limit: 10,
+    });
+    // 漢字合成候補（百奈）が入り、理由に「ご希望のよみ（漢字）」
+    const kanji = items.find((i) => i.name === "百奈");
+    expect(kanji).toBeTruthy();
+    expect(kanji!.type).toBe("kanji");
+    expect(kanji!.reasons.some((r) => r.includes("漢字"))).toBe(true);
+    expect(kanji!.strokeTotal).toBeGreaterThan(0);
   });
 
   it("normalizeIncludeChars: 区切りを正規化して1文字配列に", () => {

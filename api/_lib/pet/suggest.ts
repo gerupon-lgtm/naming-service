@@ -13,6 +13,8 @@ import {
 } from "./nameMaster";
 import { lookupStrokes, type LookupDeps } from "../characterMaster";
 import { evaluateStroke, CATEGORY_LABEL, type FortuneCategory } from "../fortune";
+import { readingKanjiCandidates } from "./readingLookup";
+import type { KanjiApiReadingDeps } from "../kanjiapiReading";
 
 export interface SuggestInput {
   target: PetTarget;
@@ -20,9 +22,10 @@ export interface SuggestInput {
   categories?: string[]; // 希望カテゴリ（OR一致でスコア加点）
   includeChars?: string[]; // 使いたい文字（AND・すべて含む）
   charTypes?: NameType[]; // 出力文字種の許可リスト（未指定なら全許可）
-  reading?: string; // 希望よみ（動的補完に使用）
+  reading?: string; // 希望よみ（かな候補＋漢字逆引きに使用）
   limit?: number; // 返す件数（既定20）
   lookup?: LookupDeps; // 画数参照の依存差し替え（テスト用）
+  readingApi?: KanjiApiReadingDeps; // 読み逆引き（kanjiapi.dev）の差し替え（テスト用）
 }
 
 export interface SuggestItem {
@@ -227,6 +230,35 @@ export async function suggest(input: SuggestInput): Promise<SuggestItem[]> {
       it.reasons.unshift("ご希望のよみ");
       readingItems.push(it);
     }
+  }
+
+  // 1b) 希望のよみを漢字に逆引きして合成（F-004・漢字が許可されている場合）
+  const kanjiAllowed =
+    !input.charTypes ||
+    input.charTypes.length === 0 ||
+    input.charTypes.includes("kanji");
+  if (input.reading && kanjiAllowed) {
+    const kanjiCands = await readingKanjiCandidates(input.reading, input.readingApi);
+    const kanjiItems: SuggestItem[] = [];
+    for (const kc of kanjiCands) {
+      const cand: NameCandidate = {
+        name: kc.name,
+        reading: kc.reading,
+        type: "kanji",
+        targets: [input.target],
+        genders: ["neutral"],
+        categories: [],
+      };
+      if (!passesFilters(cand, input, includeChars)) continue;
+      const it = await toItem(cand, input, "dynamic");
+      if (it) {
+        it.reasons.unshift("ご希望のよみ（漢字）");
+        kanjiItems.push(it);
+      }
+    }
+    // 画数の良い順に上位のみ採用（一覧を漢字で埋め尽くさない）
+    kanjiItems.sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
+    readingItems.push(...kanjiItems.slice(0, 6));
   }
 
   // 2) マスタからフィルタ＋スコア（希望よみと重複する名前は除く）
