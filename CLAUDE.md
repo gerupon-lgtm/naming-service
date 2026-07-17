@@ -62,8 +62,8 @@ LLM_TIMEOUT_MS=10000
 ## 実装上の注意
 - 姓名診断（F-001）は `character_master` を都度参照して画数計算する。DBに存在しない文字は kanjiapi.dev から取得しキャッシュする（書き込みは1回のみ、以後はDB参照）
 - 流派は熊崎式を採用する。将来複数流派に対応できるよう、計算ロジックは流派を差し替え可能な構造にしておくが、Phase1では熊崎式のみをハードコードし `fortune_method` テーブルは作らない
-- 熊崎式は一部の部首で伝統的な画数補正（氵→水4画等）を行うが、kanjiapi.devの画数はこれを反映しない。補正が必要な文字は `character_master` のシードデータで手動補正し、自動キャッシュされた未知文字はこの補正が反映されない限界がある
-- 部首補正の洗い出しは、Kanji alive API（https://app.kanjialive.com/api/docs、第一候補）をシードデータ生成スクリプトでのみ使い、部首名・画数・位置を取得して「部首→補正値」対応表と突き合わせ半自動化する。本番の実行時APIとしては呼び出さない。Kanji aliveの対応漢字（1235字）外はMuzukanjiAPI（https://rapidapi.com/baqterya/api/muzukanjiapi、第二候補・仕様は実装時に要検証）を試し、それでも対応できない文字のみ手動確認する
+- 熊崎式は一部の部首で伝統的な画数補正（氵→水4、⻖→阜8、⻏→邑7 等）を行うが、kanjiapi.devの画数はこれを反映しない。シードは補正済み画数で持つ（source=seed）。自動キャッシュされた未知文字（source=kanjiapi）はこの補正が反映されない限界がある。
+- **【v1.16実装済】部首補正は自動化**: `db/build-seed.cjs`（ビルド時のみ）でオフラインパッケージ `kanji-data`（現代画数）＋`kanji`（`kanjiTree`部品分解）を使い、部首グリフ（氵扌艹忄⺨⻖⻏王礻衤⻌）を検出して `radical_corrections.json` の補正値を加算する。**RapidAPIキー不要**（当初のKanji alive／MuzukanjiAPI案は非採用）。シードは常用＋人名用 約3,096字。再生成: `npm i kanji-data kanji && node db/build-seed.cjs` → `python3 db/build-seed-sql.py`。補正適用文字は `db/seed/correction_review.json` に監査用出力。月(肉づき)のみ字形が月(つき)と同じで自動判別できず未補正（手動確認対象）。
 - 命名候補提案（F-002以降）はPhase2で着手する。Phase1（MVP）は姓名診断＋そのLLMコメント生成（F-012）までを対象とする
 - kanjiapi.devの障害時はエラー表示のみとし、フォールバックAPIは実装しない（`docs/tasks.md` 参照）
 - LLMコメント生成（F-011, F-012）はOllama優先、応答不可時のみOpenRouterにフォールバックする。フォールバック順・モデルは環境変数で変更可能にする
