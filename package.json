@@ -1,0 +1,16 @@
+{
+  "name": "naming-service",
+  "version": "0.1.0",
+  "private": true,
+  "description": "命名サービス（姓名診断＋ペット命名提案）。フロント(Vite)＋API(Vercel Functions)を1プロジェクトでVercelに公開する。",
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.0"
+  },
+  "devDependencies": {
+    "@vercel/node": "^3.2.0",
+    "typescript": "^5.5.0"
+  }
+}

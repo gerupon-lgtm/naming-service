@@ -1,0 +1,937 @@
+[
+  {
+    "character": "あ",
+    "stroke_count": 3,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "い",
+    "stroke_count": 2,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "う",
+    "stroke_count": 2,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "え",
+    "stroke_count": 2,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "お",
+    "stroke_count": 3,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "か",
+    "stroke_count": 3,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "き",
+    "stroke_count": 4,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "く",
+    "stroke_count": 1,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "け",
+    "stroke_count": 3,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "こ",
+    "stroke_count": 2,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "さ",
+    "stroke_count": 3,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "し",
+    "stroke_count": 1,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "す",
+    "stroke_count": 2,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "せ",
+    "stroke_count": 3,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "そ",
+    "stroke_count": 2,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "た",
+    "stroke_count": 4,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ち",
+    "stroke_count": 3,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "つ",
+    "stroke_count": 1,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "て",
+    "stroke_count": 1,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "と",
+    "stroke_count": 2,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "な",
+    "stroke_count": 4,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "に",
+    "stroke_count": 3,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ぬ",
+    "stroke_count": 2,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ね",
+    "stroke_count": 2,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "の",
+    "stroke_count": 1,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "は",
+    "stroke_count": 3,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ひ",
+    "stroke_count": 1,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ふ",
+    "stroke_count": 4,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "へ",
+    "stroke_count": 1,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ほ",
+    "stroke_count": 4,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ま",
+    "stroke_count": 3,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "み",
+    "stroke_count": 2,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "む",
+    "stroke_count": 3,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "め",
+    "stroke_count": 2,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "も",
+    "stroke_count": 3,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "や",
+    "stroke_count": 3,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ゆ",
+    "stroke_count": 2,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "よ",
+    "stroke_count": 2,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ら",
+    "stroke_count": 2,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "り",
+    "stroke_count": 2,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "る",
+    "stroke_count": 2,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "れ",
+    "stroke_count": 2,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ろ",
+    "stroke_count": 1,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "わ",
+    "stroke_count": 2,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "を",
+    "stroke_count": 3,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ん",
+    "stroke_count": 1,
+    "character_type": "hiragana",
+    "source": "seed"
+  },
+  {
+    "character": "ア",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "イ",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ウ",
+    "stroke_count": 3,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "エ",
+    "stroke_count": 3,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "オ",
+    "stroke_count": 3,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "カ",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "キ",
+    "stroke_count": 3,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ク",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ケ",
+    "stroke_count": 3,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "コ",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "サ",
+    "stroke_count": 3,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "シ",
+    "stroke_count": 3,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ス",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "セ",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ソ",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "タ",
+    "stroke_count": 3,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "チ",
+    "stroke_count": 3,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ツ",
+    "stroke_count": 3,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "テ",
+    "stroke_count": 3,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ト",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ナ",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ニ",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ヌ",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ネ",
+    "stroke_count": 4,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ノ",
+    "stroke_count": 1,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ハ",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ヒ",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "フ",
+    "stroke_count": 1,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ヘ",
+    "stroke_count": 1,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ホ",
+    "stroke_count": 4,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "マ",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ミ",
+    "stroke_count": 3,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ム",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "メ",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "モ",
+    "stroke_count": 3,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ヤ",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ユ",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ヨ",
+    "stroke_count": 3,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ラ",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "リ",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ル",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "レ",
+    "stroke_count": 1,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ロ",
+    "stroke_count": 3,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ワ",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ヲ",
+    "stroke_count": 3,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ン",
+    "stroke_count": 2,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "ー",
+    "stroke_count": 1,
+    "character_type": "katakana",
+    "source": "seed"
+  },
+  {
+    "character": "山",
+    "stroke_count": 3,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "田",
+    "stroke_count": 5,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "太",
+    "stroke_count": 4,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "郎",
+    "stroke_count": 9,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "川",
+    "stroke_count": 3,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "木",
+    "stroke_count": 4,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "林",
+    "stroke_count": 8,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "森",
+    "stroke_count": 12,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "石",
+    "stroke_count": 5,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "本",
+    "stroke_count": 5,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "一",
+    "stroke_count": 1,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "二",
+    "stroke_count": 2,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "三",
+    "stroke_count": 3,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "四",
+    "stroke_count": 5,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "五",
+    "stroke_count": 4,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "六",
+    "stroke_count": 4,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "七",
+    "stroke_count": 2,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "八",
+    "stroke_count": 2,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "九",
+    "stroke_count": 2,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "十",
+    "stroke_count": 2,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "人",
+    "stroke_count": 2,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "大",
+    "stroke_count": 3,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "小",
+    "stroke_count": 3,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "上",
+    "stroke_count": 3,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "下",
+    "stroke_count": 3,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "中",
+    "stroke_count": 4,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "日",
+    "stroke_count": 4,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "月",
+    "stroke_count": 4,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "火",
+    "stroke_count": 4,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "水",
+    "stroke_count": 4,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "金",
+    "stroke_count": 8,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "土",
+    "stroke_count": 3,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "子",
+    "stroke_count": 3,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "女",
+    "stroke_count": 3,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "男",
+    "stroke_count": 7,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "名",
+    "stroke_count": 6,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "前",
+    "stroke_count": 9,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "字",
+    "stroke_count": 6,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "学",
+    "stroke_count": 8,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "生",
+    "stroke_count": 5,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "花",
+    "stroke_count": 10,
+    "character_type": "kanji",
+    "source": "seed",
+    "note": "艹→艸6画補正済み（modern7→10）"
+  },
+  {
+    "character": "海",
+    "stroke_count": 10,
+    "character_type": "kanji",
+    "source": "seed",
+    "note": "氵→水4画補正済み（modern9→10）"
+  },
+  {
+    "character": "空",
+    "stroke_count": 8,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "星",
+    "stroke_count": 9,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "光",
+    "stroke_count": 6,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "愛",
+    "stroke_count": 13,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "心",
+    "stroke_count": 4,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "和",
+    "stroke_count": 8,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "平",
+    "stroke_count": 5,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "安",
+    "stroke_count": 6,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "美",
+    "stroke_count": 9,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "優",
+    "stroke_count": 17,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "健",
+    "stroke_count": 11,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "翔",
+    "stroke_count": 12,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "樹",
+    "stroke_count": 16,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "結",
+    "stroke_count": 12,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "莉",
+    "stroke_count": 13,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "陽",
+    "stroke_count": 17,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "介",
+    "stroke_count": 4,
+    "character_type": "kanji",
+    "source": "seed"
+  },
+  {
+    "character": "池",
+    "stroke_count": 7,
+    "character_type": "kanji",
+    "source": "seed",
+    "note": "氵→水4画補正（modern6→7）"
+  },
+  {
+    "character": "打",
+    "stroke_count": 6,
+    "character_type": "kanji",
+    "source": "seed",
+    "note": "扌→手4画補正（modern5→6）"
+  },
+  {
+    "character": "草",
+    "stroke_count": 12,
+    "character_type": "kanji",
+    "source": "seed",
+    "note": "艹→艸6画補正（modern9→12）"
+  }
+]
