@@ -19,16 +19,16 @@
 レスポンス（正常系。v1.2で `sex` / `details` / `sansai` / `wuxing` を追加）:
 ```json
 {
-  "strokeTotal": 21,
-  "tenkaku": 8, "jinkaku": 9, "chikaku": 13, "gaikaku": 12, "soukaku": 21,
-  "score": 65,
+  "strokeTotal": 25,
+  "tenkaku": 8, "jinkaku": 9, "chikaku": 17, "gaikaku": 16, "soukaku": 25,
+  "score": 69,
   "rank": "中吉",
   "sex": "male",
   "chars": [
     { "char": "山", "strokes": 3, "part": "sei" },
     { "char": "田", "strokes": 5, "part": "sei" },
     { "char": "太", "strokes": 4, "part": "mei" },
-    { "char": "郎", "strokes": 9, "part": "mei" }
+    { "char": "郎", "strokes": 13, "part": "mei" }
   ],
   "details": [
     {
@@ -106,7 +106,45 @@
 
 | メソッド | パス | 概要 | 対応機能ID |
 |---------|------|------|-----------|
-| POST | /api/suggest | 条件を受け取り、命名候補をスコア順に返す | F-002〜F-005 |
-| GET | /api/reading-lookup?reading=... | よみがな逆引き（kanjiapi.dev中継） | F-004 |
+| POST | /api/suggest | 条件を受け取り、命名候補をスコア順に返す（**実装済・中核**） | F-002〜F-005 |
+| GET | /api/suggest | カテゴリ選択肢一覧（`{categories:[...]}`）を返す補助 | - |
 
-Phase2では `POST /api/comment` を `type: "petName"` で呼び出し、Phase1で構築した同じLLMフォールバック基盤を再利用する（F-011）。
+### POST /api/suggest（実装済・v1.17）
+
+苗字がないため姓名判断は**地格＝総格（名前の合計画数）のみ**で評価する。
+
+リクエスト:
+```json
+{
+  "target": "cat",
+  "sex": "female",
+  "categories": ["かわいい"],
+  "includeChars": ["も"],
+  "charTypes": ["hiragana", "katakana"],
+  "reading": "もも",
+  "limit": 20
+}
+```
+- `target`（必須）: `dog` / `cat` / `small`。
+- `sex`（任意）: `male` / `female`。**合成スコアで最重視**。
+- `categories`（任意・OR加点）、`includeChars`（任意・AND ハードフィルタ、区切り正規化）、`charTypes`（任意・出力文字種の許可リスト）、`reading`（任意・動的補完に使用）。
+- `includeChars` に漢字を含むのに `charTypes` が漢字を許可しない場合は `INVALID_INPUT`（矛盾チェック・T-104）。
+
+レスポンス:
+```json
+{
+  "candidates": [
+    {
+      "name": "あんこ", "reading": "あんこ", "type": "hiragana",
+      "strokeTotal": 6, "fortune": "daikichi", "fortuneLabel": "大吉",
+      "score": 100, "source": "master",
+      "reasons": ["画数6が大吉", "女の子向き", "かわいい"]
+    }
+  ]
+}
+```
+- **候補の供給（マスタ→動的）**: まず `name_master`（`db/seed/name_master.seed.json`・約89件）からフィルタ＋スコア。件数が少ない（<8）場合のみ、`reading` からかな候補を動的補完（`source:"dynamic"`）。
+- **合成スコア**（`api/_lib/pet/suggest.ts`・重み設定値化）: 性別一致0.40（重み大）＋画数吉凶0.35＋カテゴリ0.25を、指定された条件だけで正規化。
+- 画数吉凶は Phase1 の81画テーブルを流用。フォールバック用の kanjiapi.dev よみ逆引き（F-004 完全版）は将来拡張。
+
+Phase2ではさらに `POST /api/comment` を `type: "petName"` で呼び出し、Phase1で構築した同じLLMフォールバック基盤を再利用する（F-011・T-106）。
