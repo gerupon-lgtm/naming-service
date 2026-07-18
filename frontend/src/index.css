@@ -633,14 +633,8 @@ select {
   white-space: nowrap;
 }
 
-.bonus__label {
-  margin: 12px 0 0;
-  font-size: 17px;
-  font-weight: 700;
-}
-
 .bonus__facts {
-  margin: 10px 0 0;
+  margin: 14px 0 0;
 }
 
 .bonus__facts > div {
@@ -679,6 +673,47 @@ select {
   font-size: 12px;
   line-height: 1.7;
   color: var(--muted);
+}
+
+/* 数字テキスト入力＋ピッカーの組（生年月日・出生時刻）。
+   テキスト側を主にし、ピッカーは併用手段として小さく添える。 */
+.dual-input {
+  display: flex;
+  gap: 6px;
+  align-items: stretch;
+}
+
+.dual-input > input[type="text"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+}
+
+.dual-input__picker {
+  flex: 0 0 auto;
+  width: 42px;
+  padding: 0;
+  /* 値は非表示にし、ピッカーを開くボタンとして使う */
+  color: transparent;
+  cursor: pointer;
+}
+
+.dual-input__picker::-webkit-datetime-edit,
+.dual-input__picker::-webkit-inner-spin-button,
+.dual-input__picker::-webkit-clear-button {
+  display: none;
+}
+
+.dual-input__picker::-webkit-calendar-picker-indicator {
+  margin: 0 auto;
+  padding: 0;
+  cursor: pointer;
+  opacity: 0.75;
+}
+
+.dual-input__picker:hover::-webkit-calendar-picker-indicator {
+  opacity: 1;
 }
 
 /* 出生時刻・出生地の折りたたみ */

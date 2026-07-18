@@ -39,16 +39,24 @@ import {
 /** ⑦ 用神に加えて「日干を生む五行（印星）」を必ず候補に含めるか。 */
 export const WUXING_INCLUDE_SUPPORT = true;
 
+/**
+ * 度合いのラベル。**画面には表示しない。**
+ * 星と本文で伝える方針のため、視覚表示からは外している。
+ * スクリーンリーダー向けの aria-label など、★の並びのテキスト等価物としてのみ使う。
+ * 否定的な断定（「補えていません」等）は使わない。
+ */
 export const WUXING_BONUS_LABELS: Record<BonusLevel, string> = {
-  3: "十分に補えています",
-  2: "やや補えています",
-  1: "補えていません",
+  3: "吉となる五行をしっかり備えています",
+  2: "吉となる五行を備えています",
+  1: "吉となる五行を部分的に備えています",
+  0: "名前には吉となる五行は含まれていません",
 };
 
 export const WUXING_BONUS_STARS: Record<BonusLevel, string> = {
   3: "★★★",
   2: "★★☆",
   1: "★☆☆",
+  0: "☆☆☆",
 };
 
 // ============================================================
@@ -132,23 +140,25 @@ export function calcWuxingBalance(input: BaziInput): WuxingBalance {
 /**
  * 判定ルール（設定値として差し替え可能にするため関数化）。
  *
- *  ★★★ 総格の五行が targetElements[0] に一致
- *  ★★☆ 総格が targetElements[1] 以降に一致、または三才のいずれかが [0] に一致
- *  ★☆☆ いずれにも一致しない
+ * **総格が主・三才が従**という役割分担に沿って4段階に切る。
+ *  ★★★ 総格の五行が targetElements[0]（第1用神）に一致
+ *  ★★☆ 総格の五行が targetElements[1] 以降（第2以降の用神）に一致
+ *  ★☆☆ 総格は不一致だが、三才のいずれかが用神に一致（部分的な恩恵）
+ *  ☆☆☆ どれにも一致しない（恩恵なし）
  */
 export function judgeBonusLevel(
   targetElements: Wuxing[],
   soukakuElement: Wuxing,
   sansaiElements: Wuxing[]
 ): BonusLevel {
-  if (targetElements.length === 0) return 1;
+  if (targetElements.length === 0) return 0;
   const primary = targetElements[0];
   const secondary = targetElements.slice(1);
 
   if (soukakuElement === primary) return 3;
   if (secondary.includes(soukakuElement)) return 2;
-  if (sansaiElements.includes(primary)) return 2;
-  return 1;
+  if (targetElements.some((e) => sansaiElements.includes(e))) return 1;
+  return 0;
 }
 
 function levelHintOf(level: InputLevel): string | null {
@@ -183,20 +193,28 @@ export function calcWuxingBonus(
     : "";
   const soukakuLabel = WUXING_LABEL[soukakuElement];
 
+  // 文面の方針: 名前を否定しない。恩恵が無い場合も「補えていない」と断定せず、
+  // 開運要素の案内に振る（ユーザーが入力した以上、必ず何かを返す）。
+  const intro = `四柱推命では、あなたにとって吉となる五行は「${primaryLabel}」です。`;
+
   let summary: string;
   if (level === 3) {
     summary =
-      `生年月日から見ると、あなたにとって吉となる五行は「${primaryLabel}」です。` +
-      `この名前は総格が${soukakuLabel}にあたるため、十分に補えています。`;
+      intro +
+      `この名前は総格が${soukakuLabel}にあたり、その要素をしっかり備えています。`;
   } else if (level === 2) {
     summary =
-      `生年月日から見ると、あなたにとって吉となる五行は「${primaryLabel}」です。` +
-      `この名前はその要素を部分的に含んでおり、やや補えています。`;
+      intro +
+      `この名前は総格が${soukakuLabel}にあたり、次に吉となる要素を備えています。`;
+  } else if (level === 1) {
+    summary =
+      intro +
+      `この名前は三才にその要素を含んでおり、部分的に備えています。`;
   } else {
     summary =
-      `生年月日から見ると、あなたにとって吉となる五行は「${primaryLabel}」です。` +
-      `この名前には含まれていませんが、「${primaryLabel}」を意識すると、` +
-      `バランスが整うかもしれません。`;
+      intro +
+      `身につけるものや過ごす環境で「${primaryLabel}」を意識すると、` +
+      `巡りが整うかもしれません。`;
   }
 
   return {

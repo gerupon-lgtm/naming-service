@@ -1,14 +1,18 @@
-# デプロイ手順（mvp-2.0.0 / 四柱推命による五行ボーナス F-015）
+# デプロイ手順（mvp-2.1.0 / 四柱推命による五行ボーナス F-015）
 
-対象リリース: **`mvp-2.0.0`**（MAJOR繰上げ。フロント変更を伴う機能追加）
+対象リリース: **`mvp-2.1.0`**
 本番: https://naming-service-red.vercel.app
+
+> **本書は v2.0.0 と v2.1.0 をまとめて対象とする。** v2.0.0（F-015の追加）は未デプロイのまま
+> v2.1.0（UI改善）を重ねたため、実際に公開されるのは 2.1.0 になる。
+> ファイル名は履歴として `deploy-v2.0.0.md` のままにしてある。
 
 ---
 
 ## 0. 事前確認（ローカル）
 
 ```powershell
-npx vitest run          # 156件パス / 18ファイル
+npx vitest run          # 177件パス / 19ファイル
 cd frontend
 npm run build           # tsc --noEmit ＋ vite build が通ること
 cd ..
@@ -52,6 +56,8 @@ api/_lib/bazi/index.ts              公開インターフェース
 api/_lib/bazi/__tests__/*.ts        テスト3ファイル
 api/_lib/__tests__/diagnoseBonus.test.ts
 frontend/src/prefectures.ts         出生地セレクタ用
+frontend/src/birthInput.ts          生年月日・出生時刻の入力補助（v2.1.0）
+frontend/src/__tests__/birthInput.test.ts
 docs/integration-shichu.md          設計ドキュメント
 docs/deploy-v2.0.0.md               本書
 make-deploy-zip.ps1                 ZIP作成スクリプト
@@ -59,7 +65,8 @@ make-deploy-zip.ps1                 ZIP作成スクリプト
 
 ### 変更
 ```
-api/_lib/version.ts                 mvp-1.0.0 → mvp-2.0.0
+api/_lib/version.ts                 mvp-1.0.0 → mvp-2.1.0
+frontend/tsconfig.json              テストを型チェック対象から除外（v2.1.0）
 api/_lib/diagnose.ts                birthDate等の受け取り／wuxingBonus算出
 api/diagnose.ts                     POSTで生年月日を受け取る（GETでは受け取らない）
 api/_lib/fortune/types.ts           DiagnosisResult に wuxingBonus? を追加
@@ -91,8 +98,13 @@ naming-service/naming-service/      重複ディレクトリ（v1.x の古いコ
 | 確認項目 | 期待結果 |
 |---|---|
 | `/api/health` | `"db":{"enabled":true,"ok":true}` |
-| `/api/version` | `{"version":"mvp-2.0.0", "llm":{...}}` |
-| 画面フッター | `mvp-2.0.0　<サービス名>:<モデル名>` |
+| `/api/version` | `{"version":"mvp-2.1.0", "llm":{...}}` |
+| 画面フッター | `mvp-2.1.0　<サービス名>:<モデル名>` |
+| 生年月日の入力 | 8桁の数字が入る。**年に6桁以上は入らない**。カレンダーからも選べ、両者が同期する |
+| 出生時刻の入力 | 4桁の数字が入る。**分が正しく入る**。時計からも選べる |
+| 不正な入力（19900230 等） | 欄の下に注意が出る。**診断そのものは動く**（ボーナスだけ出ない） |
+| 五行ボーナスの星 | 4段階。恩恵がない場合は `☆☆☆` |
+| ボーナスの文言 | 度合いのラベルが出ない。「補えていません」等の否定的表現が無い |
 | 診断（生年月日なし） | 従来どおり。五行ボーナスは**出ない** |
 | 診断（生年月日あり） | 三才の下に「四柱推命による五行ボーナス」が出る。★と言葉、由来バッジ、注釈文 |
 | 生年月日の有無で比較 | **総合ランク・点数・五格が変わらないこと**（最重要） |

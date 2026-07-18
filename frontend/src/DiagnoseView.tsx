@@ -12,6 +12,17 @@ import {
 } from "./api";
 import { validateNameField } from "./validation";
 import { PREFECTURE_OPTIONS } from "./prefectures";
+import {
+  MIN_YEAR,
+  digitsOnly,
+  digits8ToIso,
+  digits4ToIso,
+  isoToDigits8,
+  isoToDigits4,
+  todayIso,
+  validateBirthDate,
+  validateBirthTime,
+} from "./birthInput";
 
 // S-001（入力）と S-002（結果）。App のタブから呼ばれる。
 
@@ -54,10 +65,17 @@ export default function DiagnoseView() {
   const [toast, setToast] = useState("");
 
   // 四柱推命による五行ボーナス（F-015）用。すべて任意入力。
-  const [birthDate, setBirthDate] = useState("");
-  const [birthTime, setBirthTime] = useState("");
+  // 保持は「数字のみ」の形（生年月日=8桁 / 出生時刻=4桁）。
+  // テキスト入力とピッカーの両方から更新され、送信時にISO形式へ変換する。
+  const [birthDigits, setBirthDigits] = useState("");
+  const [timeDigits, setTimeDigits] = useState("");
   const [birthPlace, setBirthPlace] = useState("");
   const [birthOpen, setBirthOpen] = useState(false);
+
+  const birthDateErr = validateBirthDate(birthDigits);
+  const birthTimeErr = validateBirthTime(timeDigits);
+  const birthDateIso = birthDateErr ? null : digits8ToIso(birthDigits);
+  const birthTimeIso = birthTimeErr ? null : digits4ToIso(timeDigits);
 
   const run = useCallback(
     async (s: string, m: string, sx: Sex, birth: BirthInput = {}) => {
@@ -123,11 +141,12 @@ export default function DiagnoseView() {
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!canSubmit) return;
-    // 未入力の項目は送らない（サーバー側で勝手に補完させない）
+    // 未入力・不正な項目は送らない（サーバー側で勝手に補完させない）。
+    // 生年月日は任意項目なので、不正でも診断そのものは止めない。
     void run(sei.trim(), mei.trim(), sex, {
-      birthDate: birthDate || undefined,
-      birthTime: birthTime || undefined,
-      birthPlace: birthPlace || undefined,
+      birthDate: birthDateIso ?? undefined,
+      birthTime: birthDateIso ? (birthTimeIso ?? undefined) : undefined,
+      birthPlace: birthDateIso ? (birthPlace || undefined) : undefined,
     });
   };
 
@@ -176,7 +195,7 @@ export default function DiagnoseView() {
       lines.push(
         "",
         "■ 四柱推命による五行ボーナス（生年月日から算出）",
-        `${b.stars}  ${b.label}`,
+        b.stars,
         `　あなたにとって吉となる五行: ${b.targetElements
           .map((e) => WUXING_JP[e] ?? e)
           .join(" → ")}`,
@@ -272,19 +291,40 @@ export default function DiagnoseView() {
               生年月日だけで判定できる。未入力でも従来どおり診断できる。 */}
           <div className="field" style={{ marginTop: 12 }}>
             <label htmlFor="birthDate">生年月日（任意）</label>
-            <input
-              id="birthDate"
-              type="date"
-              value={birthDate}
-              onChange={(e) => setBirthDate(e.target.value)}
-            />
-            <p className="field-hint">
+            {/* 8桁の数字入力を主にし、カレンダーは併用手段として残す。
+                標準の日付入力だけだと年に6桁以上入ってしまうため。 */}
+            <div className="dual-input">
+              <input
+                id="birthDate"
+                type="text"
+                inputMode="numeric"
+                autoComplete="off"
+                placeholder="19900505"
+                maxLength={8}
+                value={birthDigits}
+                onChange={(e) => setBirthDigits(digitsOnly(e.target.value, 8))}
+                aria-invalid={!!birthDateErr}
+                aria-describedby="birthDate-hint"
+              />
+              <input
+                type="date"
+                className="dual-input__picker"
+                aria-label="カレンダーから生年月日を選ぶ"
+                min={`${MIN_YEAR}-01-01`}
+                max={todayIso()}
+                value={birthDateIso ?? ""}
+                onChange={(e) => setBirthDigits(isoToDigits8(e.target.value))}
+              />
+            </div>
+            {birthDateErr && <p className="field-error">{birthDateErr}</p>}
+            <p className="field-hint" id="birthDate-hint">
+              8桁の数字（例: 19900505）またはカレンダーから入力できます。
               入力すると、生まれ持った五行のバランスを、姓名判断の結果とあわせて
               参考表示します（四柱推命の考え方）。空欄でもご利用いただけます。
             </p>
           </div>
 
-          {birthDate && (
+          {birthDigits && (
             <div className="field birth-detail">
               <button
                 type="button"
@@ -300,12 +340,35 @@ export default function DiagnoseView() {
                   <div className="field-row">
                     <div className="field">
                       <label htmlFor="birthTime">出生時刻（任意）</label>
-                      <input
-                        id="birthTime"
-                        type="time"
-                        value={birthTime}
-                        onChange={(e) => setBirthTime(e.target.value)}
-                      />
+                      {/* 4桁の数字入力を主にする。標準の時刻入力は分の挙動が
+                          ブラウザごとに不安定なため、ピッカーは併用手段に留める。 */}
+                      <div className="dual-input">
+                        <input
+                          id="birthTime"
+                          type="text"
+                          inputMode="numeric"
+                          autoComplete="off"
+                          placeholder="0930"
+                          maxLength={4}
+                          value={timeDigits}
+                          onChange={(e) =>
+                            setTimeDigits(digitsOnly(e.target.value, 4))
+                          }
+                          aria-invalid={!!birthTimeErr}
+                        />
+                        <input
+                          type="time"
+                          className="dual-input__picker"
+                          aria-label="時計から出生時刻を選ぶ"
+                          value={birthTimeIso ?? ""}
+                          onChange={(e) =>
+                            setTimeDigits(isoToDigits4(e.target.value))
+                          }
+                        />
+                      </div>
+                      {birthTimeErr && (
+                        <p className="field-error">{birthTimeErr}</p>
+                      )}
                     </div>
                     <div className="field">
                       <label htmlFor="birthPlace">出生地（任意）</label>
@@ -461,12 +524,16 @@ export default function DiagnoseView() {
                     </h3>
                     <span className="bonus__origin">生年月日から算出（四柱推命）</span>
                   </div>
-                  <div className="bonus__stars" aria-label={result.wuxingBonus.label}>
+                  {/* 度合いは星と本文で伝える。ラベルは画面に出さないが、
+                      ★の並びが伝わらない読み上げ環境のため aria-label に残す。 */}
+                  <div
+                    className="bonus__stars"
+                    role="img"
+                    aria-label={result.wuxingBonus.label}
+                  >
                     {result.wuxingBonus.stars}
                   </div>
                 </div>
-
-                <p className="bonus__label">{result.wuxingBonus.label}</p>
 
                 <dl className="bonus__facts">
                   <div>

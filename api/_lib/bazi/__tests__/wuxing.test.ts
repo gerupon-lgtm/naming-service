@@ -118,32 +118,62 @@ describe("calcWuxingBalance", () => {
 //  五行ボーナスの判定（3段階＋星）
 // ============================================================
 
-describe("五行ボーナスの判定", () => {
+describe("五行ボーナスの判定（4段階・総格が主／三才が従）", () => {
   const targets: Wuxing[] = ["water", "metal"];
 
-  it("総格が最優先の用神に一致すれば ★★★", () => {
+  it("総格が第1用神に一致すれば ★★★", () => {
     expect(judgeBonusLevel(targets, "water", ["wood", "fire", "earth"])).toBe(3);
   });
 
-  it("総格が次点の用神に一致すれば ★★☆", () => {
+  it("総格が第2以降の用神に一致すれば ★★☆", () => {
     expect(judgeBonusLevel(targets, "metal", ["wood", "fire", "earth"])).toBe(2);
   });
 
-  it("三才が最優先の用神を含めば ★★☆", () => {
-    expect(judgeBonusLevel(targets, "fire", ["wood", "water", "earth"])).toBe(2);
+  it("総格は不一致でも三才が用神を含めば ★☆☆", () => {
+    expect(judgeBonusLevel(targets, "fire", ["wood", "water", "earth"])).toBe(1);
+    expect(judgeBonusLevel(targets, "fire", ["wood", "metal", "earth"])).toBe(1);
   });
 
-  it("いずれにも一致しなければ ★☆☆", () => {
-    expect(judgeBonusLevel(targets, "fire", ["wood", "fire", "earth"])).toBe(1);
+  it("いずれにも一致しなければ ☆☆☆（恩恵なし）", () => {
+    expect(judgeBonusLevel(targets, "fire", ["wood", "fire", "earth"])).toBe(0);
   });
 
-  it("星とラベルが3段階で対応する", () => {
+  it("総格の一致は三才の一致より優先される", () => {
+    // 総格が第1用神なら、三才が何であれ ★★★
+    expect(judgeBonusLevel(targets, "water", ["metal", "metal", "metal"])).toBe(3);
+  });
+
+  it("★の数が level と一致し、常に3枠で表される", () => {
     const b = calcWuxingBalance({ birthDate: "1990-05-05" });
     const primary = b.targetElements[0];
     const bonus = calcWuxingBonus(b, primary, ["wood", "fire", "earth"]);
     expect(bonus.level).toBe(3);
     expect(bonus.stars).toBe("★★★");
-    expect(bonus.label).toBe("十分に補えています");
+    // 星は常に3文字（★と☆の合計）
+    expect(Array.from(bonus.stars)).toHaveLength(3);
+    expect(Array.from(bonus.stars).filter((c) => c === "★")).toHaveLength(
+      bonus.level
+    );
+  });
+
+  it("恩恵なしのときは ☆☆☆ になる", () => {
+    const b = calcWuxingBalance({ birthDate: "1990-05-05" });
+    const notTarget = (["wood", "fire", "earth", "metal", "water"] as Wuxing[]).find(
+      (e) => !b.targetElements.includes(e)
+    )!;
+    const bonus = calcWuxingBonus(b, notTarget, [notTarget, notTarget, notTarget]);
+    expect(bonus.level).toBe(0);
+    expect(bonus.stars).toBe("☆☆☆");
+  });
+
+  it("否定的な断定の文言を使わない（生々しさを避ける）", () => {
+    const b = calcWuxingBalance({ birthDate: "1990-05-05" });
+    const notTarget = (["wood", "fire", "earth", "metal", "water"] as Wuxing[]).find(
+      (e) => !b.targetElements.includes(e)
+    )!;
+    const bonus = calcWuxingBonus(b, notTarget, [notTarget, notTarget, notTarget]);
+    expect(bonus.summary).not.toContain("補えていません");
+    expect(bonus.label).not.toContain("補えていません");
   });
 
   it("四柱推命由来であることを source に持つ", () => {
@@ -165,14 +195,33 @@ describe("五行ボーナスの判定", () => {
     expect(calcWuxingBonus(b3, "water", []).levelHint).toBeNull();
   });
 
-  it("★☆☆ のときは前向きな一言を添える", () => {
+  it("恩恵なしでも必ず本文を返す（入力に対して無反応にしない）", () => {
     const b = calcWuxingBalance({ birthDate: "1990-05-05" });
-    // 用神に含まれない五行を総格・三才に据える
     const notTarget = (["wood", "fire", "earth", "metal", "water"] as Wuxing[]).find(
       (e) => !b.targetElements.includes(e)
     )!;
-    const bonus = calcWuxingBonus(b, notTarget, [notTarget]);
-    expect(bonus.level).toBe(1);
+    const bonus = calcWuxingBonus(b, notTarget, [notTarget, notTarget, notTarget]);
+    expect(bonus.level).toBe(0);
+    expect(bonus.summary.length).toBeGreaterThan(0);
     expect(bonus.summary).toContain("意識すると");
+  });
+
+  it("全4段階で本文・星・ラベルが揃う", () => {
+    const b = calcWuxingBalance({ birthDate: "1990-05-05" });
+    const all: Wuxing[] = ["wood", "fire", "earth", "metal", "water"];
+    const notTarget = all.find((e) => !b.targetElements.includes(e))!;
+
+    const cases: Array<[Wuxing, Wuxing[], number]> = [
+      [b.targetElements[0], [notTarget, notTarget, notTarget], 3],
+      [notTarget, [b.targetElements[0], notTarget, notTarget], 1],
+      [notTarget, [notTarget, notTarget, notTarget], 0],
+    ];
+    for (const [soukaku, sansai, expected] of cases) {
+      const bonus = calcWuxingBonus(b, soukaku, sansai);
+      expect(bonus.level).toBe(expected);
+      expect(bonus.summary.length).toBeGreaterThan(0);
+      expect(bonus.label.length).toBeGreaterThan(0);
+      expect(Array.from(bonus.stars)).toHaveLength(3);
+    }
   });
 });

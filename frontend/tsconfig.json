@@ -13,5 +13,7 @@
     "noEmit": true,
     "isolatedModules": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "//": "テストはアプリのビルド対象ではないため型チェックから除外する。vitest はルート側の依存なので frontend からは解決できない。テスト自体はルートの `npx vitest run` で実行される。",
+  "exclude": ["src/**/__tests__/**", "src/**/*.test.ts", "src/**/*.test.tsx"]
 }

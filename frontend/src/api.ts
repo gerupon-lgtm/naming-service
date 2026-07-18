@@ -60,10 +60,11 @@ export interface WuxingBonus {
   soukakuElement: string;
   sansaiElements: string[];
   matched: string[];
-  /** 3=十分 / 2=やや / 1=補えていない */
-  level: 3 | 2 | 1;
-  /** "★★★" / "★★☆" / "★☆☆" */
+  /** 4段階。3=★★★ / 2=★★☆ / 1=★☆☆ / 0=☆☆☆（恩恵なし） */
+  level: 3 | 2 | 1 | 0;
+  /** "★★★" / "★★☆" / "★☆☆" / "☆☆☆" */
   stars: string;
+  /** 度合いのラベル。**画面には表示しない**（aria-label 等のテキスト等価物としてのみ使う）。 */
   label: string;
   summary: string;
   /** 由来が四柱推命であることの明示。 */
@@ -134,7 +135,7 @@ export class ApiError extends Error {
 
 const API_BASE = import.meta.env.VITE_API_BASE ?? "";
 
-export const APP_VERSION = "mvp-2.0.0";
+export const APP_VERSION = "mvp-2.1.0";
 
 export interface VersionInfo {
   version: string;
