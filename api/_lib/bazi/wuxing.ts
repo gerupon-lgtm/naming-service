@@ -207,9 +207,18 @@ export function calcWuxingBonus(
       intro +
       `この名前は総格が${soukakuLabel}にあたり、次に吉となる要素を備えています。`;
   } else if (level === 1) {
+    // 【注意】ここで primaryLabel を使ってはいけない。
+    // level 1 は「総格は不一致だが三才に用神が含まれる」状態であり、
+    // 一致しているのは第2以降の用神であることが多い。第1用神を指して
+    // 「その要素を含む」と書くと、含まれていない五行を含むと言ってしまう。
+    const inSansai = balance.targetElements.filter((e) =>
+      sansaiElements.includes(e)
+    );
+    const matchedLabel = inSansai.map((e) => WUXING_LABEL[e]).join("・");
     summary =
       intro +
-      `この名前は三才にその要素を含んでおり、部分的に備えています。`;
+      `この名前は総格が${soukakuLabel}ですが、三才に「${matchedLabel}」を含んでおり、` +
+      `吉となる要素を部分的に備えています。`;
   } else {
     summary =
       intro +

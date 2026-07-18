@@ -20,6 +20,8 @@ import {
   isoToDigits8,
   isoToDigits4,
   todayIso,
+  formatDate8,
+  formatTime4,
   validateBirthDate,
   validateBirthTime,
 } from "./birthInput";
@@ -308,9 +310,9 @@ export default function DiagnoseView() {
                 type="text"
                 inputMode="numeric"
                 autoComplete="off"
-                placeholder="19900505"
-                maxLength={8}
-                value={birthDigits}
+                placeholder="1990/05/05"
+                maxLength={10}
+                value={formatDate8(birthDigits)}
                 onChange={(e) => setBirthDigits(digitsOnly(e.target.value, 8))}
                 onBlur={() => setBirthTouched(true)}
                 aria-invalid={showBirthDateErr}
@@ -347,7 +349,9 @@ export default function DiagnoseView() {
 
               {birthOpen && (
                 <div className="birth-detail__body">
-                  <div className="field-row">
+                  {/* 出生時刻は5文字ぶんで足りるので狭く、
+                      都道府県名は長いものがあるのでセレクトを広く取る */}
+                  <div className="field-row field-row--time-place">
                     <div className="field">
                       <label htmlFor="birthTime">出生時刻（任意）</label>
                       {/* 4桁の数字入力を主にする。標準の時刻入力は分の挙動が
@@ -358,9 +362,9 @@ export default function DiagnoseView() {
                           type="text"
                           inputMode="numeric"
                           autoComplete="off"
-                          placeholder="0930"
-                          maxLength={4}
-                          value={timeDigits}
+                          placeholder="09:30"
+                          maxLength={5}
+                          value={formatTime4(timeDigits)}
                           onChange={(e) =>
                             setTimeDigits(digitsOnly(e.target.value, 4))
                           }

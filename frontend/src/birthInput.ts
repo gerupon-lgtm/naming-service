@@ -38,6 +38,24 @@ export function isoToDigits4(v: string): string {
   return v.replace(":", "");
 }
 
+/**
+ * 表示用の整形。入力途中でも区切りを入れる（打ちながら "1972/04/08" になる）。
+ * 保持している値はあくまで数字のみで、これは見た目のためだけの変換。
+ */
+export function formatDate8(digits: string): string {
+  const d = digits.slice(0, 8);
+  if (d.length <= 4) return d;
+  if (d.length <= 6) return `${d.slice(0, 4)}/${d.slice(4)}`;
+  return `${d.slice(0, 4)}/${d.slice(4, 6)}/${d.slice(6)}`;
+}
+
+/** 表示用の整形。打ちながら "10:52" になる。 */
+export function formatTime4(digits: string): string {
+  const d = digits.slice(0, 4);
+  if (d.length <= 2) return d;
+  return `${d.slice(0, 2)}:${d.slice(2)}`;
+}
+
 /** 今日の日付（"YYYY-MM-DD"）。日付ピッカーの max に使う。 */
 export function todayIso(): string {
   const d = new Date();

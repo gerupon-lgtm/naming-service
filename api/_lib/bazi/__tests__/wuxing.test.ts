@@ -195,6 +195,32 @@ describe("五行ボーナスの判定（4段階・総格が主／三才が従）
     expect(calcWuxingBonus(b3, "water", []).levelHint).toBeNull();
   });
 
+  it("★☆☆ の本文は、実際に一致した五行を指す（第1用神を誤って指さない）", () => {
+    // 実際に報告された事例の再現:
+    //   用神 = 金 → 水 → 木 / 総格 = 火 / 三才 = 水・木・土
+    //   一致しているのは 水・木 であって 金 ではない。
+    //   「吉となる五行は金です。この名前は三才にその要素を含んでおり」と書くと、
+    //   含まれていない金を含むと言ってしまう。
+    const balance = {
+      counts: { wood: 1, fire: 2, earth: 2, metal: 1, water: 1 },
+      dayElement: "fire" as Wuxing,
+      weakElement: "metal" as Wuxing,
+      supportElement: "wood" as Wuxing,
+      strength: "strong" as const,
+      targetElements: ["metal", "water", "wood"] as Wuxing[],
+      level: "L1" as const,
+    };
+    const bonus = calcWuxingBonus(balance, "fire", ["water", "wood", "earth"]);
+
+    expect(bonus.level).toBe(1);
+    // 一致した五行（水・木）が本文に出る
+    expect(bonus.summary).toContain("水");
+    expect(bonus.summary).toContain("木");
+    // 含まれていない金を「含んでいる」と書かない
+    expect(bonus.summary).not.toMatch(/三才に.*「金」/);
+    expect(bonus.summary).not.toContain("金」を含んで");
+  });
+
   it("恩恵なしでも必ず本文を返す（入力に対して無反応にしない）", () => {
     const b = calcWuxingBalance({ birthDate: "1990-05-05" });
     const notTarget = (["wood", "fire", "earth", "metal", "water"] as Wuxing[]).find(

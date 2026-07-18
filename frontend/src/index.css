@@ -723,6 +723,40 @@ select {
   opacity: 1;
 }
 
+/* 出生時刻（狭い）と出生地（広い）の配分。
+   時刻は "09:30" の5文字ぶんで足り、都道府県名は「神奈川県」など長い。 */
+/* `.field-row` は flex。既定では子が均等に伸びるので、比率を上書きする。 */
+.field-row--time-place > .field:first-child {
+  flex: 0 1 150px;
+  min-width: 0;
+}
+
+.field-row--time-place > .field:last-child {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* セレクトの高さ・見た目をテキスト入力に揃える。
+   `.field input` と同じ指定を当てないと、行の高さがずれる。 */
+.field select {
+  padding: 12px;
+  font-size: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  width: 100%;
+  /* input は content-box 起点でも padding 込みで揃うよう明示する */
+  box-sizing: border-box;
+  line-height: 1.2;
+  height: auto;
+}
+
+.field select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 0;
+  border-color: var(--accent);
+}
+
 /* Firefox など ::-webkit-* が効かない環境向けの保険。
    アイコンが出ない場合でも、クリックでピッカーが開く幅は確保される。 */
 @supports not selector(::-webkit-calendar-picker-indicator) {
