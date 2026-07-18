@@ -590,6 +590,127 @@ select {
   border-radius: 10px;
 }
 
+/* ===== 四柱推命による五行ボーナス（F-015）=====
+   姓名判断の結果とは別枠であることが見た目で分かるよう、
+   上部に太めの区切りを置き、背景色も変えている。
+   総合ランク・スコアには一切影響しない参考情報。 */
+.bonus {
+  margin-top: 24px;
+  padding: 16px;
+  background: #fffaf2;
+  border: 1px solid #efdfc4;
+  border-top: 3px solid #d9b877;
+  border-radius: 10px;
+}
+
+.bonus__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.bonus__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.bonus__origin {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 2px 8px;
+  font-size: 12px;
+  color: #6b5836;
+  background: #f3e6cd;
+  border-radius: 999px;
+}
+
+.bonus__stars {
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: #c99a3c;
+  white-space: nowrap;
+}
+
+.bonus__label {
+  margin: 12px 0 0;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.bonus__facts {
+  margin: 10px 0 0;
+}
+
+.bonus__facts > div {
+  display: flex;
+  gap: 10px;
+  padding: 4px 0;
+  font-size: 14px;
+}
+
+.bonus__facts dt {
+  flex: 0 0 auto;
+  color: var(--muted);
+}
+
+.bonus__facts dd {
+  margin: 0;
+  font-weight: 500;
+}
+
+.bonus__summary {
+  margin: 10px 0 0;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.bonus__hint {
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: #6b5836;
+}
+
+.bonus__note {
+  margin: 12px 0 0;
+  padding-top: 10px;
+  border-top: 1px dotted #e0cfae;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* 出生時刻・出生地の折りたたみ */
+.disclosure {
+  background: none;
+  border: none;
+  padding: 4px 0;
+  font: inherit;
+  font-size: 14px;
+  color: var(--muted);
+  cursor: pointer;
+  text-align: left;
+}
+
+.disclosure:hover {
+  color: inherit;
+}
+
+.birth-detail__body {
+  margin-top: 8px;
+  padding: 10px;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+}
+
+@media (max-width: 480px) {
+  .bonus__facts > div {
+    flex-direction: column;
+    gap: 2px;
+  }
+}
+
 .sansai__title {
   font-weight: 700;
   font-size: 14px;

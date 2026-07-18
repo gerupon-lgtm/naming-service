@@ -49,6 +49,29 @@ export interface WuxingSummary {
   lacking: string[];
 }
 
+/**
+ * 四柱推命による五行ボーナス（F-015）。生年月日を入力したときだけ返る。
+ *
+ * 【重要】これは別枠の参考情報であり、score / rank / 五格には一切影響しない。
+ * 共有URL（F-006）では生年月日を渡さないため、共有URLで開いた結果には付かない。
+ */
+export interface WuxingBonus {
+  targetElements: string[];
+  soukakuElement: string;
+  sansaiElements: string[];
+  matched: string[];
+  /** 3=十分 / 2=やや / 1=補えていない */
+  level: 3 | 2 | 1;
+  /** "★★★" / "★★☆" / "★☆☆" */
+  stars: string;
+  label: string;
+  summary: string;
+  /** 由来が四柱推命であることの明示。 */
+  source: "shichu";
+  inputLevel: "L1" | "L2" | "L3";
+  levelHint: string | null;
+}
+
 export interface DiagnosisResult {
   tenkaku: number;
   jinkaku: number;
@@ -63,6 +86,28 @@ export interface DiagnosisResult {
   details: KakuDetail[];
   sansai: Sansai;
   wuxing: WuxingSummary;
+  /** 生年月日の入力があったときだけ付く（F-015）。 */
+  wuxingBonus?: WuxingBonus;
+}
+
+/** 五行の英名 → 日本語表記。 */
+export const WUXING_JP: Record<string, string> = {
+  wood: "木",
+  fire: "火",
+  earth: "土",
+  metal: "金",
+  water: "水",
+};
+
+/** 五行ボーナスの注釈文（必須表示）。 */
+export const WUXING_BONUS_NOTE =
+  "※四柱推命の考え方にもとづく参考情報です。上の姓名判断の結果（総合ランク・各格）には影響しません。生年月日は保存されません。";
+
+/** 生年月日を伴う診断の任意入力。 */
+export interface BirthInput {
+  birthDate?: string;
+  birthTime?: string;
+  birthPlace?: string;
 }
 
 export type ApiErrorCode =
@@ -89,7 +134,7 @@ export class ApiError extends Error {
 
 const API_BASE = import.meta.env.VITE_API_BASE ?? "";
 
-export const APP_VERSION = "mvp-1.0.0";
+export const APP_VERSION = "mvp-2.0.0";
 
 export interface VersionInfo {
   version: string;
@@ -110,14 +155,23 @@ export async function fetchVersion(): Promise<VersionInfo | null> {
 export async function diagnose(
   sei: string,
   mei: string,
-  sex: Sex = "unspecified"
+  sex: Sex = "unspecified",
+  birth: BirthInput = {}
 ): Promise<DiagnosisResult> {
   let res: Response;
   try {
     res = await fetch(`${API_BASE}/api/diagnose`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ sei, mei, sex }),
+      // 生年月日は指定があるときだけ送る（未入力なら従来と完全に同じリクエスト）
+      body: JSON.stringify({
+        sei,
+        mei,
+        sex,
+        ...(birth.birthDate ? { birthDate: birth.birthDate } : {}),
+        ...(birth.birthTime ? { birthTime: birth.birthTime } : {}),
+        ...(birth.birthPlace ? { birthPlace: birth.birthPlace } : {}),
+      }),
     });
   } catch {
     throw new ApiError(

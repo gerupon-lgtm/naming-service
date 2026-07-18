@@ -3,11 +3,15 @@ import {
   diagnose,
   fetchComment,
   ApiError,
+  WUXING_JP,
+  WUXING_BONUS_NOTE,
+  type BirthInput,
   type DiagnosisResult,
   type Rank,
   type Sex,
 } from "./api";
 import { validateNameField } from "./validation";
+import { PREFECTURE_OPTIONS } from "./prefectures";
 
 // S-001（入力）と S-002（結果）。App のタブから呼ばれる。
 
@@ -49,15 +53,24 @@ export default function DiagnoseView() {
   const [comment, setComment] = useState<"loading" | string | null>(null);
   const [toast, setToast] = useState("");
 
-  const run = useCallback(async (s: string, m: string, sx: Sex) => {
+  // 四柱推命による五行ボーナス（F-015）用。すべて任意入力。
+  const [birthDate, setBirthDate] = useState("");
+  const [birthTime, setBirthTime] = useState("");
+  const [birthPlace, setBirthPlace] = useState("");
+  const [birthOpen, setBirthOpen] = useState(false);
+
+  const run = useCallback(
+    async (s: string, m: string, sx: Sex, birth: BirthInput = {}) => {
     setLoading(true);
     setError(null);
     setResult(null);
     setComment(null);
     setToast("");
     try {
-      const r = await diagnose(s, m, sx);
+      const r = await diagnose(s, m, sx, birth);
       setResult(r);
+      // 【重要】共有URLには生年月日を含めない（プライバシー方針）。
+      // そのため共有URLで開いた結果には五行ボーナスが付かない（仕様）。
       const params = new URLSearchParams({ mode: "meimei", sei: s, mei: m, sex: sx });
       window.history.replaceState(null, "", `?${params.toString()}`);
       setComment("loading");
@@ -76,7 +89,9 @@ export default function DiagnoseView() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  },
+    []
+  );
 
   useEffect(() => {
     const p = new URLSearchParams(window.location.search);
@@ -108,7 +123,12 @@ export default function DiagnoseView() {
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!canSubmit) return;
-    void run(sei.trim(), mei.trim(), sex);
+    // 未入力の項目は送らない（サーバー側で勝手に補完させない）
+    void run(sei.trim(), mei.trim(), sex, {
+      birthDate: birthDate || undefined,
+      birthTime: birthTime || undefined,
+      birthPlace: birthPlace || undefined,
+    });
   };
 
   const backToInput = () => {
@@ -150,6 +170,24 @@ export default function DiagnoseView() {
       `　天と人=${r.sansai.relationTenJin}、人と地=${r.sansai.relationJinChi}`,
       `　${r.sansai.summary}`
     );
+    // 四柱推命による五行ボーナス（F-015）。由来・星・注釈まで含めて出力する。
+    if (r.wuxingBonus) {
+      const b = r.wuxingBonus;
+      lines.push(
+        "",
+        "■ 四柱推命による五行ボーナス（生年月日から算出）",
+        `${b.stars}  ${b.label}`,
+        `　あなたにとって吉となる五行: ${b.targetElements
+          .map((e) => WUXING_JP[e] ?? e)
+          .join(" → ")}`,
+        `　この名前の五行: 総格${r.soukaku}画=${
+          WUXING_JP[b.soukakuElement] ?? b.soukakuElement
+        } ／ 三才=${b.sansaiElements.map((e) => WUXING_JP[e] ?? e).join("・")}`,
+        `　${b.summary}`
+      );
+      if (b.levelHint) lines.push(`　${b.levelHint}`);
+      lines.push(`　${WUXING_BONUS_NOTE}`);
+    }
     if (typeof comment === "string" && comment) {
       lines.push("", "■ 解説コメント", comment);
     } else if (comment === "loading") {
@@ -229,6 +267,70 @@ export default function DiagnoseView() {
               画数の計算には影響しません。一部の画数の吉凶の見方にのみ反映します。
             </p>
           </div>
+
+          {/* 四柱推命による五行ボーナス（F-015）。すべて任意入力。
+              生年月日だけで判定できる。未入力でも従来どおり診断できる。 */}
+          <div className="field" style={{ marginTop: 12 }}>
+            <label htmlFor="birthDate">生年月日（任意）</label>
+            <input
+              id="birthDate"
+              type="date"
+              value={birthDate}
+              onChange={(e) => setBirthDate(e.target.value)}
+            />
+            <p className="field-hint">
+              入力すると、生まれ持った五行のバランスを、姓名判断の結果とあわせて
+              参考表示します（四柱推命の考え方）。空欄でもご利用いただけます。
+            </p>
+          </div>
+
+          {birthDate && (
+            <div className="field birth-detail">
+              <button
+                type="button"
+                className="disclosure"
+                aria-expanded={birthOpen}
+                onClick={() => setBirthOpen((v) => !v)}
+              >
+                {birthOpen ? "▼" : "▶"} さらに詳しく（出生時刻・出生地／任意）
+              </button>
+
+              {birthOpen && (
+                <div className="birth-detail__body">
+                  <div className="field-row">
+                    <div className="field">
+                      <label htmlFor="birthTime">出生時刻（任意）</label>
+                      <input
+                        id="birthTime"
+                        type="time"
+                        value={birthTime}
+                        onChange={(e) => setBirthTime(e.target.value)}
+                      />
+                    </div>
+                    <div className="field">
+                      <label htmlFor="birthPlace">出生地（任意）</label>
+                      <select
+                        id="birthPlace"
+                        value={birthPlace}
+                        onChange={(e) => setBirthPlace(e.target.value)}
+                      >
+                        <option value="">指定しない</option>
+                        {PREFECTURE_OPTIONS.map((p) => (
+                          <option key={p.code} value={p.code}>
+                            {p.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <p className="field-hint">
+                    未入力の項目は計算から除きます（推測で補うことはしません）。
+                    出生時刻を入れると時柱まで、出生地も入れると時差の補正まで反映します。
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
 
           {(seiErr || meiErr) && (
             <p className="field-error">{seiErr ?? meiErr}</p>
@@ -346,6 +448,58 @@ export default function DiagnoseView() {
               </div>
               <p className="sansai__summary">{result.sansai.summary}</p>
             </div>
+
+            {/* 四柱推命による五行ボーナス（F-015）。
+                総合ランクの枠外に独立ブロックとして置き、スコアに影響しないことを
+                見た目でも注釈でも明示する。生年月日の入力があるときだけ表示。 */}
+            {result.wuxingBonus && (
+              <section className="bonus" aria-labelledby="bonus-title">
+                <div className="bonus__head">
+                  <div>
+                    <h3 className="bonus__title" id="bonus-title">
+                      四柱推命による五行ボーナス
+                    </h3>
+                    <span className="bonus__origin">生年月日から算出（四柱推命）</span>
+                  </div>
+                  <div className="bonus__stars" aria-label={result.wuxingBonus.label}>
+                    {result.wuxingBonus.stars}
+                  </div>
+                </div>
+
+                <p className="bonus__label">{result.wuxingBonus.label}</p>
+
+                <dl className="bonus__facts">
+                  <div>
+                    <dt>あなたにとって吉となる五行</dt>
+                    <dd>
+                      {result.wuxingBonus.targetElements
+                        .map((e) => WUXING_JP[e] ?? e)
+                        .join(" → ")}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>この名前の五行</dt>
+                    <dd>
+                      総格{result.soukaku}画=
+                      {WUXING_JP[result.wuxingBonus.soukakuElement] ??
+                        result.wuxingBonus.soukakuElement}
+                      {" ／ 三才="}
+                      {result.wuxingBonus.sansaiElements
+                        .map((e) => WUXING_JP[e] ?? e)
+                        .join("・")}
+                    </dd>
+                  </div>
+                </dl>
+
+                <p className="bonus__summary">{result.wuxingBonus.summary}</p>
+
+                {result.wuxingBonus.levelHint && (
+                  <p className="bonus__hint">{result.wuxingBonus.levelHint}</p>
+                )}
+
+                <p className="bonus__note">{WUXING_BONUS_NOTE}</p>
+              </section>
+            )}
 
             {comment === "loading" && (
               <div className="comment comment--pending">

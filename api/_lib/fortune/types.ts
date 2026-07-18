@@ -6,6 +6,7 @@ import type { Sex } from "./gender";
 import type { KakuKey } from "./gokakuMeaning";
 import type { FortuneCategory } from "./fortuneTable81";
 import type { SansaiResult, WuxingSummary } from "./sansai";
+import type { WuxingBonus } from "../bazi/types";
 
 /** 五格（天格・人格・地格・外格・総格）。 */
 export interface Gokaku {
@@ -68,6 +69,14 @@ export interface DiagnosisResult extends Gokaku {
   sansai: SansaiResult;
   /** 五行サマリ（四柱推命など他占術との連携用）。 */
   wuxing: WuxingSummary;
+  /**
+   * 四柱推命による五行ボーナス（F-015）。生年月日の入力があるときだけ付く。
+   *
+   * 【重要】これは独立した参考情報であり、上の score / rank / 五格には一切影響しない。
+   * 共有URL（F-006）は sei/mei/sex のみで再現する設計で、生年月日はURLに載せない。
+   * スコアに影響させると本人が見た結果と共有URLの結果が食い違うため。
+   */
+  wuxingBonus?: WuxingBonus;
 }
 
 /** 各文字の画数（姓・名それぞれの配列）。 */

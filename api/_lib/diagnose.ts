@@ -20,6 +20,9 @@ import {
   UnknownCharacterError,
   type LookupDeps,
 } from "./characterMaster";
+import { wuxingOf } from "./fortune/sansai";
+import { calcWuxingBalance, calcWuxingBonus } from "./bazi/wuxing";
+import type { WuxingBonus } from "./bazi/types";
 
 export interface DiagnoseInput {
   sei: string;
@@ -29,6 +32,44 @@ export interface DiagnoseInput {
   methodId?: string;
   /** 文字参照の依存差し替え（テスト・純ローカル計算用）。 */
   lookup?: LookupDeps;
+
+  // --- 四柱推命による五行ボーナス（F-015）。すべて任意 -----------------
+  //
+  // 【厳守】これらは wuxingBonus の算出にのみ使い、score / rank / 五格 には
+  // 一切影響させないこと。共有URL（F-006）は sei/mei/sex のみで再現する設計で、
+  // 生年月日はプライバシー上URLに載せないため、影響させると本人が見た結果と
+  // 共有URLで開いた結果が食い違う。
+  //
+  // 生年月日のみで判定できる（L1）。出生時刻・出生地は任意で、未入力でも
+  // 処理を止めない。未入力項目を勝手に補完しないこと。
+
+  /** "YYYY-MM-DD"。指定時のみ wuxingBonus を返す。 */
+  birthDate?: string;
+  /** "HH:mm"（任意）。 */
+  birthTime?: string;
+  /** 都道府県コードまたは名称（任意）。 */
+  birthPlace?: string;
+  timezone?: string;
+}
+
+/** "YYYY-MM-DD" 形式かつ実在する日付か。 */
+function isValidBirthDate(v: string): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(v)) return false;
+  const [y, m, d] = v.split("-").map(Number);
+  if (m < 1 || m > 12 || d < 1 || d > 31) return false;
+  const dt = new Date(Date.UTC(y, m - 1, d));
+  return (
+    dt.getUTCFullYear() === y &&
+    dt.getUTCMonth() === m - 1 &&
+    dt.getUTCDate() === d
+  );
+}
+
+/** "HH:mm" 形式かつ実在する時刻か。 */
+function isValidBirthTime(v: string): boolean {
+  if (!/^\d{2}:\d{2}$/.test(v)) return false;
+  const [h, mi] = v.split(":").map(Number);
+  return h >= 0 && h <= 23 && mi >= 0 && mi <= 59;
 }
 
 /** 入力バリデーション用エラー。 */
@@ -144,6 +185,32 @@ export async function diagnose(input: DiagnoseInput): Promise<DiagnosisResult> {
     gokaku.chikaku
   );
 
+  // 四柱推命による五行ボーナス（F-015）。
+  // 生年月日の入力があるときだけ算出する。ここより上で確定した
+  // score / rank / gokaku は一切書き換えないこと。
+  let wuxingBonus: WuxingBonus | undefined;
+  const birthDate = normalize(input.birthDate ?? "");
+  if (birthDate && isValidBirthDate(birthDate)) {
+    const birthTime = normalize(input.birthTime ?? "");
+    try {
+      const balance = calcWuxingBalance({
+        birthDate,
+        // 不正な時刻は「無かったもの」として扱い、処理を止めない（L1に縮退）
+        birthTime: birthTime && isValidBirthTime(birthTime) ? birthTime : undefined,
+        birthPlace: normalize(input.birthPlace ?? "") || undefined,
+        timezone: input.timezone,
+      });
+      wuxingBonus = calcWuxingBonus(balance, wuxingOf(gokaku.soukaku), [
+        sansai.ten,
+        sansai.jin,
+        sansai.chi,
+      ]);
+    } catch {
+      // ボーナスは参考情報。算出に失敗しても診断結果本体は返す
+      wuxingBonus = undefined;
+    }
+  }
+
   return {
     ...gokaku,
     strokeTotal: gokaku.soukaku,
@@ -154,6 +221,7 @@ export async function diagnose(input: DiagnoseInput): Promise<DiagnosisResult> {
     details,
     sansai,
     wuxing,
+    ...(wuxingBonus ? { wuxingBonus } : {}),
   };
 }
 

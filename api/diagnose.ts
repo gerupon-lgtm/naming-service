@@ -22,13 +22,30 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   let sei = "";
   let mei = "";
   let sex: Sex = "unspecified";
+  // 四柱推命による五行ボーナス（F-015）用。POSTでのみ受け取る。
+  let birthDate: string | undefined;
+  let birthTime: string | undefined;
+  let birthPlace: string | undefined;
 
   if (req.method === "POST") {
-    const body = (req.body ?? {}) as { sei?: string; mei?: string; sex?: string };
+    const body = (req.body ?? {}) as {
+      sei?: string;
+      mei?: string;
+      sex?: string;
+      birthDate?: string;
+      birthTime?: string;
+      birthPlace?: string;
+    };
     sei = body.sei ?? "";
     mei = body.mei ?? "";
     sex = normalizeSex(body.sex ?? "");
+    birthDate = body.birthDate || undefined;
+    birthTime = body.birthTime || undefined;
+    birthPlace = body.birthPlace || undefined;
   } else if (req.method === "GET") {
+    // 【重要】共有URL（F-006）では生年月日を受け取らない。
+    // プライバシー上URLに載せない方針のため、GETでは五行ボーナスは付かない。
+    // これは仕様であり、画面にもその旨を表示する。
     sei = getParam(req.query.sei);
     mei = getParam(req.query.mei);
     sex = normalizeSex(getParam(req.query.sex));
@@ -38,7 +55,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const result = await diagnose({ sei, mei, sex });
+    const result = await diagnose({
+      sei,
+      mei,
+      sex,
+      birthDate,
+      birthTime,
+      birthPlace,
+    });
     return res.status(200).json(result);
   } catch (e) {
     if (e instanceof InvalidInputError) {
