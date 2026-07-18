@@ -71,11 +71,20 @@ export default function DiagnoseView() {
   const [timeDigits, setTimeDigits] = useState("");
   const [birthPlace, setBirthPlace] = useState("");
   const [birthOpen, setBirthOpen] = useState(false);
+  // 入力途中に指摘しないための「触れたか」フラグ（フォーカスを外した時点で立てる）
+  const [birthTouched, setBirthTouched] = useState(false);
+  const [timeTouched, setTimeTouched] = useState(false);
 
   const birthDateErr = validateBirthDate(birthDigits);
   const birthTimeErr = validateBirthTime(timeDigits);
   const birthDateIso = birthDateErr ? null : digits8ToIso(birthDigits);
   const birthTimeIso = birthTimeErr ? null : digits4ToIso(timeDigits);
+
+  // 桁が揃うまでは黙っている。揃った後（または離脱後）だけ指摘する。
+  const showBirthDateErr =
+    !!birthDateErr && (birthTouched || birthDigits.length === 8);
+  const showBirthTimeErr =
+    !!birthTimeErr && (timeTouched || timeDigits.length === 4);
 
   const run = useCallback(
     async (s: string, m: string, sx: Sex, birth: BirthInput = {}) => {
@@ -303,7 +312,8 @@ export default function DiagnoseView() {
                 maxLength={8}
                 value={birthDigits}
                 onChange={(e) => setBirthDigits(digitsOnly(e.target.value, 8))}
-                aria-invalid={!!birthDateErr}
+                onBlur={() => setBirthTouched(true)}
+                aria-invalid={showBirthDateErr}
                 aria-describedby="birthDate-hint"
               />
               <input
@@ -316,7 +326,7 @@ export default function DiagnoseView() {
                 onChange={(e) => setBirthDigits(isoToDigits8(e.target.value))}
               />
             </div>
-            {birthDateErr && <p className="field-error">{birthDateErr}</p>}
+            {showBirthDateErr && <p className="field-error">{birthDateErr}</p>}
             <p className="field-hint" id="birthDate-hint">
               8桁の数字（例: 19900505）またはカレンダーから入力できます。
               入力すると、生まれ持った五行のバランスを、姓名判断の結果とあわせて
@@ -354,7 +364,8 @@ export default function DiagnoseView() {
                           onChange={(e) =>
                             setTimeDigits(digitsOnly(e.target.value, 4))
                           }
-                          aria-invalid={!!birthTimeErr}
+                          onBlur={() => setTimeTouched(true)}
+                          aria-invalid={showBirthTimeErr}
                         />
                         <input
                           type="time"
@@ -366,7 +377,7 @@ export default function DiagnoseView() {
                           }
                         />
                       </div>
-                      {birthTimeErr && (
+                      {showBirthTimeErr && (
                         <p className="field-error">{birthTimeErr}</p>
                       )}
                     </div>

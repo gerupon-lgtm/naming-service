@@ -677,43 +677,59 @@ select {
 
 /* 数字テキスト入力＋ピッカーの組（生年月日・出生時刻）。
    テキスト側を主にし、ピッカーは併用手段として小さく添える。 */
+/* 【重要】既存の `.field input { width: 100% }`（詳細度 0,1,1）に負けないよう、
+   ここでは `.field` を前置して詳細度を上げる（0,2,0 または 0,2,1）。
+   これを怠るとピッカーが幅100%を主張し、テキスト入力が潰れる。 */
 .dual-input {
   display: flex;
   gap: 6px;
   align-items: stretch;
 }
 
-.dual-input > input[type="text"] {
-  flex: 1 1 auto;
+.field .dual-input > input[type="text"] {
+  flex: 1 1 0;
+  width: auto;
   min-width: 0;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.08em;
 }
 
-.dual-input__picker {
-  flex: 0 0 auto;
-  width: 42px;
+.field .dual-input__picker {
+  flex: 0 0 48px;
+  width: 48px;
+  min-width: 48px;
   padding: 0;
-  /* 値は非表示にし、ピッカーを開くボタンとして使う */
+  /* 値は隠し、ピッカーを開くボタンとして使う */
   color: transparent;
   cursor: pointer;
+  overflow: hidden;
 }
 
-.dual-input__picker::-webkit-datetime-edit,
-.dual-input__picker::-webkit-inner-spin-button,
-.dual-input__picker::-webkit-clear-button {
+/* 数字部分・スピナー・クリアボタンを消し、カレンダー/時計アイコンだけ残す */
+.field .dual-input__picker::-webkit-datetime-edit,
+.field .dual-input__picker::-webkit-inner-spin-button,
+.field .dual-input__picker::-webkit-clear-button {
   display: none;
 }
 
-.dual-input__picker::-webkit-calendar-picker-indicator {
+.field .dual-input__picker::-webkit-calendar-picker-indicator {
   margin: 0 auto;
   padding: 0;
   cursor: pointer;
-  opacity: 0.75;
+  opacity: 0.7;
 }
 
-.dual-input__picker:hover::-webkit-calendar-picker-indicator {
+.field .dual-input__picker:hover::-webkit-calendar-picker-indicator {
   opacity: 1;
+}
+
+/* Firefox など ::-webkit-* が効かない環境向けの保険。
+   アイコンが出ない場合でも、クリックでピッカーが開く幅は確保される。 */
+@supports not selector(::-webkit-calendar-picker-indicator) {
+  .field .dual-input__picker {
+    color: inherit;
+    font-size: 0;
+  }
 }
 
 /* 出生時刻・出生地の折りたたみ */
