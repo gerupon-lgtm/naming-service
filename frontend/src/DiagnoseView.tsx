@@ -338,14 +338,15 @@ export default function DiagnoseView() {
 
           {birthDigits && (
             <div className="field birth-detail">
-              <button
-                type="button"
-                className="disclosure"
-                aria-expanded={birthOpen}
-                onClick={() => setBirthOpen((v) => !v)}
-              >
-                {birthOpen ? "▼" : "▶"} さらに詳しく（出生時刻・出生地／任意）
-              </button>
+            <button
+            type="button"
+           className="disclosure"
+           aria-expanded={birthOpen}
+           onClick={() => setBirthOpen((v) => !v)}
+          >
+           <span>さらに詳しく（出生時刻・出生地／任意）</span>
+           <span>{birthOpen ? "▲" : "▼"}</span> 
+          </button>
 
               {birthOpen && (
                 <div className="birth-detail__body">

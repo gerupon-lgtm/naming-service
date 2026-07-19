@@ -791,18 +791,26 @@ input[type="time"].dual-input__picker {
 
 /* 出生時刻・出生地の折りたたみ */
 .disclosure {
-  background: none;
-  border: none;
-  padding: 4px 0;
+  display: flex;
+  justify-content: space-between; /* 文字を左、矢印を右端に寄せる */
+  align-items: center;
+  width: 100%;
+  background: var(--accent-weak); /* 既存の淡い茶色の背景を使用 */
+  border: 1px solid var(--line);   /* 既存の区切り線と同じ色の枠線 */
+  border-radius: 8px;              /* 他の入力欄と丸みを統一 */
+  padding: 10px 14px;              /* 押しやすいように上下左右に余白を確保 */
   font: inherit;
   font-size: 14px;
-  color: var(--muted);
+  font-weight: 700;                /* 文字を少し太くしてアピール */
+  color: var(--accent);            /* 落ち着いた茶色のメインカラーを適用 */
   cursor: pointer;
   text-align: left;
+  transition: background 0.15s, color 0.15s;
 }
 
 .disclosure:hover {
-  color: inherit;
+  background: #e6dec1;            /* マウスホバー時に少しだけ濃くする */
+  color: #654a30;                  /* 既存のボタンホバー時に合わせた濃い茶色 */
 }
 
 .birth-detail__body {
