@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import {
   diagnose,
   fetchComment,
@@ -25,6 +25,55 @@ import {
   validateBirthDate,
   validateBirthTime,
 } from "./birthInput";
+
+// ツールチップ
+function PopoverTooltip({ keyword, content }: { keyword: string; content: string }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const wrapperRef = useRef<HTMLSpanElement>(null);
+
+  // 外側の領域をタップ/クリックした際にも閉じる親切設計
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent | TouchEvent) => {
+      if (isOpen && wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [isOpen]);
+
+  return (
+    <span className="popover-wrapper" ref={wrapperRef}>
+      <span
+        className="popover-trigger"
+        onClick={() => setIsOpen(!isOpen)}
+        role="button"
+        aria-expanded={isOpen}
+      >
+        {keyword}
+      </span>
+      {isOpen && (
+        <span className="popover-content">
+          <button
+            className="popover-close"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsOpen(false);
+            }}
+            aria-label="閉じる"
+          >
+            ×
+          </button>
+          {content}
+        </span>
+      )}
+    </span>
+  );
+}
 
 // S-001（入力）と S-002（結果）。App のタブから呼ばれる。
 
@@ -577,12 +626,29 @@ export default function DiagnoseView() {
                 <p className="bonus__summary">{result.wuxingBonus.summary}</p>
 
                 {result.wuxingBonus.levelHint && (
-                  <p className="bonus__hint">{result.wuxingBonus.levelHint}</p>
-                )}
+          <p className="bonus__hint">{result.wuxingBonus.levelHint}</p>
+        )}
 
-                <p className="bonus__note">{WUXING_BONUS_NOTE}</p>
-              </section>
-            )}
+        <p className="bonus__note">
+          ※
+          <PopoverTooltip 
+            keyword="四柱推命" 
+            content="生まれた年・月・日・時間から、運勢を推測する東洋の占術です。" 
+          />
+          をもとに、生年月日から
+          <PopoverTooltip 
+            keyword="五行" 
+            content="万物を構成する「木・火・土・金・水」の5つの要素のことです。" 
+          />
+          （木・火・土・金・水）のバランスを見て、あなたを支える要素を導き、名前の画数や
+          <PopoverTooltip 
+            keyword="三才" 
+            content="天格・人格・地格を「天・地・人」に見立てた構成要素です。" 
+          />
+          （天格・人格・地格のバランス）との調和から評価しています。上の姓名判断の結果（総合ランク・各格）には影響しません。生年月日は保存されません。
+        </p>
+      </section>
+    )}
 
             {comment === "loading" && (
               <div className="comment comment--pending">

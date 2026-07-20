@@ -1000,3 +1000,78 @@ input[type="time"].dual-input__picker {
     font-size: 17px;
   }
 }
+
+/* 追加 */
+/* ポップオーバーのベース */
+.popover-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.popover-trigger {
+  cursor: pointer;
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* 吹き出し本体 */
+.popover-content {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 10px;
+  padding: 12px 28px 12px 14px; /* 右側に閉じるボタン用の余白を確保 */
+  background: var(--ink);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: normal;
+  width: max-content;
+  max-width: 260px;
+  border-radius: 6px;
+  z-index: 10;
+  line-height: 1.6;
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+/* 吹き出しのしっぽ */
+.popover-content::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--ink);
+}
+
+/* 閉じるボタン */
+.popover-close {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.popover-close:hover {
+  opacity: 1;
+}
+
+/* モバイル向け微調整 */
+@media (max-width: 480px) {
+  .popover-content {
+    max-width: 230px;
+  }
+}
