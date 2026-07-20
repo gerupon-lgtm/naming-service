@@ -31,7 +31,7 @@ function PopoverTooltip({ keyword, content }: { keyword: string; content: string
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef<HTMLSpanElement>(null);
 
-  // 外側の領域をタップ/クリックした際にも閉じる親切設計
+  // 外側の領域をタップ/クリックした際にも閉じる
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent | TouchEvent) => {
       if (isOpen && wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
@@ -39,7 +39,7 @@ function PopoverTooltip({ keyword, content }: { keyword: string; content: string
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("touchstart", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside, { passive: true });
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("touchstart", handleClickOutside);
@@ -50,17 +50,23 @@ function PopoverTooltip({ keyword, content }: { keyword: string; content: string
     <span className="popover-wrapper" ref={wrapperRef}>
       <span
         className="popover-trigger"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation(); // Reactのイベント競合（一瞬で閉じる現象）を防止
+          setIsOpen(!isOpen);
+        }}
         role="button"
+        tabIndex={0}
         aria-expanded={isOpen}
       >
         {keyword}
       </span>
       {isOpen && (
-        <span className="popover-content">
+        <span className="popover-content" onClick={(e) => e.stopPropagation()}>
           <button
             className="popover-close"
             onClick={(e) => {
+              e.preventDefault();
               e.stopPropagation();
               setIsOpen(false);
             }}

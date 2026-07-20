@@ -1014,27 +1014,27 @@ input[type="time"].dual-input__picker {
   text-underline-offset: 3px;
   color: var(--accent);
   font-weight: 700;
+  padding: 2px 0; /* スマホでタップしやすくする */
 }
 
 /* 吹き出し本体 */
 .popover-content {
   position: absolute;
-  bottom: 100%;
+  bottom: calc(100% + 8px); /* テキストに被らないよう少し浮かせる */
   left: 50%;
   transform: translateX(-50%);
-  margin-bottom: 10px;
-  padding: 12px 28px 12px 14px; /* 右側に閉じるボタン用の余白を確保 */
+  padding: 12px 32px 12px 14px; /* 右側に閉じるボタン用の余白を確保 */
   background: var(--ink);
   color: #fff;
   font-size: 13px;
   font-weight: 500;
   white-space: normal;
-  width: max-content;
-  max-width: 260px;
-  border-radius: 6px;
-  z-index: 10;
+  width: 240px; /* 幅を固定してガタつきを防止 */
+  max-width: 85vw; /* スマホ画面の端で見切れるのを防ぐ */
+  border-radius: 8px;
+  z-index: 999; /* 最前面に表示 */
   line-height: 1.6;
-  box-shadow: var(--shadow);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
   text-align: left;
 }
 
@@ -1052,26 +1052,25 @@ input[type="time"].dual-input__picker {
 /* 閉じるボタン */
 .popover-close {
   position: absolute;
-  top: 6px;
-  right: 6px;
+  top: 4px;
+  right: 4px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: transparent;
   border: none;
   color: #fff;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1;
   cursor: pointer;
-  padding: 4px;
   opacity: 0.7;
   transition: opacity 0.2s;
+  padding: 0;
+  appearance: none; /* iOS Safariのデフォルトスタイルをリセット */
 }
 
 .popover-close:hover {
   opacity: 1;
-}
-
-/* モバイル向け微調整 */
-@media (max-width: 480px) {
-  .popover-content {
-    max-width: 230px;
-  }
 }
