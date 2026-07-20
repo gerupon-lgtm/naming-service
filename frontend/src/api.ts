@@ -135,7 +135,8 @@ export class ApiError extends Error {
 
 const API_BASE = import.meta.env.VITE_API_BASE ?? "";
 
-export const APP_VERSION = "mvp-2.1.0";
+export const APP_VERSION = "mvp-2.2.0"; 
+// mvp-2.2.0 = ボーナス用語説明のツールチップ化、datetimepicker系アイコンのsvg化
 
 export interface VersionInfo {
   version: string;
