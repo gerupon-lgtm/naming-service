@@ -47,12 +47,17 @@ function PopoverTooltip({ keyword, content }: { keyword: string; content: string
   }, [isOpen]);
 
   return (
-    <span className="popover-wrapper" ref={wrapperRef}>
+    <span 
+      className="popover-wrapper" 
+      ref={wrapperRef}
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+    >
       <span
         className="popover-trigger"
         onClick={(e) => {
           e.preventDefault();
-          e.stopPropagation(); // Reactのイベント競合（一瞬で閉じる現象）を防止
+          e.stopPropagation();
           setIsOpen(!isOpen);
         }}
         role="button"
