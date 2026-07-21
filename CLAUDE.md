@@ -38,7 +38,7 @@ package.json（ルート） build で frontend をビルド、API実行時依存
 - ローカルのVercel CLIが不調な環境のため、公開は **GitHub web upload → Vercel import** で運用（CLIは使わない）。
 
 ## バージョン採番規約
-- 形式: **`mvp-MAJOR.MINOR.PATCH`**（現在 `mvp-2.1.0`）。定義は `api/_lib/version.ts` の `APP_VERSION`（フロントは `frontend/src/api.ts` の `APP_VERSION` にも同値を持つ）。
+- 形式: **`mvp-MAJOR.MINOR.PATCH`**（現在 `mvp-2.3.1`）。定義は `api/_lib/version.ts` の `APP_VERSION`（フロントは `frontend/src/api.ts` の `APP_VERSION` にも同値を持つ）。
 - インクリメント: **小さな修正=末尾(PATCH)／中規模=中央(MINOR)／大きな変更=先頭(MAJOR)**。MINORを上げたらPATCHは0に、MAJORを上げたらMINOR/PATCHは0に。
 - 画面フッターに `mvp-x.y.z <サービス名>:<モデル名>` を表示。サービス/モデルは **最初に正常接続できたLLM**（`GET /api/version` の `probeLlm` 結果、サーバー側キャッシュ）。
 
