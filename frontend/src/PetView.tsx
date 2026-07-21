@@ -302,6 +302,11 @@ export default function PetView() {
                         {it.source === "dynamic" && (
                           <span className="reason reason--dyn">よみから生成</span>
                         )}
+                        {it.source === "chars" && (
+                          <span className="reason reason--dyn">
+                            使いたい文字から生成
+                          </span>
+                        )}
                       </div>
                     )}
                     {c === "loading" && (

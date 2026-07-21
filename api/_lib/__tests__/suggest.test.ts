@@ -59,6 +59,27 @@ describe("ペット命名提案（F-002〜F-005）", () => {
     expect(notInName.length).toBeGreaterThan(0);
   });
 
+  it("使いたい文字由来の候補は source が 'chars'（よみ由来と区別する）", async () => {
+    // 画面のチップ表示を出し分けるため、生成の由来を区別する。
+    // 以前は両方 "dynamic" だったので「よみから生成」と誤表示していた。
+    const llm = [
+      {
+        id: "test",
+        generate: async () => "あみ/亜実\nあゆみ/歩美",
+      },
+    ];
+    const items = await suggest({
+      target: "dog",
+      includeChars: ["あ", "み"],
+      llmProviders: llm as never,
+      limit: 10,
+    });
+    const generated = items.filter((it) => it.source === "chars");
+    expect(generated.length).toBeGreaterThan(0);
+    // よみ指定はしていないので "dynamic" は出ない
+    expect(items.some((it) => it.source === "dynamic")).toBe(false);
+  });
+
   it("漢字の使いたい文字は「表記」で照合する", async () => {
     const items = await suggest({
       target: "dog",

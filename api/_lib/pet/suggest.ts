@@ -38,7 +38,13 @@ export interface SuggestItem {
   fortune: FortuneCategory; // 画数の吉凶
   fortuneLabel: string; // 大吉 等
   score: number; // 合成スコア 0〜100
-  source: "master" | "dynamic";
+  /**
+   * 候補の出どころ。画面のチップ表示に使うため、生成由来を区別する。
+   *   master  = 命名候補マスタから
+   *   dynamic = 希望よみから生成（かな・LLMによる漢字表記）
+   *   chars   = 使いたい文字からLLM生成
+   */
+  source: "master" | "dynamic" | "chars";
   reasons: string[]; // 推薦理由（性別一致・カテゴリ一致 等）
 }
 
@@ -220,7 +226,7 @@ function scoreCandidate(
 async function toItem(
   c: NameCandidate,
   input: SuggestInput,
-  source: "master" | "dynamic"
+  source: "master" | "dynamic" | "chars"
 ): Promise<SuggestItem | null> {
   const total = await strokeTotalOf(c.name, input.lookup);
   if (total == null) return null;
@@ -371,7 +377,8 @@ export async function suggest(input: SuggestInput): Promise<SuggestItem[]> {
         categories: [],
       };
       if (!passesFilters(cand, input, includeChars)) continue;
-      const it = await toItem(cand, input, "dynamic"); // 画数が引けないものは除外
+      // 由来を "chars" にして、画面で「よみから生成」と区別できるようにする
+      const it = await toItem(cand, input, "chars"); // 画数が引けないものは除外
       if (it && !readingItems.some((r) => r.name === it.name)) {
         it.reasons.unshift(`「${includeChars.join("・")}」を含む`);
         readingItems.push(it);

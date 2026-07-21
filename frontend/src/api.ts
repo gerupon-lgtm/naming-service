@@ -146,9 +146,10 @@ export class ApiError extends Error {
 
 const API_BASE = import.meta.env.VITE_API_BASE ?? "";
 
-export const APP_VERSION = "mvp-2.3.0";
+export const APP_VERSION = "mvp-2.3.1";
 // mvp-2.2.0 = ボーナス用語説明のツールチップ化、datetimepicker系アイコンのsvg化
 // mvp-2.3.0 = 共有URLに用神リスト(wx)を付与、使いたい文字をLLM生成に切替（よみ照合）
+// mvp-2.3.1 = 使いたい文字由来の候補チップを「よみから生成」と区別（source: chars）
 
 export interface VersionInfo {
   version: string;
@@ -264,7 +265,13 @@ export interface SuggestItem {
   fortune: string;
   fortuneLabel: string;
   score: number;
-  source: "master" | "dynamic";
+  /**
+   * 候補の出どころ（チップ表示に使う）。
+   *   master  = 命名候補マスタから
+   *   dynamic = 希望よみから生成
+   *   chars   = 使いたい文字から生成
+   */
+  source: "master" | "dynamic" | "chars";
   reasons: string[];
 }
 
