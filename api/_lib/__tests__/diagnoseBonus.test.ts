@@ -127,6 +127,60 @@ describe("プライバシー（T-308）: 生年月日がLLMプロンプトに漏
   });
 });
 
+describe("共有URL（F-006 × F-015）: 用神リストからボーナスを再現する", () => {
+  it("生年月日なしでも wuxingTargets があればボーナスが付く", async () => {
+    const r = await diagnose({ ...base, wuxingTargets: "metal-water-wood" });
+    expect(r.wuxingBonus).toBeDefined();
+    expect(r.wuxingBonus!.targetElements).toEqual(["metal", "water", "wood"]);
+    expect(r.wuxingBonus!.source).toBe("shichu");
+  });
+
+  it("共有先では上位レベルの案内を出さない（生年月日を足せないため）", async () => {
+    const r = await diagnose({ ...base, wuxingTargets: "metal-water-wood" });
+    expect(r.wuxingBonus!.levelHint).toBeNull();
+  });
+
+  it("同じ名前・同じ用神なら、生年月日から算出した場合と星が一致する", async () => {
+    const withBirth = await diagnose({ ...base, birthDate: "1990-05-05" });
+    const targets = withBirth.wuxingBonus!.targetElements.join("-");
+    const shared = await diagnose({ ...base, wuxingTargets: targets });
+    expect(shared.wuxingBonus!.level).toBe(withBirth.wuxingBonus!.level);
+    expect(shared.wuxingBonus!.stars).toBe(withBirth.wuxingBonus!.stars);
+  });
+
+  it("生年月日があればそちらを優先する", async () => {
+    const r = await diagnose({
+      ...base,
+      birthDate: "1990-05-05",
+      wuxingTargets: "fire-fire-fire",
+    });
+    // 生年月日から算出されるので、渡した用神リストは使われない
+    expect(r.wuxingBonus!.targetElements).not.toEqual(["fire"]);
+  });
+
+  it("不正な値は無視し、診断は止めない", async () => {
+    for (const bad of ["", "abc", "---", "gold-silver"]) {
+      const r = await diagnose({ ...base, wuxingTargets: bad });
+      expect(r.score).toBeGreaterThan(0);
+      expect(r.wuxingBonus).toBeUndefined();
+    }
+  });
+
+  it("共有URLに載せる値から生年月日は復元できない（五行名のみ）", async () => {
+    const r = await diagnose({ ...base, birthDate: "1975-11-23" });
+    const shareValue = r.wuxingBonus!.targetElements.join("-");
+    expect(shareValue).not.toMatch(/\d/); // 数字を含まない
+    expect(shareValue).toMatch(/^[a-z-]+$/);
+  });
+
+  it("共有由来でも総合スコア・ランクは変わらない", async () => {
+    const plain = await diagnose(base);
+    const shared = await diagnose({ ...base, wuxingTargets: "metal-water" });
+    expect(shared.score).toBe(plain.score);
+    expect(shared.rank).toBe(plain.rank);
+  });
+});
+
 describe("不正な入力でも診断は止まらない", () => {
   it("不正な生年月日はボーナスなしで診断を返す", async () => {
     for (const bad of ["1990/05/05", "abc", "1990-13-01", "1990-02-30", ""]) {

@@ -31,7 +31,7 @@ describe("ペット命名提案（F-002〜F-005）", () => {
     expect(items.length).toBe(SUGGEST_DEFAULT_COUNT);
   });
 
-  it("使いたい文字（AND）で絞り込む（T-102）", async () => {
+  it("使いたい文字（AND）で絞り込む — かなは「よみ」で照合する（T-102・v2.3.0）", async () => {
     const items = await suggest({
       target: "dog",
       includeChars: ["も"],
@@ -39,8 +39,34 @@ describe("ペット命名提案（F-002〜F-005）", () => {
     });
     expect(items.length).toBeGreaterThan(0);
     for (const it of items) {
-      // 動的補完を除き、マスタ候補は「も」を含む
-      if (it.source === "master") expect(it.name).toContain("も");
+      // 【仕様】かなの使いたい文字は**よみ**に対して照合する。
+      // 表記だけを見ていた頃は「モモ」（よみ=もも）や漢字候補が落ちていた。
+      // ユーザーの意図は「そう読める名前」なので、よみで見るのが正しい。
+      if (it.source === "master") expect(it.reading).toContain("も");
+    }
+  });
+
+  it("かな指定でも漢字・カタカナ表記の候補が残る（表記だけ見ていた頃の不具合）", async () => {
+    const items = await suggest({
+      target: "dog",
+      includeChars: ["も"],
+      limit: 30,
+    });
+    // 表記に「も」を含まないが、よみには含む候補が採用され得る
+    const notInName = items.filter(
+      (it) => !it.name.includes("も") && it.reading.includes("も")
+    );
+    expect(notInName.length).toBeGreaterThan(0);
+  });
+
+  it("漢字の使いたい文字は「表記」で照合する", async () => {
+    const items = await suggest({
+      target: "dog",
+      includeChars: ["空"],
+      limit: 30,
+    });
+    for (const it of items) {
+      if (it.source === "master") expect(it.name).toContain("空");
     }
   });
 

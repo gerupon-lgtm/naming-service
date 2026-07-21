@@ -21,7 +21,12 @@ import {
   type LookupDeps,
 } from "./characterMaster";
 import { wuxingOf } from "./fortune/sansai";
-import { calcWuxingBalance, calcWuxingBonus } from "./bazi/wuxing";
+import {
+  calcWuxingBalance,
+  calcWuxingBonus,
+  calcWuxingBonusFromTargets,
+  parseTargetElements,
+} from "./bazi/wuxing";
 import type { WuxingBonus } from "./bazi/types";
 
 export interface DiagnoseInput {
@@ -50,6 +55,14 @@ export interface DiagnoseInput {
   /** 都道府県コードまたは名称（任意）。 */
   birthPlace?: string;
   timezone?: string;
+
+  /**
+   * 共有URL用（F-006 × F-015）。算出済みの用神リスト（"metal-water-wood" 形式）。
+   * **生年月日の代わり**に受け取り、ボーナスだけを再現する。
+   * 生年月日は復元できないため、URLに個人情報を載せずに共有できる。
+   * `birthDate` があればそちらを優先する。
+   */
+  wuxingTargets?: string;
 }
 
 /** "YYYY-MM-DD" 形式かつ実在する日付か。 */
@@ -208,6 +221,21 @@ export async function diagnose(input: DiagnoseInput): Promise<DiagnosisResult> {
     } catch {
       // ボーナスは参考情報。算出に失敗しても診断結果本体は返す
       wuxingBonus = undefined;
+    }
+  } else {
+    // 生年月日が無くても、共有URL由来の用神リストがあればボーナスを再現する。
+    // 生年月日そのものは受け取らないので、URLに個人情報は載らない。
+    const targets = parseTargetElements(input.wuxingTargets);
+    if (targets) {
+      try {
+        wuxingBonus = calcWuxingBonusFromTargets(
+          targets,
+          wuxingOf(gokaku.soukaku),
+          [sansai.ten, sansai.jin, sansai.chi]
+        );
+      } catch {
+        wuxingBonus = undefined;
+      }
     }
   }
 

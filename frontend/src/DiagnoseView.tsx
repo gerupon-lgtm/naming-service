@@ -5,6 +5,7 @@ import {
   ApiError,
   WUXING_JP,
   WUXING_BONUS_NOTE,
+  serializeTargets,
   type BirthInput,
   type DiagnosisResult,
   type Rank,
@@ -158,9 +159,13 @@ export default function DiagnoseView() {
     try {
       const r = await diagnose(s, m, sx, birth);
       setResult(r);
-      // 【重要】共有URLには生年月日を含めない（プライバシー方針）。
-      // そのため共有URLで開いた結果には五行ボーナスが付かない（仕様）。
+      // 【重要】共有URLには**生年月日を含めない**（プライバシー方針）。
+      // 代わりに算出済みの用神リスト（wx）だけを載せ、共有先でもボーナスを
+      // 再現できるようにする。wx から生年月日は復元できない。
       const params = new URLSearchParams({ mode: "meimei", sei: s, mei: m, sex: sx });
+      if (r.wuxingBonus) {
+        params.set("wx", serializeTargets(r.wuxingBonus.targetElements));
+      }
       window.history.replaceState(null, "", `?${params.toString()}`);
       setComment("loading");
       fetchComment(r, s, m).then(setComment);
@@ -193,7 +198,10 @@ export default function DiagnoseView() {
       setSei(s);
       setMei(m);
       setSex(sx);
-      void run(s, m, sx);
+      // 共有URLに用神リスト（wx）があれば渡してボーナスを再現する。
+      // 生年月日はURLに無いので、入力欄は空のままにする。
+      const wx = p.get("wx") ?? "";
+      void run(s, m, sx, wx ? { wuxingTargets: wx } : {});
     }
   }, [run]);
 

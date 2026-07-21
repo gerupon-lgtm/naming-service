@@ -14,6 +14,7 @@ import {
 import { lookupStrokes, type LookupDeps } from "../characterMaster";
 import { evaluateStroke, CATEGORY_LABEL, type FortuneCategory } from "../fortune";
 import { generateKanjiNames } from "./kanjiNameLLM";
+import { generateNamesByChars } from "./charNameLLM";
 import type { LlmProvider } from "../llm";
 
 export interface SuggestInput {
@@ -103,6 +104,17 @@ function toKatakana(s: string): string {
   return out;
 }
 
+/** カタカナ→ひらがな変換（よみの比較を揃えるため）。 */
+function toHiragana(s: string): string {
+  let out = "";
+  for (const ch of s) {
+    const code = ch.codePointAt(0)!;
+    out +=
+      code >= 0x30a1 && code <= 0x30f6 ? String.fromCodePoint(code - 0x60) : ch;
+  }
+  return out;
+}
+
 /** 「, 」「 」区切りの使いたい文字を1文字ずつの配列に正規化（T-102）。 */
 export function normalizeIncludeChars(input: string[] | undefined): string[] {
   if (!input) return [];
@@ -127,8 +139,32 @@ async function strokeTotalOf(
   }
 }
 
+/** かな1文字か（ひらがな・カタカナ・長音）。 */
+function isKanaChar(ch: string): boolean {
+  return /[ぁ-んァ-ヶー]/.test(ch);
+}
+
+/**
+ * 「使いたい文字」を含むか判定する。
+ *
+ * 【仕様・v2.3.0で変更】かなは**よみ**に対して、漢字は**表記**に対して判定する。
+ * 以前は表記だけを見ていたため、「あ」「み」のようなかな指定では漢字候補が
+ * 原理的に一件も一致しなかった。ユーザーの意図は「そう読める名前」なので、
+ * かなはよみで見るのが正しい。
+ */
+function containsWantedChars(
+  c: Pick<NameCandidate, "name" | "reading">,
+  includeChars: string[]
+): boolean {
+  const readingChars = new Set(Array.from(toHiragana(c.reading ?? "")));
+  const nameChars = new Set(Array.from(c.name));
+  return includeChars.every((ch) =>
+    isKanaChar(ch) ? readingChars.has(toHiragana(ch)) : nameChars.has(ch)
+  );
+}
+
 function passesFilters(
-  c: Pick<NameCandidate, "name" | "type" | "targets">,
+  c: Pick<NameCandidate, "name" | "reading" | "type" | "targets">,
   input: SuggestInput,
   includeChars: string[]
 ): boolean {
@@ -136,9 +172,8 @@ function passesFilters(
   if (input.charTypes && input.charTypes.length > 0) {
     if (!input.charTypes.includes(c.type)) return false;
   }
-  if (includeChars.length > 0) {
-    const chars = new Set(Array.from(c.name));
-    if (!includeChars.every((ch) => chars.has(ch))) return false;
+  if (includeChars.length > 0 && !containsWantedChars(c, includeChars)) {
+    return false;
   }
   return true;
 }
@@ -307,8 +342,45 @@ export async function suggest(input: SuggestInput): Promise<SuggestItem[]> {
     readingItems.push(...chosen.slice(0, Math.max(0, 6 - readingItems.length)));
   }
 
+  // 1.5) 使いたい文字が指定されていれば、LLM に候補を生成させる（F-003・v2.3.0）。
+  //
+  // 【なぜLLMか】使いたい文字 × 雰囲気 × 性別 × 文字種 は組合せが爆発するため、
+  // 有限のマスタでは賄えない（216件に「あ」と「み」のAND条件をかけると
+  // ほぼゼロ件になる）。生成した候補は passesFilters と画数参照を必ず通す。
+  // LLM 応答不可・条件を満たす出力が無い場合は、後段のマスタ補完だけで動く。
+  if (includeChars.length > 0) {
+    const generated = await generateNamesByChars({
+      includeChars,
+      target: input.target,
+      sex: input.sex,
+      categories: input.categories,
+      charTypes: input.charTypes,
+      providers: input.llmProviders,
+    });
+
+    for (const g of generated) {
+      if (readingItems.length >= count) break;
+      // 表記に漢字を含むかで文字種を判定し、かなだけなら ひらがな候補として扱う
+      const hasKanji = /[一-鿿々]/.test(g.name);
+      const cand: NameCandidate = {
+        name: g.name,
+        reading: g.reading,
+        type: hasKanji ? "kanji" : "hiragana",
+        targets: [input.target],
+        genders: ["neutral"],
+        categories: [],
+      };
+      if (!passesFilters(cand, input, includeChars)) continue;
+      const it = await toItem(cand, input, "dynamic"); // 画数が引けないものは除外
+      if (it && !readingItems.some((r) => r.name === it.name)) {
+        it.reasons.unshift(`「${includeChars.join("・")}」を含む`);
+        readingItems.push(it);
+      }
+    }
+  }
+
   // 2) 一定数（count）に満たない分を、選択条件に合うマスタから「ランダム」に埋める。
-  //    ユーザー希望（よみ由来）を先頭に固定し、残り枠を埋める。
+  //    ユーザー希望（よみ由来・使いたい文字由来）を先頭に固定し、残り枠を埋める。
   const readingNames = new Set(readingItems.map((i) => i.name));
   const need = count - readingItems.length;
   const fillItems: SuggestItem[] = [];

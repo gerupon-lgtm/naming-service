@@ -109,6 +109,17 @@ export interface BirthInput {
   birthDate?: string;
   birthTime?: string;
   birthPlace?: string;
+  /**
+   * 共有URL用。算出済みの用神リスト（"metal-water-wood" 形式）。
+   * **生年月日の代わり**に渡してボーナスだけを再現する。
+   * 生年月日は復元できないため、URLに個人情報を載せずに共有できる。
+   */
+  wuxingTargets?: string;
+}
+
+/** 用神リストを共有URL用の文字列にする（"metal-water-wood"）。 */
+export function serializeTargets(targets: string[]): string {
+  return targets.join("-");
 }
 
 export type ApiErrorCode =
@@ -135,8 +146,9 @@ export class ApiError extends Error {
 
 const API_BASE = import.meta.env.VITE_API_BASE ?? "";
 
-export const APP_VERSION = "mvp-2.2.0"; 
+export const APP_VERSION = "mvp-2.3.0";
 // mvp-2.2.0 = ボーナス用語説明のツールチップ化、datetimepicker系アイコンのsvg化
+// mvp-2.3.0 = 共有URLに用神リスト(wx)を付与、使いたい文字をLLM生成に切替（よみ照合）
 
 export interface VersionInfo {
   version: string;
@@ -173,6 +185,7 @@ export async function diagnose(
         ...(birth.birthDate ? { birthDate: birth.birthDate } : {}),
         ...(birth.birthTime ? { birthTime: birth.birthTime } : {}),
         ...(birth.birthPlace ? { birthPlace: birth.birthPlace } : {}),
+        ...(birth.wuxingTargets ? { wuxingTargets: birth.wuxingTargets } : {}),
       }),
     });
   } catch {

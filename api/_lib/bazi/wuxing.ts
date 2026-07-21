@@ -245,3 +245,54 @@ export function calcWuxingBonus(
 export function inputLevelLabel(level: InputLevel): string {
   return INPUT_LEVEL_LABEL[level];
 }
+
+// ============================================================
+//  共有URL用（F-006 × F-015）
+//
+//  共有URLには**生年月日を載せない**。代わりに算出後の用神リストだけを載せ、
+//  受け取り側はそこからボーナスを再現する。生年月日は復元できないため、
+//  プライバシー方針を維持したまま共有先でもボーナスを表示できる。
+//  改ざんは可能だが、総合ランク・スコアには影響しない参考表示なので実害は小さい。
+// ============================================================
+
+const ALL_WUXING: Wuxing[] = ["wood", "fire", "earth", "metal", "water"];
+
+/** "metal-water-wood" → ["metal","water","wood"]。不正な値は除外。空なら null。 */
+export function parseTargetElements(raw: string | undefined): Wuxing[] | null {
+  if (!raw) return null;
+  const parts = raw
+    .split("-")
+    .map((s) => s.trim().toLowerCase())
+    .filter((s): s is Wuxing => (ALL_WUXING as string[]).includes(s));
+  const uniq = Array.from(new Set(parts));
+  return uniq.length > 0 ? uniq : null;
+}
+
+/** ["metal","water"] → "metal-water"。共有URLに載せる形。 */
+export function serializeTargetElements(targets: Wuxing[]): string {
+  return targets.join("-");
+}
+
+/**
+ * 用神リストだけからボーナスを再現する（共有URLで開いたとき用）。
+ * 生年月日を持たないので、命式・強弱は再現しない。
+ */
+export function calcWuxingBonusFromTargets(
+  targetElements: Wuxing[],
+  soukakuElement: Wuxing,
+  sansaiElements: Wuxing[]
+): WuxingBonus {
+  const primary = targetElements[0] ?? "wood";
+  const pseudoBalance: WuxingBalance = {
+    counts: { wood: 0, fire: 0, earth: 0, metal: 0, water: 0 },
+    dayElement: primary,
+    weakElement: primary,
+    supportElement: primary,
+    strength: "neutral",
+    targetElements,
+    level: "L1",
+  };
+  const bonus = calcWuxingBonus(pseudoBalance, soukakuElement, sansaiElements);
+  // 共有先は生年月日を足せないため、上位レベルへの案内は出さない
+  return { ...bonus, levelHint: null };
+}

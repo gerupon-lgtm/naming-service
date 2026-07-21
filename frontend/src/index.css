@@ -712,7 +712,11 @@ select {
   display: none;
 }
 
-/* --- 修正 --- */
+/* 【アイコンの描き方】ブラウザ標準のピッカーアイコンには頼らない。
+   スマートフォンではアイコンが表示されない不具合があったため、
+   アイコンは下の background-image（SVG）で自前で描き、
+   標準のインジケーターは「透明のまま全面に広げてタップ領域にする」方式に変えた。
+   これにより ::-webkit-* が効かない環境でもアイコンが必ず出る。 */
 
 .field .dual-input__picker::-webkit-calendar-picker-indicator {
   position: absolute;
@@ -780,14 +784,6 @@ input[type="time"].dual-input__picker {
   border-color: var(--accent);
 }
 
-/* Firefox など ::-webkit-* が効かない環境向けの保険。
-   アイコンが出ない場合でも、クリックでピッカーが開く幅は確保される。 */
-@supports not selector(::-webkit-calendar-picker-indicator) {
-  .field .dual-input__picker {
-    color: inherit;
-    font-size: 0;
-  }
-}
 
 /* 出生時刻・出生地の折りたたみ */
 .disclosure {

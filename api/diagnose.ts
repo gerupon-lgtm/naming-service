@@ -26,6 +26,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   let birthDate: string | undefined;
   let birthTime: string | undefined;
   let birthPlace: string | undefined;
+  // 共有URL用。算出済みの用神リスト（生年月日そのものではない）。
+  let wuxingTargets: string | undefined;
 
   if (req.method === "POST") {
     const body = (req.body ?? {}) as {
@@ -35,6 +37,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       birthDate?: string;
       birthTime?: string;
       birthPlace?: string;
+      wuxingTargets?: string;
     };
     sei = body.sei ?? "";
     mei = body.mei ?? "";
@@ -42,13 +45,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     birthDate = body.birthDate || undefined;
     birthTime = body.birthTime || undefined;
     birthPlace = body.birthPlace || undefined;
+    wuxingTargets = body.wuxingTargets || undefined;
   } else if (req.method === "GET") {
-    // 【重要】共有URL（F-006）では生年月日を受け取らない。
-    // プライバシー上URLに載せない方針のため、GETでは五行ボーナスは付かない。
-    // これは仕様であり、画面にもその旨を表示する。
+    // 【重要】共有URL（F-006）では**生年月日を受け取らない**。
+    // 代わりに算出済みの用神リスト（wx）だけを受け取り、ボーナスを再現する。
+    // wx からは生年月日を復元できないため、URLに個人情報は載らない。
     sei = getParam(req.query.sei);
     mei = getParam(req.query.mei);
     sex = normalizeSex(getParam(req.query.sex));
+    wuxingTargets = getParam(req.query.wx) || undefined;
   } else {
     res.setHeader("Allow", "GET, POST");
     return res.status(405).json({ error: "METHOD_NOT_ALLOWED" });
@@ -62,6 +67,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       birthDate,
       birthTime,
       birthPlace,
+      wuxingTargets,
     });
     return res.status(200).json(result);
   } catch (e) {
