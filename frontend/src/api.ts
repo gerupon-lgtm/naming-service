@@ -146,10 +146,12 @@ export class ApiError extends Error {
 
 const API_BASE = import.meta.env.VITE_API_BASE ?? "";
 
-export const APP_VERSION = "mvp-2.3.1";
+export const APP_VERSION = "mvp-2.4.0";
 // mvp-2.2.0 = ボーナス用語説明のツールチップ化、datetimepicker系アイコンのsvg化
 // mvp-2.3.0 = 共有URLに用神リスト(wx)を付与、使いたい文字をLLM生成に切替（よみ照合）
 // mvp-2.3.1 = 使いたい文字由来の候補チップを「よみから生成」と区別（source: chars）
+// mvp-2.4.0 = 使いたい文字を単体1文字・表記照合に再定義。ローマ字出力＋アルファベット対応。
+//            使いたい文字×よみの2段構え＋フォールバックのお知らせ
 
 export interface VersionInfo {
   version: string;
@@ -245,7 +247,7 @@ export async function fetchComment(
 // ===== Phase2: ペット命名提案 =====
 
 export type PetTarget = "dog" | "cat" | "small";
-export type NameType = "hiragana" | "katakana" | "kanji";
+export type NameType = "hiragana" | "katakana" | "kanji" | "romaji";
 
 export interface SuggestQuery {
   target: PetTarget;
@@ -275,6 +277,26 @@ export interface SuggestItem {
   reasons: string[];
 }
 
+/**
+ * フォールバックのお知らせ（F-003・v2.4.0）。
+ * 使いたい文字と希望のよみを両立できず、よみを優先したとき返る。
+ */
+export interface SuggestNotice {
+  kind: "reading_over_char";
+  droppedChar: string;
+  reading: string;
+}
+
+export interface SuggestResult {
+  candidates: SuggestItem[];
+  notice?: SuggestNotice;
+}
+
+/** notice を表示文言にする。 */
+export function noticeText(n: SuggestNotice): string {
+  return `使いたい文字「${n.droppedChar}」とよみ「${n.reading}」を両立できる名前が見つからなかったため、よみを優先しました。`;
+}
+
 export async function fetchCategories(): Promise<string[]> {
   try {
     const res = await fetch(`${API_BASE}/api/suggest`, { method: "GET" });
@@ -286,7 +308,7 @@ export async function fetchCategories(): Promise<string[]> {
   }
 }
 
-export async function suggest(q: SuggestQuery): Promise<SuggestItem[]> {
+export async function suggest(q: SuggestQuery): Promise<SuggestResult> {
   let res: Response;
   try {
     res = await fetch(`${API_BASE}/api/suggest`, {
@@ -306,7 +328,8 @@ export async function suggest(q: SuggestQuery): Promise<SuggestItem[]> {
     const code = (body.error as ApiErrorCode) ?? "SERVICE_UNAVAILABLE";
     throw new ApiError(code, body.message ?? "候補の生成に失敗しました");
   }
-  return (data as { candidates: SuggestItem[] }).candidates ?? [];
+  const d = data as { candidates?: SuggestItem[]; notice?: SuggestNotice };
+  return { candidates: d.candidates ?? [], notice: d.notice };
 }
 
 const TARGET_JP: Record<PetTarget, string> = {

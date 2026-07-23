@@ -675,6 +675,18 @@ select {
   color: var(--muted);
 }
 
+/* フォールバックのお知らせ（使いたい文字とよみを両立できずよみ優先）。 */
+.notice {
+  margin-bottom: 14px;
+  padding: 10px 14px;
+  background: #fff7e6;
+  border: 1px solid #f0d9a8;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #6b5836;
+}
+
 /* 数字テキスト入力＋ピッカーの組（生年月日・出生時刻）。
    テキスト側を主にし、ピッカーは併用手段として小さく添える。 */
 /* 【重要】既存の `.field input { width: 100% }`（詳細度 0,1,1）に負けないよう、

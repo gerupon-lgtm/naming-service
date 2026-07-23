@@ -3,10 +3,12 @@ import {
   suggest,
   fetchCategories,
   fetchPetComment,
+  noticeText,
   ApiError,
   PET_TARGET_LABEL,
   type SuggestItem,
   type SuggestQuery,
+  type SuggestNotice,
   type PetTarget,
   type NameType,
 } from "./api";
@@ -27,6 +29,7 @@ const CHAR_TYPES: { value: NameType; label: string }[] = [
   { value: "kanji", label: "漢字" },
   { value: "hiragana", label: "ひらがな" },
   { value: "katakana", label: "カタカナ" },
+  { value: "romaji", label: "ローマ字" },
 ];
 const FORTUNE_TONE: Record<string, string> = {
   daikichi: "daikichi",
@@ -48,6 +51,7 @@ export default function PetView() {
 
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState<SuggestItem[] | null>(null);
+  const [notice, setNotice] = useState<SuggestNotice | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [comments, setComments] = useState<Record<string, CommentState>>({});
   const [toast, setToast] = useState("");
@@ -66,7 +70,8 @@ export default function PetView() {
       target,
       sex: sex || undefined,
       categories: selectedCats.length ? selectedCats : undefined,
-      includeChars: includeChars.trim() ? [includeChars.trim()] : undefined,
+      // 使いたい文字は1文字（複数入ってもサーバーが先頭のみ採用）
+      includeChars: includeChars ? [includeChars] : undefined,
       charTypes: charTypes.length ? charTypes : undefined,
       reading: reading.trim() || undefined,
       // 件数は API 側の設定値 SUGGEST_DEFAULT_COUNT（既定8）に従う
@@ -79,15 +84,17 @@ export default function PetView() {
     setLoading(true);
     setError(null);
     setItems(null);
+    setNotice(null);
     setComments({});
     setToast("");
     const q = buildQuery();
     try {
       const res = await suggest(q);
-      setItems(res);
+      setItems(res.candidates);
+      setNotice(res.notice ?? null);
       // コメントは「よみ」で決まるので、同じよみは1回だけ生成して共有（統一）。
       // サーバー負荷とAIの暴走を避けるため、順番に（段階的に）リクエストする。
-      const readings = Array.from(new Set(res.map((it) => it.reading)));
+      const readings = Array.from(new Set(res.candidates.map((it) => it.reading)));
       const init: Record<string, CommentState> = {};
       for (const r of readings) init[r] = "loading";
       setComments(init);
@@ -118,6 +125,8 @@ export default function PetView() {
       `◆ ${PET_TARGET_LABEL[target]}の名前候補`,
       sex ? `向き: ${sex === "male" ? "男の子" : "女の子"}` : "",
       selectedCats.length ? `雰囲気: ${selectedCats.join("・")}` : "",
+      // フォールバックのお知らせ（使いたい文字とよみを両立できずよみ優先）
+      notice ? `※ ${noticeText(notice)}` : "",
       "",
     ].filter(Boolean);
     its.forEach((it, i) => {
@@ -204,14 +213,21 @@ export default function PetView() {
 
         <div className="field-row" style={{ marginTop: 12 }}>
           <div className="field">
-            <label htmlFor="inc">使いたい文字（任意）</label>
+            <label htmlFor="inc">使いたい文字（任意・1文字のみ）</label>
             <input
               id="inc"
               value={includeChars}
-              onChange={(e) => setIncludeChars(e.target.value)}
-              placeholder="も、ら"
+              // 1文字に制限（漢字・かな・アルファベット可）。
+              // 複数入力してもサーバーは先頭1文字のみ採用するが、UIでも1文字に絞る。
+              onChange={(e) =>
+                setIncludeChars(Array.from(e.target.value.trim()).slice(0, 1).join(""))
+              }
+              placeholder="空"
               autoComplete="off"
             />
+            <p className="field-hint">
+              名前の表記にこの字を必ず入れます。アルファベットはローマ字表記の名前になります。
+            </p>
           </div>
           <div className="field">
             <label htmlFor="rd">希望のよみ（任意）</label>
@@ -261,6 +277,12 @@ export default function PetView() {
 
       {items && !loading && (
         <section className="result">
+          {/* 使いたい文字とよみを両立できず、よみを優先したときのお知らせ */}
+          {notice && (
+            <div className="notice" role="status">
+              {noticeText(notice)}
+            </div>
+          )}
           {items.length === 0 ? (
             <div className="card">
               <p>条件に合う候補が見つかりませんでした。使いたい文字や文字種をゆるめてみてください。</p>
