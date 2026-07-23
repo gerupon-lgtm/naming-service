@@ -28,7 +28,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const items = await suggest({
+    const result = await suggest({
       target: body.target,
       sex: body.sex === "male" || body.sex === "female" ? body.sex : undefined,
       categories: Array.isArray(body.categories) ? body.categories : undefined,
@@ -39,7 +39,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       reading: typeof body.reading === "string" ? body.reading : undefined,
       limit: typeof body.limit === "number" ? body.limit : undefined,
     });
-    return res.status(200).json({ candidates: items });
+    // notice（使いたい文字とよみを両立できずよみを優先した等）も返す
+    return res.status(200).json({
+      candidates: result.candidates,
+      ...(result.notice ? { notice: result.notice } : {}),
+    });
   } catch (e) {
     if (e instanceof SuggestInvalidError) {
       return res.status(400).json({ error: "INVALID_INPUT", message: e.message });
