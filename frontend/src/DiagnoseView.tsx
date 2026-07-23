@@ -5,6 +5,7 @@ import {
   ApiError,
   WUXING_JP,
   WUXING_BONUS_NOTE,
+  WUXING_BONUS_INTRO,
   serializeTargets,
   type BirthInput,
   type DiagnosisResult,
@@ -107,6 +108,49 @@ const SEX_LABEL: Record<Sex, string> = {
   male: "男性",
   female: "女性",
   unspecified: "未指定",
+};
+
+// 五行ごとの「取り入れ方」提案（F-015・v2.4.2）。用神に該当する五行だけ表示する。
+// 色・方角・食べ物・小物は四柱推命/五行の一般的な割り当て。あくまで提案。
+const WUXING_GUIDE: Record<
+  string,
+  { label: string; color: string; direction: string; food: string; item: string }
+> = {
+  wood: {
+    label: "木（き）",
+    color: "緑・青緑",
+    direction: "東",
+    food: "酸味・葉物野菜・柑橘",
+    item: "観葉植物・木製品",
+  },
+  fire: {
+    label: "火（ひ）",
+    color: "赤・紫",
+    direction: "南",
+    food: "苦み・赤い食材・トマト",
+    item: "キャンドル・明るい照明・赤い雑貨",
+  },
+  earth: {
+    label: "土（つち）",
+    color: "黄・ベージュ・茶",
+    direction: "南西・中央",
+    food: "甘み・根菜・黄色い食材",
+    item: "陶器・天然石",
+  },
+  metal: {
+    label: "金（きん）",
+    color: "白・金・シルバー",
+    direction: "西",
+    food: "辛み・白い食材",
+    item: "金属アクセサリー・鏡",
+  },
+  water: {
+    label: "水（みず）",
+    color: "黒・青・水色",
+    direction: "北",
+    food: "塩味・海産物・黒い食材",
+    item: "水晶・ガラス製品・こまめな水分補給",
+  },
 };
 
 interface ErrState {
@@ -274,6 +318,7 @@ export default function DiagnoseView() {
       lines.push(
         "",
         "■ 四柱推命による五行ボーナス（生年月日から算出）",
+        `　${WUXING_BONUS_INTRO}`,
         b.stars,
         `　あなたにとって吉となる五行: ${b.targetElements
           .map((e) => WUXING_JP[e] ?? e)
@@ -619,6 +664,11 @@ export default function DiagnoseView() {
                   </div>
                 </div>
 
+                {/* ① これは何か（相性の目安・後押し・点数に影響しない） */}
+                <p className="bonus__intro">
+                  生年月日から見た「あなたに合う五行」を、この名前が持っているかを四柱推命の観点でみた相性の目安です。上の姓名判断の点数には影響しません。星が多いほど、名前があなたの運の巡りを後押ししていると考えられます。
+                </p>
+
                 <dl className="bonus__facts">
                   <div>
                     <dt>あなたにとって吉となる五行</dt>
@@ -645,29 +695,57 @@ export default function DiagnoseView() {
                 <p className="bonus__summary">{result.wuxingBonus.summary}</p>
 
                 {result.wuxingBonus.levelHint && (
-          <p className="bonus__hint">{result.wuxingBonus.levelHint}</p>
-        )}
+                  <p className="bonus__hint">{result.wuxingBonus.levelHint}</p>
+                )}
 
-        <p className="bonus__note">
-          ※
-          <PopoverTooltip 
-            keyword="四柱推命" 
-            content="古代中国で生まれた占術で、「生まれた年・月・日・時間」の4つの情報から、その人の本質、才能、そして人生全体の運気の流れを統計学的に読み解く占いです。" 
-          />
-          をもとに、生年月日から
-          <PopoverTooltip 
-            keyword="五行" 
-            content="生まれた瞬間のエネルギー（木・火・土・金・水）のバランスから、あなたの性格のクセや運命を読み解く中国古来の考え方です。" 
-          />
-          （木・火・土・金・水）のバランスを見て、あなたを支える要素を導き、名前の画数や
-          <PopoverTooltip 
-            keyword="三才" 
-            content="名前の「天格・人格・地格」を「天・人・地」に見立て、その人の運勢や性格を判断するための要素としています。" 
-          />
-          （天格・人格・地格のバランス）との調和から評価しています。上の姓名判断の結果（総合ランク・各格）には影響しません。生年月日は保存されません。
-        </p>
-      </section>
-    )}
+                {/* ② 吉となる五行の取り入れ方（折りたたみ・用神に該当する五行だけ表示） */}
+                {result.wuxingBonus.targetElements.some((e) => WUXING_GUIDE[e]) && (
+                  <details className="bonus__guide">
+                    <summary>吉となる五行の取り入れ方をみる</summary>
+                    <p className="bonus__guide-intro">
+                      名前はそのままでも、暮らしの中で「吉となる五行」を意識すると、運の巡りをそっと後押しできます。色・方角・食べ物・小物など、取り入れやすいものから気軽にどうぞ。
+                    </p>
+                    {result.wuxingBonus.targetElements
+                      .filter((e) => WUXING_GUIDE[e])
+                      .map((e) => {
+                        const g = WUXING_GUIDE[e];
+                        return (
+                          <dl className="bonus__guide-item" key={e}>
+                            <dt>{g.label}</dt>
+                            <dd>色＝{g.color}</dd>
+                            <dd>方角＝{g.direction}</dd>
+                            <dd>食べ物＝{g.food}</dd>
+                            <dd>小物＝{g.item}</dd>
+                          </dl>
+                        );
+                      })}
+                    <p className="bonus__guide-note">
+                      ※開運に向けた楽しみとして、心地よいと感じるものから気軽に取り入れてみてください。
+                    </p>
+                  </details>
+                )}
+
+                {/* 下部の注釈（短縮版・用語ツールチップは維持） */}
+                <p className="bonus__note">
+                  ※
+                  <PopoverTooltip
+                    keyword="四柱推命"
+                    content="古代中国で生まれた占術で、「生まれた年・月・日・時間」の4つの情報から、その人の本質、才能、そして人生全体の運気の流れを統計学的に読み解く占いです。"
+                  />
+                  の
+                  <PopoverTooltip
+                    keyword="五行"
+                    content="生まれた瞬間のエネルギー（木・火・土・金・水）のバランスから、あなたの性格のクセや運命を読み解く中国古来の考え方です。"
+                  />
+                  ・
+                  <PopoverTooltip
+                    keyword="三才"
+                    content="名前の「天格・人格・地格」を「天・人・地」に見立て、その人の運勢や性格を判断するための要素としています。"
+                  />
+                  をもとにした参考情報です。上の姓名判断の結果（総合ランク・各格）には影響しません。生年月日は保存されません。
+                </p>
+              </section>
+            )}
 
             {comment === "loading" && (
               <div className="comment comment--pending">
