@@ -7,7 +7,8 @@ import { isDbEnabled, dbGetNameMaster } from "../db";
 
 export type PetTarget = "dog" | "cat" | "small";
 export type PetGender = "male" | "female" | "neutral";
-export type NameType = "hiragana" | "katakana" | "kanji";
+// romaji は表示・照合用の派生型（マスタには登録されない。よみから変換して用いる）。
+export type NameType = "hiragana" | "katakana" | "kanji" | "romaji";
 
 export interface NameCandidate {
   name: string;
