@@ -38,7 +38,7 @@ package.json（ルート） build で frontend をビルド、API実行時依存
 - ローカルのVercel CLIが不調な環境のため、公開は **GitHub web upload → Vercel import** で運用（CLIは使わない）。
 
 ## バージョン採番規約
-- 形式: **`mvp-MAJOR.MINOR.PATCH`**（現在 `mvp-2.3.1`）。定義は `api/_lib/version.ts` の `APP_VERSION`（フロントは `frontend/src/api.ts` の `APP_VERSION` にも同値を持つ）。
+- 形式: **`mvp-MAJOR.MINOR.PATCH`**（現在 `mvp-2.4.0`）。定義は `api/_lib/version.ts` の `APP_VERSION`（フロントは `frontend/src/api.ts` の `APP_VERSION` にも同値を持つ）。
 - インクリメント: **小さな修正=末尾(PATCH)／中規模=中央(MINOR)／大きな変更=先頭(MAJOR)**。MINORを上げたらPATCHは0に、MAJORを上げたらMINOR/PATCHは0に。
 - 画面フッターに `mvp-x.y.z <サービス名>:<モデル名>` を表示。サービス/モデルは **最初に正常接続できたLLM**（`GET /api/version` の `probeLlm` 結果、サーバー側キャッシュ）。
 
@@ -69,7 +69,8 @@ LLM_TIMEOUT_MS=10000
 - 流派は熊崎式を採用する。将来複数流派に対応できるよう、計算ロジックは流派を差し替え可能な構造にしておくが、Phase1では熊崎式のみをハードコードし `fortune_method` テーブルは作らない
 - 熊崎式は一部の部首で伝統的な画数補正（氵→水4、⻖→阜8、⻏→邑7 等）を行うが、kanjiapi.devの画数はこれを反映しない。シードは補正済み画数で持つ（source=seed）。自動キャッシュされた未知文字（source=kanjiapi）はこの補正が反映されない限界がある。
 - **【v1.16実装済】部首補正は自動化**: `db/build-seed.cjs`（ビルド時のみ）でオフラインパッケージ `kanji-data`（現代画数）＋`kanji`（`kanjiTree`部品分解）を使い、部首グリフ（氵扌艹忄⺨⻖⻏王礻衤⻌）を検出して `radical_corrections.json` の補正値を加算する。**RapidAPIキー不要**（当初のKanji alive／MuzukanjiAPI案は非採用）。シードは常用＋人名用＋かな（濁音・半濁音・拗音・促音・々含む）約3,168字。再生成: `npm i kanji-data kanji && node db/build-seed.cjs` → `python3 db/build-seed-sql.py`。補正適用文字は `db/seed/correction_review.json` に監査用出力。月(肉づき)のみ字形が月(つき)と同じで自動判別できず未補正（手動確認対象）。**シード更新後は Neon に `db/setup_all.sql` を再投入（UPSERT）すること。**
-- 命名候補提案（F-002〜F-005・F-011）は**Phase2として実装済み**（`api/_lib/pet/`、`/api/suggest`、フロントは「ペットの名づけ」タブ）。提案はユーザー希望（よみ由来）優先＋不足分は条件一致マスタからランダム（件数は `SUGGEST_DEFAULT_COUNT`）。**希望よみの漢字表記は機械的逆引きではなくLLM生成**（`kanjiNameLLM.ts`。自然な表記を生成→先頭2＋画数上位を採用）。候補コメントはよみ中心・日本語のみ・1件ずつ順次・同一よみ統一
+- 命名候補提案（F-002〜F-005・F-011）は**Phase2として実装済み**（`api/_lib/pet/`、`/api/suggest`、フロントは「ペットの名づけ」タブ）。提案はユーザー希望（よみ由来・使いたい文字由来）をLLM生成＋不足分は条件一致マスタからランダム（件数は `SUGGEST_DEFAULT_COUNT`）。**希望よみの漢字表記は機械的逆引きではなくLLM生成**（`kanjiNameLLM.ts`。自然な表記を生成→先頭2＋画数上位を採用）。候補コメントはよみ中心・日本語のみ・1件ずつ順次・同一よみ統一
+- **使いたい文字（F-003・v2.4.0再定義）**: **単体1文字を名前の表記に含める**（文字種問わず。詳細 `docs/pet-usable-char.md`）。かな→表記照合（ひらがな・カタカナ同一視）／漢字→表記／アルファベット→ローマ字表記（ヘボン式・`romaji.ts`）。**LLM出力は必ず機械検証**（表記に含むか）してから採用する。使いたい文字×希望のよみが両立しないときはよみ優先＋`notice` を返す。**ローマ字候補の画数はアルファベットに画数が無いためよみ（かな）で数える**（`suggest.ts` の `toItem`）。この点を忘れるとローマ字候補が全て落ちる
 - kanjiapi.devの障害時はエラー表示のみとし、フォールバックAPIは実装しない（`docs/tasks.md` 参照）
 - LLMコメント生成（F-011, F-012）はOllama優先、応答不可時のみOpenRouterにフォールバックする。フォールバック順・モデルは環境変数で変更可能にする
 - LLMコメントは「ロジックで確定した結果への肉付け」役に徹する。診断結果の数値・ランクはロジック側で確定させ、LLMに再計算させない
