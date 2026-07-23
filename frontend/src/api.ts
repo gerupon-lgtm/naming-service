@@ -146,12 +146,14 @@ export class ApiError extends Error {
 
 const API_BASE = import.meta.env.VITE_API_BASE ?? "";
 
-export const APP_VERSION = "mvp-2.4.0";
+export const APP_VERSION = "mvp-2.4.1";
 // mvp-2.2.0 = ボーナス用語説明のツールチップ化、datetimepicker系アイコンのsvg化
 // mvp-2.3.0 = 共有URLに用神リスト(wx)を付与、使いたい文字をLLM生成に切替（よみ照合）
 // mvp-2.3.1 = 使いたい文字由来の候補チップを「よみから生成」と区別（source: chars）
 // mvp-2.4.0 = 使いたい文字を単体1文字・表記照合に再定義。ローマ字出力＋アルファベット対応。
 //            使いたい文字×よみの2段構え＋フォールバックのお知らせ
+// mvp-2.4.1 = 使いたい文字/よみ欄の縦位置を揃え、説明を簡潔化。アルファベット時のみ注釈表示
+//            （アルファベットは出力文字種を無視しローマ字強制）
 
 export interface VersionInfo {
   version: string;

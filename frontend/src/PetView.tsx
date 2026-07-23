@@ -65,6 +65,10 @@ export default function PetView() {
     window.setTimeout(() => setToast(""), 2000);
   };
 
+  // 使いたい文字がアルファベットか。アルファベットはローマ字表記でしか
+  // 表現できないため、出力文字種の指定を無視してローマ字を強制する。
+  const isAlphabetChar = /[A-Za-z]/.test(includeChars);
+
   const buildQuery = useCallback(
     (): SuggestQuery => ({
       target,
@@ -72,11 +76,16 @@ export default function PetView() {
       categories: selectedCats.length ? selectedCats : undefined,
       // 使いたい文字は1文字（複数入ってもサーバーが先頭のみ採用）
       includeChars: includeChars ? [includeChars] : undefined,
-      charTypes: charTypes.length ? charTypes : undefined,
+      // アルファベット時はローマ字を強制（出力文字種の指定は無視）
+      charTypes: isAlphabetChar
+        ? ["romaji"]
+        : charTypes.length
+        ? charTypes
+        : undefined,
       reading: reading.trim() || undefined,
       // 件数は API 側の設定値 SUGGEST_DEFAULT_COUNT（既定8）に従う
     }),
-    [target, sex, selectedCats, includeChars, charTypes, reading]
+    [target, sex, selectedCats, includeChars, charTypes, reading, isAlphabetChar]
   );
 
   const onSubmit = async (e: React.FormEvent) => {
@@ -213,7 +222,7 @@ export default function PetView() {
 
         <div className="field-row" style={{ marginTop: 12 }}>
           <div className="field">
-            <label htmlFor="inc">使いたい文字（任意・1文字のみ）</label>
+            <label htmlFor="inc">使いたい文字（1字）</label>
             <input
               id="inc"
               value={includeChars}
@@ -225,9 +234,6 @@ export default function PetView() {
               placeholder="空"
               autoComplete="off"
             />
-            <p className="field-hint">
-              名前の表記にこの字を必ず入れます。アルファベットはローマ字表記の名前になります。
-            </p>
           </div>
           <div className="field">
             <label htmlFor="rd">希望のよみ（任意）</label>
@@ -240,6 +246,13 @@ export default function PetView() {
             />
           </div>
         </div>
+        {/* アルファベット入力時だけ注釈を出す（横並びの2欄にまたがってよい）。
+            アルファベットはローマ字表記でしか表せないため、出力文字種は無視する。 */}
+        {isAlphabetChar && (
+          <p className="field-hint" style={{ marginTop: 6 }}>
+            アルファベットはローマ字表記の名前になります（出力文字種の指定は無視されます）。
+          </p>
+        )}
 
         <div className="field" style={{ marginTop: 12 }}>
           <label>出力文字種（未選択なら全部）</label>

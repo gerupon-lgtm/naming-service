@@ -74,6 +74,14 @@ select {
   gap: 12px;
 }
 
+/* 横並びの2欄でラベルの折り返しによる入力欄の縦ズレを防ぐ（スマホ対策）。
+   ラベルを1行に固定し、両方の入力欄の開始位置を揃える。 */
+.field-row > .field > label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .field {
   display: flex;
   flex-direction: column;
