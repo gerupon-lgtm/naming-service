@@ -660,19 +660,39 @@ select {
   margin: 14px 0 0;
 }
 
+/* 押せる感を出すため、生年月日の詳細入力（出生時刻・出生地）の折りたたみ
+   ボタン（.disclosure）と同じ淡い茶色の背景・枠線・ホバーに揃える。 */
 .bonus__guide > summary {
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: var(--accent-weak);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font: inherit;
   font-size: 14px;
   font-weight: 700;
-  color: #8a6d3b;
+  color: var(--accent);
+  cursor: pointer;
   list-style: none;
-  padding: 6px 0;
+  transition: background 0.15s, color 0.15s;
+}
+
+/* Safari など、summary のデフォルト三角マーカーを消す */
+.bonus__guide > summary::-webkit-details-marker {
+  display: none;
+}
+
+.bonus__guide > summary:hover {
+  background: #e6dec1;
+  color: #654a30;
 }
 
 .bonus__guide > summary::before {
   content: "▶";
   display: inline-block;
-  margin-right: 6px;
+  margin-right: 8px;
   font-size: 11px;
   transition: transform 0.15s;
 }

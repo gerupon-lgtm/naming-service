@@ -150,7 +150,7 @@ export class ApiError extends Error {
 
 const API_BASE = import.meta.env.VITE_API_BASE ?? "";
 
-export const APP_VERSION = "mvp-2.4.2";
+export const APP_VERSION = "mvp-2.4.3";
 // mvp-2.2.0 = ボーナス用語説明のツールチップ化、datetimepicker系アイコンのsvg化
 // mvp-2.3.0 = 共有URLに用神リスト(wx)を付与、使いたい文字をLLM生成に切替（よみ照合）
 // mvp-2.3.1 = 使いたい文字由来の候補チップを「よみから生成」と区別（source: chars）
@@ -160,6 +160,8 @@ export const APP_VERSION = "mvp-2.4.2";
 //            （アルファベットは出力文字種を無視しローマ字強制）
 // mvp-2.4.2 = 五行ボーナスに導入文①＋「吉となる五行の取り入れ方」折りたたみ②を追加。
 //            下部注釈を短縮（ツールチップ維持）
+// mvp-2.4.3 = 五行ボーナスの折りたたみ見出しを .disclosure と同じ淡い茶色の
+//            ボタン風にして押せる感を出す
 
 export interface VersionInfo {
   version: string;
