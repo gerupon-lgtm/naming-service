@@ -966,7 +966,7 @@ input[type="time"].dual-input__picker {
   line-height: 1.7;
 }
 
-/* フッター（バージョン・LLM情報） */
+/* フッター（バージョン・LLM情報 ＋ 屋号） */
 .appfoot {
   margin-top: 28px;
   padding-top: 12px;
@@ -976,6 +976,14 @@ input[type="time"].dual-input__picker {
   color: var(--muted);
   font-weight: 400;
   letter-spacing: 0.02em;
+}
+
+/* 屋号は SIKUMI LAB（確定）。バージョン行より一段控えめに置く。 */
+.appfoot-copy {
+  margin-top: 6px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  opacity: 0.8;
 }
 
 /* タブ（姓名診断／ペット） */

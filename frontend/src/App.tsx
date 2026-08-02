@@ -57,8 +57,11 @@ export default function App() {
       {mode === "meimei" ? <DiagnoseView /> : <PetView />}
 
       <footer className="appfoot">
-        {ver?.version ?? APP_VERSION}
-        {ver?.llm ? `　${ver.llm.provider}:${ver.llm.model}` : ""}
+        <div className="appfoot-ver">
+          {ver?.version ?? APP_VERSION}
+          {ver?.llm ? `　${ver.llm.provider}:${ver.llm.model}` : ""}
+        </div>
+        <div className="appfoot-copy">© 2026 SIKUMI LAB</div>
       </footer>
     </main>
   );

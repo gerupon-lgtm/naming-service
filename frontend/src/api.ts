@@ -150,7 +150,7 @@ export class ApiError extends Error {
 
 const API_BASE = import.meta.env.VITE_API_BASE ?? "";
 
-export const APP_VERSION = "mvp-2.5.0";
+export const APP_VERSION = "mvp-2.5.1";
 // mvp-2.2.0 = ボーナス用語説明のツールチップ化、datetimepicker系アイコンのsvg化
 // mvp-2.3.0 = 共有URLに用神リスト(wx)を付与、使いたい文字をLLM生成に切替（よみ照合）
 // mvp-2.3.1 = 使いたい文字由来の候補チップを「よみから生成」と区別（source: chars）
