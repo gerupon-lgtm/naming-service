@@ -9,6 +9,8 @@
 // GET /api/bazi — 都道府県コード一覧（フロントの選択肢生成用）。
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { buildMeishiki } from "./_lib/bazi/meishiki";
+import { judgeStrength } from "./_lib/bazi/strength";
+import { decideTargetElements } from "./_lib/bazi/wuxing";
 import { PREFECTURES } from "./_lib/bazi/longitude";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -56,7 +58,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       birthPlace,
       timezone: body.timezone,
     });
-    return res.status(200).json({ meishiki });
+    // 身強／身弱と用神も返す（v2.6.0〜）。
+    // 四柱推命アプリ側が日運を「用神が巡っているか」で採点するために必要。
+    // 用神は身強身弱で向きが変わるので、命式だけ渡しても呼び出し側では決められない。
+    // 判定ロジックは本エンジンに一元化する（docs/integration-shichu.md 5章 Phase B）。
+    const strengthResult = judgeStrength(meishiki);
+    const targetElements = decideTargetElements(meishiki, strengthResult.strength);
+    return res.status(200).json({
+      meishiki,
+      strength: strengthResult,
+      targetElements,
+    });
   } catch (e) {
     return res.status(500).json({ error: String(e).slice(0, 300) });
   }
